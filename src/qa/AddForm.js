@@ -38,7 +38,9 @@ class AddForm extends Component{
         let action = addQa(this.state.user, this.state.title, this.state.question);
         this.props.dispatch(action);
 
+        
         this.setState({
+            // data:[],
             user: '',
             title: '',
             question: ''
@@ -93,4 +95,4 @@ class AddForm extends Component{
     }
 }
 
-export default connect()(AddForm);
+export default connect((state)=>state)(AddForm);

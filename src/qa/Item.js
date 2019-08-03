@@ -27,7 +27,6 @@ class Item extends Component{
     
     componentDidMount() {
             //DBから値を取得
-
         collection.orderBy('created').get()
           .then(snapshot => {
             snapshot.docs.map(doc => {
@@ -45,7 +44,8 @@ class Item extends Component{
                 user: '',
                 title: '',
                 question: ''
-              }));
+              })
+              );
             });
           });
     }
@@ -53,7 +53,8 @@ class Item extends Component{
     render() {
         return (
             <div className="wrap">
-                {this.state.data.map((item, i) => (
+            {/* propsにするかstateにするかで表示変わる。propsにすると */}
+                {this.props.data.map((item, i) => (
                     <a className="ui fluid card" key={i}>
                         <div className="content">
                             <div className="header">{item.title}</div>

@@ -25,6 +25,8 @@ export function qaReducer(state = initData, action) {
     }
 }
 
+
+
 //レデュースアクション
 //質問投稿レデュース処理
 function addReduce(state, action) {
@@ -36,6 +38,8 @@ function addReduce(state, action) {
     let newdata = state.data.slice();
     newdata.unshift(data);
 
+    console.log(`${newdata}`);
+    console.log(`${data}`);
         //データベースに保存
     collection.add({
       user: action.user,
@@ -50,8 +54,12 @@ function addReduce(state, action) {
         console.log(error);
       });
     
+    //ここでstateを変更している
     return {
         data: newdata,
+        // user: '',
+        // title: '',
+        // question:''
     }
 }
 
