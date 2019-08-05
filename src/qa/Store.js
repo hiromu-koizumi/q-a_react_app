@@ -20,11 +20,28 @@ export function qaReducer(state = initData, action) {
     switch (action.type) {
         case 'ADD':
             return addReduce(state, action);
+        case 'INIT':
+            return initReduce(state, action);
         default:
             return state;
     }
 }
 
+//サイトを開いた際に行われる処理。firebaseのデータをstateに保存している。
+function initReduce(state, action) {
+    let data = {
+        user:action.user,
+        title:action.title,
+        question: action.question,
+        }
+        let newdata = state.data.slice();
+        newdata.unshift(data);
+        
+        //ここでstateを変更している
+        return {
+            data: newdata,
+        }
+}
 
 
 //レデュースアクション
@@ -38,9 +55,7 @@ function addReduce(state, action) {
     let newdata = state.data.slice();
     newdata.unshift(data);
 
-    console.log(`${newdata}`);
-    console.log(`${data}`);
-        //データベースに保存
+    //データベースに保存
     collection.add({
       user: action.user,
       title: action.title,
@@ -57,9 +72,6 @@ function addReduce(state, action) {
     //ここでstateを変更している
     return {
         data: newdata,
-        // user: '',
-        // title: '',
-        // question:''
     }
 }
 
@@ -69,7 +81,16 @@ export function addQa(user, title, question) {
         type: 'ADD',
         user: user,
         title: title,
-        question,question
+        question:question
+    }
+}
+
+export function initQa(allItems) {
+    return {
+        type: 'INIT',
+        user: allItems.user,
+        title: allItems.title,
+        question:allItems.question
     }
 }
 
