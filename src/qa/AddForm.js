@@ -82,7 +82,7 @@ class AddForm extends Component{
                             placeholder="質問"
                             rows="3"
                         />
-                    </div>
+                        </div>
                     <button
                         className="ui green inverted button"
                         type="submit"

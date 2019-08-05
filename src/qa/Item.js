@@ -41,7 +41,7 @@ class Item extends Component{
         console.log(`${this.props.data}`)
 
             return (
-                <div className="wrap">
+                < div className = "wrap" >
                     {/* propsにするかstateにするかで表示変わる。propsにすると */}
                     {this.props.data.map((item, i) => (
                         <a className="ui fluid card" key={i}>
