@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addQa } from './Store';
+import { addQa } from '../actions';
 
 class AddForm extends Component{
     constructor(props) {

@@ -5,13 +5,6 @@ import {fetchPosts} from '../actions'
 
 //質問の表示処理
 class Item extends Component{
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            data: []
-        }
-    }
     
     componentDidMount() {
         this.props.fetchPosts();
@@ -38,5 +31,10 @@ class Item extends Component{
         }
     }
 
-//((state)=>state)でstoreのstateを使用できるようにしている。それは、this.propsで使用できる。
-export default connect((state)=>state,{fetchPosts})(Item);
+    const mapStateToProps = (state) =>{        
+        return { 
+            data: Object.values(state.data.post),
+        };
+    }
+
+export default connect(mapStateToProps,{fetchPosts})(Item);
