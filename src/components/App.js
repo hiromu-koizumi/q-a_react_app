@@ -1,20 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './App.css';
-import AddForm from './qa/AddForm';
-import Item from './qa/Item';
+import QaForm from './qa/QaForm';
+import QaList from './qa/QaList';
 
 
 class App extends Component {
 
-  constructor(props){
-    super(props);
-  }
   render() {
     return (
       <div>
-        <AddForm />
-        <Item/>
+        <QaForm />
+        <QaList/>
       </div>
     )
   }

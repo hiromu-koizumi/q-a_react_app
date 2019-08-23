@@ -8,8 +8,8 @@ import reducers from './reducers';
 
 
 
-import './index.css';
-import App from './App';
+import './components/index.css';
+import App from './components/App';
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
