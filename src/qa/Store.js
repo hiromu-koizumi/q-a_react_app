@@ -1,8 +1,10 @@
-import { createStore } from 'redux';
+import { createStore,applyMiddleware} from 'redux';
 
 import firebase from 'firebase/app';
 import firestore from 'firebase/firestore';
 import config from '../firebase-config.js';
+import thunk from 'redux-thunk';
+
 
 firebase.initializeApp(config);
 const db = firebase.firestore();
@@ -15,7 +17,7 @@ const initData = {
     question: ''
 };
 
-//レデューサー
+// レデューサー
 export function qaReducer(state = initData, action) {
     switch (action.type) {
         case 'ADD':
@@ -94,4 +96,7 @@ export function initQa(allItems) {
     }
 }
 
-export default createStore(qaReducer);
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
+const middlewares = [thunk];
+
+export default createStore(qaReducer,composeEnhancers(applyMiddleware(...middlewares)));

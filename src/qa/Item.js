@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import firebase from 'firebase/app';
-import firestore from 'firebase/firestore';
-import { initQa } from './Store';
+import {fetchPosts} from '../actions'
 
-const db = firebase.firestore();
-const collection = db.collection('tweets');
 
 //質問の表示処理
 class Item extends Component{
@@ -18,28 +14,10 @@ class Item extends Component{
     }
     
     componentDidMount() {
-        //DBから値を取得
-        collection.orderBy('created').get()
-            .then(snapshot => {
-                snapshot.docs.map(doc => {
-                    console.log(doc.data());
-
-                    const allItems = {
-                        user: doc.data().user,
-                        title: doc.data().title,
-                        question: doc.data().question,
-                    }
-                    let action = initQa(allItems);
-                    this.props.dispatch(action);
-                }, );
-            }, );
-
+        this.props.fetchPosts();
     }
 
     render() {
-        console.log(JSON.stringify(this.props.data))
-        console.log(`${this.props.data}`)
-
             return (
                 < div className = "wrap" >
                     {/* propsにするかstateにするかで表示変わる。propsにすると */}
@@ -61,4 +39,4 @@ class Item extends Component{
     }
 
 //((state)=>state)でstoreのstateを使用できるようにしている。それは、this.propsで使用できる。
-export default connect((state)=>state)(Item);
+export default connect((state)=>state,{fetchPosts})(Item);
