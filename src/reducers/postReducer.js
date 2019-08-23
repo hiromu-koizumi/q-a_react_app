@@ -1,5 +1,4 @@
 import {createPost} from '../actions'
-import _ from 'lodash';
 
 const initData = {
     post: [],
@@ -13,6 +12,8 @@ export default (state = initData, action) => {
             return addReduce(state, action);
         case 'INIT':
             return initReduce(state, action);
+        case 'DETAIL':
+            return detailReduce(state,action);
         default:
             return state;
     }
@@ -25,6 +26,7 @@ function initReduce(state, action) {
         user:action.user,
         title:action.title,
         question: action.question,
+        id:action.id
         }
         
         let newdata = state.post.slice();
@@ -53,5 +55,19 @@ function addReduce(state, action) {
     //ここでstateを変更している
     return {
         post: newdata,
+    }
+}
+function detailReduce(state, action) {
+    let data = {
+    user:action.user,
+    title:action.title,
+    question: action.question,
+    id:action.id
+    }
+    return {
+        //...stateを入れることで現在ののstateを保持する
+        //入れないと現在のstateが消えてしまう
+        ...state,
+        detail: data,
     }
 }

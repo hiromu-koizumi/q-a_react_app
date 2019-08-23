@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addQa } from '../../actions';
 
-class AddForm extends Component{
+class QaCreate extends Component{
     constructor(props) {
         super(props);
 
@@ -40,7 +40,6 @@ class AddForm extends Component{
 
         
         this.setState({
-            // data:[],
             user: '',
             title: '',
             question: ''
@@ -49,8 +48,7 @@ class AddForm extends Component{
 
     render() {
         return (
-            <div>
-            <header className="">Q&A</header>
+            
             <div className="ui container">
                 <form onSubmit={this.doAction}
                     autoComplete="off"
@@ -90,9 +88,9 @@ class AddForm extends Component{
             </button>
                 </form>
                 </div>
-                </div>
+                
         )
     }
 }
 
-export default connect((state)=>state)(AddForm);
+export default connect((state)=>state)(QaCreate);

@@ -29,12 +29,31 @@ export const fetchPosts = () => dispatch => {
                         user: doc.data().user,
                         title: doc.data().title,
                         question: doc.data().question,
+                        id:doc.id,
                     }
                     //リデューサー
                     dispatch(allItems);
                 }, );
             }, );
  }
+export const fetchPost = (id) => dispatch => {
+   collection.doc(id).get().then(snapshot => {
+                
+                    //allitemsにデータを代入
+                    const allItems = {
+                        type: 'DETAIL',
+                        user: snapshot.data().user,
+                        title: snapshot.data().title,
+                        question: snapshot.data().question,
+                        id:snapshot.id
+                    }
+                    //リデューサー
+                    dispatch(allItems);
+                }, );
+            
+ }
+
+
 
  export const createPost = data => {
     //データベースに保存
