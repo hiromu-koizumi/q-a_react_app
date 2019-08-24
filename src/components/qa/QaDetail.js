@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {fetchPost,createAnswer} from '../../actions';
+import {createAnswer,resetAnswer,fetchPost,fetchAnswers} from '../../actions';
 import AnswerForm from './AnswerForm';
 import AnswerList from './AnswerList';
 
@@ -8,13 +8,22 @@ import AnswerList from './AnswerList';
 class QaDetail extends React.Component{
 
     componentDidMount(){
-        const {id} = this.props.match.params;
-        this.props.fetchPost(id);
+        this.props.fetchPost(this.props.match.params.id)
+        console.log(this.props.match)
+    }
+
+    componentWillUnmount(){
+        //ページを離れる時にstateのanswerの値を削除している
+        //消さないと、回答のないページを開いた時に以前開いたページの回答を表示してしまう
+       this.props.resetAnswer()
     }
 
     onSubmit = (formValues,id) => {
         console.log(id)
         this.props.createAnswer(formValues,id);
+        
+        //再読み込みして新規投稿を取得している
+        this.props.fetchAnswers(id)
     }
 
     render(){
@@ -22,7 +31,6 @@ class QaDetail extends React.Component{
             return <div>Loading...</div>
         }
 
-        console.log(this.props.post)
         const  {name,title,question} = this.props.post
     
 
@@ -31,15 +39,15 @@ class QaDetail extends React.Component{
                 <h1>{title}</h1>
                 <h5>{name}</h5>
                 <h5>{question}</h5>
-                {/* <AnswerList id={this.props.match.params.id}/> */}
+                <AnswerList id={this.props.match.params.id}/>
                 <AnswerForm　onSubmit={this.onSubmit} id={this.props.match.params.id}/>
             </div>
         )
     }
 }
 
-const mapStateToProps = (state) => {
-    return {post:state.data.detail};
+const mapStateToProps = (state,ownProps) => {
+    return {post:state.data[ownProps.match.params.id]}
 }
 
-export default connect(mapStateToProps,{fetchPost,createAnswer})(QaDetail);
+export default connect(mapStateToProps,{createAnswer,resetAnswer,fetchPost,fetchAnswers})(QaDetail);

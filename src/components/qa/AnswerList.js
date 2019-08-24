@@ -17,6 +17,7 @@ class AnswerList extends Component{
                 <div>回答なし</div>
             );
         }
+        console.log(this.props.data)
             return (
                 < div className = "wrap" >
                     {/* propsにするかstateにするかで表示変わる。propsにすると */}
@@ -28,7 +29,7 @@ class AnswerList extends Component{
                                 </Link>
                                 <div className="meta">{item.name}</div>
                                 <div className="description">
-                                    <p>{item.question}</p>
+                                    <p>{item.answer}</p>
                                 </div>
                             </div>
                         </div>
@@ -40,14 +41,13 @@ class AnswerList extends Component{
     }
 
     const mapStateToProps = (state) =>{   
-        console.log(state)
-        if (!state.data.answer){
+        if (!state.answer){
             return　{
                 nodata:state
             }
         }
         return { 
-            data: Object.values(state.data.answer),
+            data: Object.values(state.answer),
         };
     }
 

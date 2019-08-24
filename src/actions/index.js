@@ -29,24 +29,6 @@ export const fetchPosts = () => async (dispatch) => {
                   dispatch({type:'INIT',questions});
             }, );
  }
-export const fetchPost = (id) => dispatch => {
-  db.collection('tweets').doc(id).get()
-            .then(snapshot => {
-                    //allitemsにデータを代入
-                    const allItems = {
-                        type: 'DETAIL',
-                        name: snapshot.data().name,
-                        title: snapshot.data().title,
-                        question: snapshot.data().question,
-                        id:snapshot.id
-                    }
-                    //リデューサー
-                    dispatch(allItems);
-                }, );
-            
- }
-
-
 
  export const createQuestion = formValues => async(dispatch) =>{
     //データベースに保存
@@ -75,23 +57,47 @@ export const fetchPost = (id) => dispatch => {
         .catch(error => {
           console.log(error);
         });
-
-        dispatch({type:"ADD_ANSWER",payload:formValues});
  }
 
  export const fetchAnswers = (id) => (dispatch) => {
+   console.log('ananan')
+  const answers = [];
   db.collection('tweets').doc(id).collection('answer').orderBy('created').get()
             .then(snapshot => {
                 snapshot.docs.map(doc => {
                     //allitemsにデータを代入
-                    const allItems = {
-                        type: 'LOAD_ANSEWR',
+                    const answer = {
                         name: doc.data().name,
                         answer: doc.data().answer,
                     }
+                    answers.unshift(answer);
+
                     //リデューサー
-                    dispatch(allItems);
                 }, );
+                dispatch({type:'LOAD_ANSWER',answers});
             }, );
  }
 
+ export const resetAnswer = () => dispatch => {
+  const answers={};
+  dispatch({type:'RESET_ANSWER',answers}); 
+ }
+
+ //詳細ページで再読み込みする際、これがないとページが表示されない
+ export const fetchPost = (id) => (dispatch) => {
+  db.collection('tweets').doc(id).get()
+            .then(snapshot => {
+                    //allitemsにデータを代入
+                    const  payload = {
+                        name: snapshot.data().name,
+                        title: snapshot.data().title,
+                        question: snapshot.data().question,
+                        id:id
+                    }
+      
+                    dispatch({type: 'FETCH_QUESTION',payload:payload});
+
+                }, );
+
+            
+ }
