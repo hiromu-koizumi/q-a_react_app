@@ -1,4 +1,5 @@
-import {createPost} from '../actions'
+import {createQuestion} from '../actions'
+import {createAnswer} from '../actions'
 
 const initData = {
     post: [],
@@ -14,6 +15,8 @@ export default (state = initData, action) => {
             return initReduce(state, action);
         case 'DETAIL':
             return detailReduce(state,action);
+        case 'ADD_ANSWER':
+            return addAnswerReduce(state,action);
         default:
             return state;
     }
@@ -50,7 +53,7 @@ function addReduce(state, action) {
     newdata.unshift(data);
 
     //firebaseに保存
-    createPost(data);
+    createQuestion(data);
     
     //ここでstateを変更している
     return {
@@ -69,5 +72,21 @@ function detailReduce(state, action) {
         //入れないと現在のstateが消えてしまう
         ...state,
         detail: data,
+    }
+}
+
+function addAnswerReduce(state, action) {
+    let data = {
+    name:action.name,
+    answer: action.answer,
+    }
+    
+    //firebaseに保存
+    createAnswer(data);
+    
+    //ここでstateを変更している
+    return {
+        ...state,
+        answer: data,
     }
 }

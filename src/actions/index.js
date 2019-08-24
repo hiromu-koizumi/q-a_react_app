@@ -1,12 +1,13 @@
 import firebase from 'firebase/app';
 import firestore from 'firebase/firestore';
 import config from '../components/firebase-config.js';
+import history from '../history';
+
 
 
 firebase.initializeApp(config);
 
 const db = firebase.firestore();
-const collection = db.collection('tweets');
 
 
 export function addQa(user, title, question) {
@@ -20,7 +21,7 @@ export function addQa(user, title, question) {
 
 
 export const fetchPosts = () => dispatch => {
-    collection.orderBy('created').get()
+  db.collection('tweets').orderBy('created').get()
             .then(snapshot => {
                 snapshot.docs.map(doc => {
                     //allitemsにデータを代入
@@ -37,8 +38,8 @@ export const fetchPosts = () => dispatch => {
             }, );
  }
 export const fetchPost = (id) => dispatch => {
-   collection.doc(id).get().then(snapshot => {
-                
+  db.collection('tweets').doc(id).get()
+            .then(snapshot => {
                     //allitemsにデータを代入
                     const allItems = {
                         type: 'DETAIL',
@@ -55,9 +56,9 @@ export const fetchPost = (id) => dispatch => {
 
 
 
- export const createPost = data => {
+ export const createQuestion = data => {
     //データベースに保存
-    collection.add({
+    db.collection('tweets').add({
         ...data,
         created:
           firebase.firestore.FieldValue.serverTimestamp()
@@ -69,3 +70,20 @@ export const fetchPost = (id) => dispatch => {
         });
 
  }
+
+ export const createAnswer = (formValues,id) => async (dispatch) => {
+
+  db.collection('tweets').doc(id).collection('answer').add({
+        ...formValues,
+        created:
+          firebase.firestore.FieldValue.serverTimestamp()
+      }).then(doc => {
+        console.log(`${doc.id}をDBに保存した`);
+      })
+        .catch(error => {
+          console.log(error);
+        });
+
+        dispatch({type:"ADD_ANSWER",payload:formValues});
+ }
+
