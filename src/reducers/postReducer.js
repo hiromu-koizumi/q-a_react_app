@@ -6,8 +6,6 @@ import {createAnswer} from '../actions'
 //レデューサー
 export default (state = {}, action) => {
     switch (action.type) {
-        case 'ADD':
-            return {...state,...action.payload};
         case 'INIT':
             return {...state,...action.questions};
         case 'DETAIL':

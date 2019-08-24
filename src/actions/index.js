@@ -10,16 +10,6 @@ firebase.initializeApp(config);
 const db = firebase.firestore();
 
 
-export function addQa(user, title, question) {
-    return {
-        type: 'ADD',
-        user: user,
-        title: title,
-        question:question
-    }
-}
-
-
 export const fetchPosts = () => async (dispatch) => {
   const questions = [];
   await db.collection('tweets').orderBy('created').get()
@@ -34,11 +24,7 @@ export const fetchPosts = () => async (dispatch) => {
                         question: doc.data().question,
                         id:doc.id,
                     }
-                    // console.log(allItems)
-                    // console.log(all)
                     questions.unshift(question);
-                    //リデューサー
-                    // dispatch(allItems);
                   },);
                   dispatch({type:'INIT',questions});
             }, );
@@ -75,10 +61,6 @@ export const fetchPost = (id) => dispatch => {
           console.log(error);
         });
         console.log(formValues)
-
-        dispatch({type:"ADD",payload:formValues});
-
-
  }
 
  export const createAnswer = (formValues,id) => async (dispatch) => {
