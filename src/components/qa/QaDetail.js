@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {fetchPost,createAnswer} from '../../actions';
 import AnswerForm from './AnswerForm';
+import AnswerList from './AnswerList';
 
 
 class QaDetail extends React.Component{
@@ -21,14 +22,16 @@ class QaDetail extends React.Component{
             return <div>Loading...</div>
         }
 
-        const  {user,title,question} = this.props.post
+        console.log(this.props.post)
+        const  {name,title,question} = this.props.post
     
 
         return (
             <div>
                 <h1>{title}</h1>
-                <h5>{user}</h5>
+                <h5>{name}</h5>
                 <h5>{question}</h5>
+                {/* <AnswerList id={this.props.match.params.id}/> */}
                 <AnswerForm　onSubmit={this.onSubmit} id={this.props.match.params.id}/>
             </div>
         )

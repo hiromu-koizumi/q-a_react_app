@@ -1,25 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {fetchPosts} from '../../actions';
+import {fetchAnswers} from '../../actions';
 import {Link} from 'react-router-dom';
 
 
 //質問の表示処理
-class Item extends Component{
+class AnswerList extends Component{
     
     componentDidMount() {
-        this.props.fetchPosts();
+        this.props.fetchAnswers(this.props.id);
     }
 
     render() {
+        if (this.props.nodata){
+            return(
+                <div>回答なし</div>
+            );
+        }
             return (
                 < div className = "wrap" >
-                    <div style={{textAlign:'center'}}>
-                        <Link to="/qa/new" className="ui button primary">
-                            質問する
-                        </Link>
-
-                    </div>
                     {/* propsにするかstateにするかで表示変わる。propsにすると */}
                     {this.props.data.map((item, i) => (
                         <div className="ui fluid card" key={i}>
@@ -40,10 +39,16 @@ class Item extends Component{
         }
     }
 
-    const mapStateToProps = (state) =>{        
+    const mapStateToProps = (state) =>{   
+        console.log(state)
+        if (!state.data.answer){
+            return　{
+                nodata:state
+            }
+        }
         return { 
-            data: Object.values(state.data),
+            data: Object.values(state.data.answer),
         };
     }
 
-export default connect(mapStateToProps,{fetchPosts})(Item);
+export default connect(mapStateToProps,{fetchAnswers})(AnswerList);

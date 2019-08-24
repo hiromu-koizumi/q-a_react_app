@@ -20,21 +20,27 @@ export function addQa(user, title, question) {
 }
 
 
-export const fetchPosts = () => dispatch => {
-  db.collection('tweets').orderBy('created').get()
+export const fetchPosts = () => async (dispatch) => {
+  const questions = [];
+  await db.collection('tweets').orderBy('created').get()
             .then(snapshot => {
+              // console.log(snapshot.docs);
                 snapshot.docs.map(doc => {
                     //allitemsにデータを代入
-                    const allItems = {
-                        type: 'INIT',
-                        user: doc.data().user,
+                    console.log(doc.data())
+                    const question = {
+                        name: doc.data().name,
                         title: doc.data().title,
                         question: doc.data().question,
                         id:doc.id,
                     }
+                    // console.log(allItems)
+                    // console.log(all)
+                    questions.unshift(question);
                     //リデューサー
-                    dispatch(allItems);
-                }, );
+                    // dispatch(allItems);
+                  },);
+                  dispatch({type:'INIT',questions});
             }, );
  }
 export const fetchPost = (id) => dispatch => {
@@ -43,7 +49,7 @@ export const fetchPost = (id) => dispatch => {
                     //allitemsにデータを代入
                     const allItems = {
                         type: 'DETAIL',
-                        user: snapshot.data().user,
+                        name: snapshot.data().name,
                         title: snapshot.data().title,
                         question: snapshot.data().question,
                         id:snapshot.id
@@ -56,10 +62,10 @@ export const fetchPost = (id) => dispatch => {
 
 
 
- export const createQuestion = data => {
+ export const createQuestion = formValues => async(dispatch) =>{
     //データベースに保存
     db.collection('tweets').add({
-        ...data,
+        ...formValues,
         created:
           firebase.firestore.FieldValue.serverTimestamp()
       }).then(doc => {
@@ -68,6 +74,10 @@ export const fetchPost = (id) => dispatch => {
         .catch(error => {
           console.log(error);
         });
+        console.log(formValues)
+
+        dispatch({type:"ADD",payload:formValues});
+
 
  }
 
@@ -85,5 +95,21 @@ export const fetchPost = (id) => dispatch => {
         });
 
         dispatch({type:"ADD_ANSWER",payload:formValues});
+ }
+
+ export const fetchAnswers = (id) => (dispatch) => {
+  db.collection('tweets').doc(id).collection('answer').orderBy('created').get()
+            .then(snapshot => {
+                snapshot.docs.map(doc => {
+                    //allitemsにデータを代入
+                    const allItems = {
+                        type: 'LOAD_ANSEWR',
+                        name: doc.data().name,
+                        answer: doc.data().answer,
+                    }
+                    //リデューサー
+                    dispatch(allItems);
+                }, );
+            }, );
  }
 

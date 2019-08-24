@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {Router,Route,Switch} from 'react-router-dom';
 import './App.css';
-import QaCreate from './qa/QaCreate';
+import QuestionCreate from './qa/QuestionCreate';
 import QaDetail from './qa/QaDetail';
 import QaList from './qa/QaList';
 import history from '../history';
@@ -21,7 +21,7 @@ const App = () => {
             <Header/>
             <Switch>
               <Route path="/" exact component={QaList}/>
-              <Route path="/qa/new" exact component={QaCreate}/>
+              <Route path="/qa/new" exact component={QuestionCreate}/>
               <Route path="/qa/:id" exact component={QaDetail}/>
             </Switch>
           </div>
