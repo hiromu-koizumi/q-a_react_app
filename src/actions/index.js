@@ -3,6 +3,9 @@ import firestore from 'firebase/firestore';
 import config from '../components/firebase-config.js';
 import history from '../history';
 
+import "firebase/auth";
+
+
 
 
 firebase.initializeApp(config);
@@ -87,6 +90,7 @@ export const fetchPosts = () => async (dispatch) => {
  export const fetchPost = (id) => (dispatch) => {
   db.collection('tweets').doc(id).get()
             .then(snapshot => {
+              console.log('feeeeeee')
                     //allitemsにデータを代入
                     const  payload = {
                         name: snapshot.data().name,
@@ -97,7 +101,21 @@ export const fetchPosts = () => async (dispatch) => {
       
                     dispatch({type: 'FETCH_QUESTION',payload:payload});
 
-                }, );
-
-            
+                }, );         
  }
+
+
+ export const signUp = formValues => async(dispatch) =>{
+  //データベースに保存
+  firebase.auth().createUserWithEmailAndPassword(formValues.mail, formValues.password).catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // ...
+    if(errorCode){
+      console.log(errorMessage)
+      console.log(errorCode)
+    }
+  });
+      console.log(formValues)
+}

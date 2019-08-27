@@ -7,6 +7,9 @@ const Header = () => {
             <Link to="/" className="item">
                 QA
             </Link>
+            <Link to="/qa/signup" className="item">
+                登録
+            </Link>
         </div>
     )
 };
