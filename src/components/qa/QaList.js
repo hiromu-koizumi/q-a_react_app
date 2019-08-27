@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {fetchPosts,login} from '../../actions';
-// import {fetchPosts} from '../../actions';
+import {fetchPosts} from '../../actions';
 import {Link} from 'react-router-dom';
 
 
