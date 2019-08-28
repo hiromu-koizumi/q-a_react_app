@@ -10,6 +10,9 @@ const Header = () => {
             <Link to="/qa/signup" className="item">
                 登録
             </Link>
+            <Link to="/qa/mypage" className="item">
+                マイページ
+            </Link>
         </div>
     )
 };

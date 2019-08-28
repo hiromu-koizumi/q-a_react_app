@@ -90,7 +90,6 @@ export const fetchPosts = () => async (dispatch) => {
  export const fetchPost = (id) => (dispatch) => {
   db.collection('tweets').doc(id).get()
             .then(snapshot => {
-              console.log('feeeeeee')
                     //allitemsにデータを代入
                     const  payload = {
                         name: snapshot.data().name,
@@ -125,6 +124,15 @@ export const fetchPosts = () => async (dispatch) => {
 if (user) {
  const uid = user.uid;
  dispatch({type:'SIGN_IN',payload:uid});
+
+ db.collection('users').doc(uid).set({
+  userId:uid
+}).then(doc => {
+})
+  .catch(error => {
+    console.log(error);
+  });
+
 } else {
   console.log('e')
   // No user is signed in.
