@@ -107,15 +107,27 @@ export const fetchPosts = () => async (dispatch) => {
 
  export const signUp = formValues => async(dispatch) =>{
   //データベースに保存
-  firebase.auth().createUserWithEmailAndPassword(formValues.mail, formValues.password).catch(function(error) {
+ await firebase.auth().createUserWithEmailAndPassword(formValues.mail, formValues.password).catch(function(error) {
+    // Handle Errors here.
+    console.log('error')
+    
+  });
+
+ await firebase.auth().signInWithEmailAndPassword(formValues.mail, formValues.password).catch(function(error) {
     // Handle Errors here.
     var errorCode = error.code;
     var errorMessage = error.message;
-    // ...
-    if(errorCode){
-      console.log(errorMessage)
-      console.log(errorCode)
-    }
+    console.log("miss")
   });
-      console.log(formValues)
+  
+  var user = firebase.auth().currentUser;
+
+if (user) {
+ const uid = user.uid;
+ dispatch({type:'SIGN_IN',payload:uid});
+} else {
+  console.log('e')
+  // No user is signed in.
+}
+
 }
