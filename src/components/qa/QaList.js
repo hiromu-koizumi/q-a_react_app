@@ -9,6 +9,7 @@ class Item extends Component{
     
     componentDidMount() {
         this.props.fetchPosts();
+
     }
 
     render() {

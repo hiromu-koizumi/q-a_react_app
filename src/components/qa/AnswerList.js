@@ -17,7 +17,6 @@ class AnswerList extends Component{
                 <div>回答なし</div>
             );
         }
-        console.log(this.props.data)
             return (
                 < div className = "wrap" >
                     {/* propsにするかstateにするかで表示変わる。propsにすると */}

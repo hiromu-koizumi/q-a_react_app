@@ -7,7 +7,7 @@ class QuestionCreate extends Component{
     
   
     onSubmit = (formValues) => {
-        this.props.createQuestion(formValues);
+        this.props.createQuestion(formValues,this.props.auth);
     }
 
     render() {
@@ -17,4 +17,8 @@ class QuestionCreate extends Component{
     }
 }
 
-export default connect((state)=>state,{createQuestion})(QuestionCreate);
+const mapStateToProps = (state) => {
+    return {auth:state.auth.userId}
+}
+
+export default connect(mapStateToProps,{createQuestion})(QuestionCreate);

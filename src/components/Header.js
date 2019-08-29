@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import FirebaseAuth from './FirebaseAuth'
 
 const Header = () => {
     return(
@@ -13,6 +14,7 @@ const Header = () => {
             <Link to="/qa/mypage" className="item">
                 マイページ
             </Link>
+            <FirebaseAuth/>
         </div>
     )
 };

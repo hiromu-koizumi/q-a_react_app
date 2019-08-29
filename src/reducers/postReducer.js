@@ -9,7 +9,6 @@ export default (state = {}, action) => {
         case 'INIT':
             return {...state,..._.mapKeys(action.questions,'id')};
         case 'FETCH_QUESTION':
-            console.log(action.payload)
             return {...state,[action.payload.id]:action.payload};
         default:
             return state;
