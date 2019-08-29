@@ -19,7 +19,7 @@ class QaDetail extends React.Component{
 
     onSubmit = (formValues,id) => {
         console.log(id)
-        this.props.createAnswer(formValues,id);
+        this.props.createAnswer(formValues,id,this.props.auth);
         
         //再読み込みして新規投稿を取得している
         this.props.fetchAnswers(id)
@@ -46,7 +46,7 @@ class QaDetail extends React.Component{
 }
 
 const mapStateToProps = (state,ownProps) => {
-    return {post:state.data[ownProps.match.params.id]}
+    return {post:state.data[ownProps.match.params.id],auth:state.auth.userId}
 }
 
 export default connect(mapStateToProps,{createAnswer,resetAnswer,fetchPost,fetchAnswers})(QaDetail);

@@ -57,10 +57,21 @@ export const createQuestion = (formValues, uid) => async (dispatch) => {
     });
 }
 
-export const createAnswer = (formValues, id) => async (dispatch) => {
+export const createAnswer = (formValues, postId,uid) => async (dispatch) => {
 
-  db.collection('tweets').doc(id).collection('answer').add({
+  db.collection('tweets').doc(postId).collection('answer').add({
       ...formValues,
+      created: firebase.firestore.FieldValue.serverTimestamp()
+    }).then(doc => {
+      console.log(`${doc.id}をDBに保存した`);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+
+    db.collection('users').doc(uid).collection('answers').add({
+      ...formValues,
+      postId: postId,
       created: firebase.firestore.FieldValue.serverTimestamp()
     }).then(doc => {
       console.log(`${doc.id}をDBに保存した`);
