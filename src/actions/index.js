@@ -45,7 +45,7 @@ export const createQuestion = (formValues, uid) => async (dispatch) => {
       console.log(error);
     });
 
-  db.collection('users').doc(uid).collection('question').add({
+  db.collection('users').doc(uid).collection('questions').add({
       ...formValues,
       postId: postId,
       created: firebase.firestore.FieldValue.serverTimestamp()
@@ -216,3 +216,26 @@ export const signOutAction = () => (dispatch) => {
   });
 
 };
+
+
+export const fetchMyQuestions = (userId) => (dispatch) => {
+  const questions = [];
+  console.log(userId)
+  db.collection('users').doc(userId).collection('questions').orderBy('created').get()
+    .then(snapshot => {
+      snapshot.docs.map(doc => {
+        //allitemsにデータを代入
+        const question = {
+          name: doc.data().name,
+          question: doc.data().question,
+        }
+        questions.unshift(question);
+
+        //リデューサー
+      }, );
+      dispatch({
+        type: 'FETCH_MY_QUESTIONS',
+        payload:questions
+      });
+    }, );
+}

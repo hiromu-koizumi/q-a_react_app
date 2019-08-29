@@ -1,43 +1,53 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import {fetchPosts} from '../../actions';
-import {Link} from 'react-router-dom';
+import React from 'react';
+import {connect} from 'react-redux';
+import {fetchMyQuestions,signInAction} from '../../actions';
+import AnswerForm from './AnswerForm';
+import MyQuestionList from './MyQuestionList';
 
 
-//質問の表示処理
-class MyPage extends Component{
+class MyPage extends React.Component{
+    // constructor(props){
+    //     super(props);
+    //     this.props.signInAction();
+    //     console.log('uu')
+    // }
+
+    // getSnapshotBeforeUpdate(prevProps, prevState) {
+    //     // Are we adding new items to the list?
+    //     // Capture the scroll position so we can adjust scroll later.
+    //     if (this.props.userId) {
+    //         this.props.fetchMyQuestions(this.props.userId)
+    //     }
+    //     return null;
+    //   }
+
+    //   componentDidUpdate(prevProps) {
+    //     // 典型的な使い方(props を比較することを忘れないでください)
+    //     if (this.props.userId) {
+    //         this.props.fetchMyQuestions(this.props.userId)
+    //     }
+    //   }
+
     
-    componentDidMount() {
-        this.props.fetchPosts();
-    }
+    // componentDidMount(){
+    //     if(this.props.userId){
+    //         this.props.fetchMyQuestions(this.props.userId)
+    //     }
+    // }
 
-    render() {
-            return (
-                < div className = "wrap" >
-                    {/* propsにするかstateにするかで表示変わる。propsにすると */}
-                    {this.props.data.map((item, i) => (
-                        <div className="ui fluid card" key={i}>
-                            <div className="content">
-                                <Link to={`/qa/${item.id}`} className="header">
-                                {item.title}
-                                </Link>
-                                <div className="meta">{item.name}</div>
-                                <div className="description">
-                                    <p>{item.question}</p>
-                                </div>
-                            </div>
-                        </div>
-                    ))
-                    }
-                </div>
-            );
-        }
-    }
+    render(){ 
 
-    const mapStateToProps = (state) =>{        
-        return { 
-            data: Object.values(state.data),
-        };
+        // if (this.props.answers)
+        return (
+            <div>
+                <MyQuestionList/>
+            </div>
+        )
     }
+}
 
-export default connect(mapStateToProps,{fetchPosts})(MyPage);
+const mapStateToProps = (state) => {
+    return {userId:state.auth.userId,answers:state.myData.answers}
+}
+
+export default connect(mapStateToProps,{fetchMyQuestions,signInAction})(MyPage);

@@ -18,7 +18,6 @@ class QaDetail extends React.Component{
     }
 
     onSubmit = (formValues,id) => {
-        console.log(id)
         this.props.createAnswer(formValues,id,this.props.auth);
         
         //再読み込みして新規投稿を取得している

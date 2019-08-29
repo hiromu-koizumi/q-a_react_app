@@ -39,7 +39,8 @@ class AnswerList extends Component{
         }
     }
 
-    const mapStateToProps = (state) =>{   
+    const mapStateToProps = (state) =>{  
+        console.log('AAA') 
         if (!state.answer){
             return　{
                 nodata:state
