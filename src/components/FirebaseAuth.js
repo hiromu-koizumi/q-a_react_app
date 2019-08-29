@@ -1,6 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {signInAction,signOutAction} from '../actions';
+import {Link} from 'react-router-dom';
+
 
 class FirebaseAuth extends React.Component{
 
@@ -8,32 +10,14 @@ class FirebaseAuth extends React.Component{
         this.props.signInAction();
    }
 
-   //表示を更新させている
-   onAuthChange = uid => {
-       if (uid){
-           //reducerを呼び出し、storeに値を渡してる.
-           //引数はユーザーID
-           this.props.signInAction(uid);
-       }else{
-           this.props.signOutAction();
-       }
-   }
-
-   //サインインの処理
-   onSignInClick = () =>{
-    //googleにサインインしている。signInはGoogleの関数
-       this.auth.signIn();
-   }
 
    //サインアウトの処理
    onSignOutClick = () => {
-       this.auth.signOut();
+    this.props.signOutAction();
    }
 
    renderAuthButton() {
-       if (this.props.isSignedInMap === null){
-           return null;
-       }else if(this.props.isSignedInMap){
+       if(this.props.isSignedInMap){
            return (
             <button className="ui red google button" onClick={this.onSignOutClick}>
               ログアウト
@@ -41,10 +25,10 @@ class FirebaseAuth extends React.Component{
            )
        }else{
            return (
-            <button className="ui red google button" onClick={this.onSignInClick}>
-                  ログイン
-            </button>
-        )
+                <Link to="/qa/login" className="ui button primary">
+                    ログイン
+                </Link>
+            )
        }
    }
 

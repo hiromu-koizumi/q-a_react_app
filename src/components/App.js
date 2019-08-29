@@ -7,6 +7,7 @@ import QaDetail from './qa/QaDetail';
 import QaList from './qa/QaList';
 import SignUp from './qa/SignUp';
 import MyPage from './qa/MyPage';
+import Login from './qa/Login';
 import history from '../history';
 import Header from './Header';
 
@@ -25,6 +26,7 @@ const App = () => {
               <Route path="/" exact component={QaList}/>
               <Route path="/qa/new" exact component={QuestionCreate}/>
               <Route path="/qa/signup" exact component={SignUp}/>
+              <Route path="/qa/login" exact component={Login}/>
               <Route path="/qa/mypage" exact component={MyPage}/>
               {/* qa/:idのあとにrouteを追加するとpathがqa:idに設定され、Qadetailを読み込んでしまう 。routeは、このrouteより上に追加する。*/}
               <Route path="/qa/:id" exact component={QaDetail}/>

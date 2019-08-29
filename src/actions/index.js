@@ -1,8 +1,6 @@
 import firebase from 'firebase/app';
 import firestore from 'firebase/firestore';
 import config from '../components/firebase-config.js';
-import history from '../history';
-
 import "firebase/auth";
 
 
@@ -140,14 +138,11 @@ export const signUp = formValues => async (dispatch) => {
     .then(function () {
       firebase.auth().signInWithEmailAndPassword(formValues.mail, formValues.password).catch(function (error) {
         // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        console.log("miss")
       })
     }).catch(function (error) {
       // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
+      console.log(error)   
+
     });
 
   var user = firebase.auth().currentUser;
@@ -174,8 +169,10 @@ export const signUp = formValues => async (dispatch) => {
 
 export const signInAction = () => (dispatch) => {
 
+  // firebaseからログイン中のユーザー情報を取得している
   firebase.auth().onAuthStateChanged(function(user){
     if (user) {
+      console.log("きてるサインイン")
       // User is signed in.
       dispatch( {
         type: 'SIGN_IN',
@@ -185,11 +182,32 @@ export const signInAction = () => (dispatch) => {
       console.log("error")
     }
   });
-  
 };
 
-export const signOutAction = () => {
-  return {
-    type: 'SIGN_OUT'
+export const loginAction = (formValues) => async (dispatch) => {
+
+  await firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+  .then(function () {
+    firebase.auth().signInWithEmailAndPassword(formValues.mail, formValues.password).catch(function (error) {
+    })
+  }).catch(function (error) {
+    console.log(error)   
+  });
+
+  //ログインすると自動的にonAuthStateChangedの処理が呼び出され、storeにログイン情報が保存される
+  //onAuthStateChangedはdidmountなどで一度呼び出した後じゃないと自動呼び出しされないようだ
   };
+
+
+export const signOutAction = () => (dispatch) => {
+
+  firebase.auth().signOut().then(function() {
+    // Sign-out successful.
+    dispatch({
+      type: 'SIGN_OUT'
+    })
+  }).catch(function(error) {
+    console.log(error)   
+    // An error happened.
+  });
 };
