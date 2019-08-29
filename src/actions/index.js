@@ -3,13 +3,8 @@ import firestore from 'firebase/firestore';
 import config from '../components/firebase-config.js';
 import "firebase/auth";
 
-
-
-
 firebase.initializeApp(config);
-
 const db = firebase.firestore();
-
 
 export const fetchPosts = () => async (dispatch) => {
   // var uid = await firebase.auth().currentUser;
@@ -125,15 +120,15 @@ export const fetchPost = (id) => (dispatch) => {
     }, );
 }
 
-
+//firebaseにユーザー情報を登録し、そのユーザーでログインして、ログインユーザー情報をstoreに保存している
 export const signUp = formValues => async (dispatch) => {
-  //データベースに保存
+  //ユーザー登録
   await firebase.auth().createUserWithEmailAndPassword(formValues.mail, formValues.password).catch(function (error) {
-    // Handle Errors here.
     console.log('error')
 
   });
 
+  //ユーザーログイン
   await firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
     .then(function () {
       firebase.auth().signInWithEmailAndPassword(formValues.mail, formValues.password).catch(function (error) {
@@ -141,12 +136,12 @@ export const signUp = formValues => async (dispatch) => {
       })
     }).catch(function (error) {
       // Handle Errors here.
-      console.log(error)   
+      console.log(error)
 
     });
 
+  //storeに保存
   var user = firebase.auth().currentUser;
-
   if (user) {
     const uid = user.uid;
     dispatch({
@@ -163,18 +158,16 @@ export const signUp = formValues => async (dispatch) => {
 
   } else {
     console.log('e')
-    // No user is signed in.
   }
 }
 
+//既にログイン済みの人のログイン情報をstoreに保存している
 export const signInAction = () => (dispatch) => {
 
   // firebaseからログイン中のユーザー情報を取得している
-  firebase.auth().onAuthStateChanged(function(user){
+  firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
-      console.log("きてるサインイン")
-      // User is signed in.
-      dispatch( {
+      dispatch({
         type: 'SIGN_IN',
         payload: user.uid
       });
@@ -184,30 +177,31 @@ export const signInAction = () => (dispatch) => {
   });
 };
 
+
+//ログイン処理
+//ログインするとonAuthStateChangedが自動的に呼び出されstoreに保存される
+//onAuthStateChangedはdidmountなどで一度呼び出した後じゃないと自動呼び出しされないようだ
 export const loginAction = (formValues) => async (dispatch) => {
 
+  //LOCALに設定することでログイン状態を永続化している
   await firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-  .then(function () {
-    firebase.auth().signInWithEmailAndPassword(formValues.mail, formValues.password).catch(function (error) {
-    })
-  }).catch(function (error) {
-    console.log(error)   
-  });
+    .then(function () {
+      firebase.auth().signInWithEmailAndPassword(formValues.mail, formValues.password).catch(function (error) {})
+    }).catch(function (error) {
+      console.log(error)
+    });
 
-  //ログインすると自動的にonAuthStateChangedの処理が呼び出され、storeにログイン情報が保存される
-  //onAuthStateChangedはdidmountなどで一度呼び出した後じゃないと自動呼び出しされないようだ
-  };
+};
 
 
 export const signOutAction = () => (dispatch) => {
 
-  firebase.auth().signOut().then(function() {
-    // Sign-out successful.
+  firebase.auth().signOut().then(function () {
     dispatch({
       type: 'SIGN_OUT'
     })
-  }).catch(function(error) {
-    console.log(error)   
-    // An error happened.
+  }).catch(function (error) {
+    console.log(error)
   });
+
 };
