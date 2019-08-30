@@ -24,20 +24,20 @@ class MyQuestionList extends Component{
       }
 
     render() {
-        console.log(this.props.answers)
         if(this.props.answers){
             return (
                 < div className = "wrap" >
+                    <p>質問</p>
                     {/* propsにするかstateにするかで表示変わる。propsにすると */}
                     {this.props.answers.map((item, i) => (
                         <div className="ui fluid card" key={i}>
                             <div className="content">
-                                <Link to={`/qa/${item.id}`} className="header">
+                                <Link to={`/qa/${item.postId}`} className="header">
                                 {item.title}
                                 </Link>
                                 <div className="meta">{item.name}</div>
                                 <div className="description">
-                                    <p>{item.answer}</p>
+                                    <p>{item.question}</p>
                                 </div>
                             </div>
                         </div>

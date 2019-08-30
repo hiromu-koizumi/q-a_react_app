@@ -227,7 +227,9 @@ export const fetchMyQuestions = (userId) => (dispatch) => {
         //allitemsにデータを代入
         const question = {
           name: doc.data().name,
+          title:doc.data().title,
           question: doc.data().question,
+          postId:doc.data().postId,
         }
         questions.unshift(question);
 
