@@ -1,8 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {fetchMyQuestions,signInAction} from '../../actions';
-import AnswerForm from './AnswerForm';
 import MyQuestionList from './MyQuestionList';
+import MyAnswerList from './MyAnswerList';
 
 
 class MyPage extends React.Component{
@@ -41,6 +41,7 @@ class MyPage extends React.Component{
         return (
             <div>
                 <MyQuestionList/>
+                <MyAnswerList/>
             </div>
         )
     }

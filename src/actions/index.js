@@ -21,7 +21,7 @@ export const fetchPosts = () => async (dispatch) => {
           question: doc.data().question,
           id: doc.id,
         }
-        questions.unshift(question);
+       return questions.unshift(question);
       }, );
       dispatch({
         type: 'INIT',
@@ -91,7 +91,7 @@ export const fetchAnswers = (id) => (dispatch) => {
           name: doc.data().name,
           answer: doc.data().answer,
         }
-        answers.unshift(answer);
+       return answers.unshift(answer);
 
         //リデューサー
       }, );
@@ -231,13 +231,35 @@ export const fetchMyQuestions = (userId) => (dispatch) => {
           question: doc.data().question,
           postId:doc.data().postId,
         }
-        questions.unshift(question);
+       return questions.unshift(question);
 
         //リデューサー
       }, );
       dispatch({
         type: 'FETCH_MY_QUESTIONS',
         payload:questions
+      });
+    }, );
+}
+
+export const fetchMyAnswers = (userId) => (dispatch) => {
+  const answers = [];
+  console.log(userId)
+  db.collection('users').doc(userId).collection('answers').orderBy('created').get()
+    .then(snapshot => {
+      snapshot.docs.map(doc => {
+        //allitemsにデータを代入
+        const answer = {
+          answer: doc.data().answer,
+          postId:doc.data().postId,
+        }
+       return answers.unshift(answer);
+
+        //リデューサー
+      }, );
+      dispatch({
+        type: 'FETCH_MY_ANSWERS',
+        payload:answers
       });
     }, );
 }

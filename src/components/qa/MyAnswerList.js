@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {fetchMyQuestions} from '../../actions';
+import {fetchMyAnswers} from '../../actions';
 import {Link} from 'react-router-dom';
 
 
 //質問の表示処理
-class MyQuestionList extends Component{
-
+class MyAnswerList extends Component{
     
     componentDidMount(){
         if(this.props.userId){
-            this.props.fetchMyQuestions(this.props.userId)
+            this.props.fetchMyAnswers(this.props.userId)
         }
     }
     
@@ -19,26 +18,22 @@ class MyQuestionList extends Component{
     componentDidUpdate(prevProps) {
         // 典型的な使い方(props を比較することを忘れないでください)
         if (this.props.userId && this.props.userId !== prevProps.userId ) {
-            this.props.fetchMyQuestions(this.props.userId)
+            this.props.fetchMyAnswers(this.props.userId)
         }
       }
 
     render() {
-        if(this.props.questions){
+        if(this.props.answers){
             return (
                 < div className = "wrap" >
-                    <p>質問</p>
+                    <p>回答</p>
                     {/* propsにするかstateにするかで表示変わる。propsにすると */}
-                    {this.props.questions.map((item, i) => (
+                    {this.props.answers.map((item, i) => (
                         <div className="ui fluid card" key={i}>
                             <div className="content">
                                 <Link to={`/qa/${item.postId}`} className="header">
-                                {item.title}
+                                {item.answer}
                                 </Link>
-                                <div className="meta">{item.name}</div>
-                                <div className="description">
-                                    <p>{item.question}</p>
-                                </div>
                             </div>
                         </div>
                     ))
@@ -53,13 +48,12 @@ class MyQuestionList extends Component{
 
    
     const mapStateToProps = (state) => {
-        console.log("state")
-        if (state.myData.questions){
-            return {userId:state.auth.userId,questions:Object.values(state.myData.questions)}
+        if (state.myData.answers){
+            return {userId:state.auth.userId,answers:Object.values(state.myData.answers)}
         }
             return {userId:state.auth.userId}
         
     }
     
 
-export default connect(mapStateToProps,{fetchMyQuestions})(MyQuestionList);
+export default connect(mapStateToProps,{fetchMyAnswers})(MyAnswerList);
