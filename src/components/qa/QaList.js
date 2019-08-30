@@ -12,8 +12,8 @@ class Item extends Component{
         this.props.fetchPosts();
     }
 
-    onClick = () => {
-        this.props.goodCount();       
+    onClick = (postData) => {
+        this.props.goodCount(postData);       
     }
 
     render() {
@@ -36,7 +36,7 @@ class Item extends Component{
                                 <div className="description">
                                     <p>{item.question}</p>
                                 </div>
-                                <GoodButton onClick={this.onClick} postId={item.postId}　userId={item.userId}/>
+                                <GoodButton onClick={this.onClick} postData={item}/>
                             </div>
                         </div>
                     ))

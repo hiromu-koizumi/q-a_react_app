@@ -6,17 +6,15 @@ import LoginForm from './LoginForm';
 
 class GoodButton extends React.Component {
 
-   
-
     onClick = () => {
-        this.props.onClick();
+        this.props.onClick(this.props.postData);
     }
 
-    render(){
+    render() {
        return (
         <div className="ui labeled button" >
              <div onClick={this.onClick} className="ui circular red button">
-                <i className="heart icon"></i> Like
+                <i className="heart icon"></i> 
             </div>
             <a　className="ui basic red left label">
                 1,048

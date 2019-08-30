@@ -11,5 +11,5 @@ export default combineReducers({
     form:formReducer,
     answer:answerReducer,
     auth:authReducer,
-    myData:myDataReducer,
+    myData: myDataReducer,
 });
