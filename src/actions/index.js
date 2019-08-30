@@ -19,7 +19,8 @@ export const fetchPosts = () => async (dispatch) => {
           name: doc.data().name,
           title: doc.data().title,
           question: doc.data().question,
-          id: doc.id,
+          postId: doc.id,
+          userId:doc.data().userId
         }
        return questions.unshift(question);
       }, );
@@ -36,6 +37,7 @@ export const createQuestion = (formValues, uid) => async (dispatch) => {
   //データベースに保存
   await db.collection('tweets').add({
       ...formValues,
+      userId:uid,
       created: firebase.firestore.FieldValue.serverTimestamp()
     }).then(doc => {
       console.log(`${doc.id}をDBに保存した`);
@@ -58,12 +60,13 @@ export const createQuestion = (formValues, uid) => async (dispatch) => {
 }
 
 export const createAnswer = (formValues, postId,uid) => async (dispatch) => {
-
+  let answerId;
   db.collection('tweets').doc(postId).collection('answer').add({
       ...formValues,
       created: firebase.firestore.FieldValue.serverTimestamp()
     }).then(doc => {
       console.log(`${doc.id}をDBに保存した`);
+      answerId = doc.id
     })
     .catch(error => {
       console.log(error);
@@ -72,6 +75,7 @@ export const createAnswer = (formValues, postId,uid) => async (dispatch) => {
     db.collection('users').doc(uid).collection('answers').add({
       ...formValues,
       postId: postId,
+      answerId:answerId,
       created: firebase.firestore.FieldValue.serverTimestamp()
     }).then(doc => {
       console.log(`${doc.id}をDBに保存した`);
@@ -252,6 +256,7 @@ export const fetchMyAnswers = (userId) => (dispatch) => {
         const answer = {
           answer: doc.data().answer,
           postId:doc.data().postId,
+          docId:doc.id,
         }
        return answers.unshift(answer);
 
@@ -262,4 +267,27 @@ export const fetchMyAnswers = (userId) => (dispatch) => {
         payload:answers
       });
     }, );
+}
+
+
+export const goodCount = (postId,uid) => async (dispatch) => {
+
+  db.collection('tweets').doc(postId).collection('answer').add({
+      created: firebase.firestore.FieldValue.serverTimestamp()
+    }).then(doc => {
+      console.log(`${doc.id}をDBに保存した`);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+
+    db.collection('users').doc(uid).collection('answers').add({
+      postId: postId,
+      created: firebase.firestore.FieldValue.serverTimestamp()
+    }).then(doc => {
+      console.log(`${doc.id}をDBに保存した`);
+    })
+    .catch(error => {
+      console.log(error);
+    });
 }

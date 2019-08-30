@@ -7,7 +7,7 @@ import _ from 'lodash';
 export default (state = {}, action) => {
     switch (action.type) {
         case 'INIT':
-            return {...state,..._.mapKeys(action.questions,'id')};
+            return {...state,..._.mapKeys(action.questions,'postId')};
         case 'FETCH_QUESTION':
             return {...state,[action.payload.id]:action.payload};
         default:

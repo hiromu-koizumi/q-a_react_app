@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {fetchPosts} from '../../actions';
+import {fetchPosts,goodCount} from '../../actions';
 import {Link} from 'react-router-dom';
+import GoodButton from './GoodButton';
 
 
 //質問の表示処理
@@ -9,7 +10,10 @@ class Item extends Component{
     
     componentDidMount() {
         this.props.fetchPosts();
+    }
 
+    onClick = () => {
+        this.props.goodCount();       
     }
 
     render() {
@@ -25,13 +29,14 @@ class Item extends Component{
                     {this.props.data.map((item, i) => (
                         <div className="ui fluid card" key={i}>
                             <div className="content">
-                                <Link to={`/qa/${item.id}`} className="header">
+                                <Link to={`/qa/${item.postId}`} className="header">
                                 {item.title}
                                 </Link>
                                 <div className="meta">{item.name}</div>
                                 <div className="description">
                                     <p>{item.question}</p>
                                 </div>
+                                <GoodButton onClick={this.onClick} postId={item.postId}　userId={item.userId}/>
                             </div>
                         </div>
                     ))
@@ -47,4 +52,4 @@ class Item extends Component{
         };
     }
 
-export default connect(mapStateToProps,{fetchPosts})(Item);
+export default connect(mapStateToProps,{fetchPosts,goodCount})(Item);

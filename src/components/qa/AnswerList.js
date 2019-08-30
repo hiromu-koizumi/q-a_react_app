@@ -23,7 +23,7 @@ class AnswerList extends Component{
                     {this.props.data.map((item, i) => (
                         <div className="ui fluid card" key={i}>
                             <div className="content">
-                                <Link to={`/qa/${item.id}`} className="header">
+                                <Link to={`/qa/${item.postId}`} className="header">
                                 {item.title}
                                 </Link>
                                 <div className="meta">{item.name}</div>
