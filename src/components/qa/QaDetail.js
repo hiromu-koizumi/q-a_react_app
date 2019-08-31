@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {createAnswer,resetAnswer,fetchQuestion,fetchAnswers,goodCount} from '../../actions';
+import {createAnswer,resetAnswer,fetchQuestion,fetchAnswers,questionGoodCount} from '../../actions';
 import AnswerForm from './AnswerForm';
 import AnswerList from './AnswerList';
 import GoodButton from './GoodButton';
@@ -25,7 +25,7 @@ class QaDetail extends React.Component{
     }
 
     onClick = (questionData) => {
-        this.props.goodCount(questionData);       
+        this.props.questionGoodCount(questionData);       
     }
 
     render(){
@@ -53,4 +53,4 @@ const mapStateToProps = (state,ownProps) => {
     return {post:state.questions[ownProps.match.params.id],auth:state.auth.userId}
 }
 
-export default connect(mapStateToProps,{createAnswer,resetAnswer,fetchQuestion,fetchAnswers,goodCount})(QaDetail);
+export default connect(mapStateToProps,{createAnswer,resetAnswer,fetchQuestion,fetchAnswers,questionGoodCount})(QaDetail);

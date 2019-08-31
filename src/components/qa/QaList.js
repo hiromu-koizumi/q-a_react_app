@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {fetchQuestions,goodCount} from '../../actions';
+import {fetchQuestions,questionGoodCount} from '../../actions';
 import {Link} from 'react-router-dom';
 import GoodButton from './GoodButton';
 
@@ -13,7 +13,7 @@ class Item extends Component{
     }
 
     onClick = (questionData) => {
-        this.props.goodCount(questionData);       
+        this.props.questionGoodCount(questionData);       
     }
 
     render() {
@@ -29,7 +29,7 @@ class Item extends Component{
                     {this.props.data.map((item, i) => (
                         <div className="ui fluid card" key={i}>
                             <div className="content">
-                                <Link to={`/qa/${item.postId}`} className="header">
+                                <Link to={`/qa/${item.questionId}`} className="header">
                                 {item.title}
                                 </Link>
                                 <div className="meta">{item.name}</div>
@@ -52,4 +52,4 @@ class Item extends Component{
         };
     }
 
-export default connect(mapStateToProps,{fetchQuestions,goodCount})(Item);
+export default connect(mapStateToProps,{fetchQuestions,questionGoodCount})(Item);

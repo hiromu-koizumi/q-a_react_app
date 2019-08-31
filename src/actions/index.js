@@ -19,7 +19,7 @@ export const fetchQuestions = () => async (dispatch) => {
           name: doc.data().name,
           title: doc.data().title,
           question: doc.data().question,
-          postId: doc.id,
+          questionId: doc.id,
           userId: doc.data().userId,
           goodCount: doc.data().goodCount,
         }
@@ -34,7 +34,7 @@ export const fetchQuestions = () => async (dispatch) => {
 
 export const createQuestion = (formValues, uid) => async (dispatch) => {
 
-  let postId;
+  let questionId;
   //データベースに保存
   await db.collection('questions').add({
       ...formValues,
@@ -43,16 +43,16 @@ export const createQuestion = (formValues, uid) => async (dispatch) => {
       created: firebase.firestore.FieldValue.serverTimestamp()
     }).then(doc => {
       console.log(`${doc.id}をDBに保存した`);
-      postId = doc.id
+      questionId = doc.id
     })
     .catch(error => {
       console.log(error);
     });
 
-  db.collection('users').doc(uid).collection('questions').doc(postId).set({
+  db.collection('users').doc(uid).collection('questions').doc(questionId).set({
       ...formValues,
       goodCount: 0,
-      postId: postId,
+      questionId: questionId,
       created: firebase.firestore.FieldValue.serverTimestamp()
     }).then(doc => {
       console.log(`DBに保存した`);
@@ -62,9 +62,9 @@ export const createQuestion = (formValues, uid) => async (dispatch) => {
     });
 }
 
-export const createAnswer = (formValues, postId, uid) => async (dispatch) => {
+export const createAnswer = (formValues, questionId, uid) => async (dispatch) => {
   let answerId;
-  await db.collection('questions').doc(postId).collection('answers').add({
+  await db.collection('questions').doc(questionId).collection('answers').add({
       ...formValues,
       created: firebase.firestore.FieldValue.serverTimestamp()
     }).then(doc => {
@@ -77,8 +77,9 @@ export const createAnswer = (formValues, postId, uid) => async (dispatch) => {
 
   db.collection('users').doc(uid).collection('answers').add({
       ...formValues,
-      postId: postId,
+      questionId: questionId,
       answerId: answerId,
+      goodCount:0,
       created: firebase.firestore.FieldValue.serverTimestamp()
     }).then(doc => {
       console.log(`${doc.id}をDBに保存した`);
@@ -97,6 +98,7 @@ export const fetchAnswers = (id) => (dispatch) => {
         const answer = {
           name: doc.data().name,
           answer: doc.data().answer,
+          answerId:doc.id,
         }
         return answers.unshift(answer);
 
@@ -129,7 +131,7 @@ export const fetchQuestion = (id) => (dispatch) => {
         question: snapshot.data().question,
         goodCount:snapshot.data().goodCount,
         userId:snapshot.data().userId,
-        postId: id
+        questionId: id
       }
 
       dispatch({
@@ -238,7 +240,7 @@ export const fetchMyQuestions = (userId) => (dispatch) => {
           name: doc.data().name,
           title: doc.data().title,
           question: doc.data().question,
-          postId: doc.data().postId,
+          questionId: doc.data().questionId,
         }
         return questions.unshift(question);
 
@@ -260,7 +262,7 @@ export const fetchMyAnswers = (userId) => (dispatch) => {
         //allitemsにデータを代入
         const answer = {
           answer: doc.data().answer,
-          postId: doc.data().postId,
+          questionId: doc.data().questionId,
           docId: doc.id,
         }
         return answers.unshift(answer);
@@ -275,15 +277,15 @@ export const fetchMyAnswers = (userId) => (dispatch) => {
 }
 
 
-export const goodCount = (postData) => async (dispatch) => {
+export const questionGoodCount = (postData) => async (dispatch) => {
   console.log(postData)
 
   //firebaseのgoodCountに1足している
-  var washingtonRef = db.collection('questions').doc(postData.postId);
+  var washingtonRef = db.collection('questions').doc(postData.questionId);
   washingtonRef.update({
     goodCount: firebase.firestore.FieldValue.increment(1)
   });
-  var washingtonRef = db.collection('users').doc(postData.userId).collection('questions').doc(postData.postId);
+  var washingtonRef = db.collection('users').doc(postData.userId).collection('questions').doc(postData.questionId);
   washingtonRef.update({
     goodCount: firebase.firestore.FieldValue.increment(1)
   });
@@ -299,6 +301,34 @@ export const goodCount = (postData) => async (dispatch) => {
   dispatch({
     type: 'ADD_GOODCOUNT',
     payload: newdata,
-    postId: postData.postId,
+    questionId: postData.questionId,
+  });
+}
+
+export const answerGoodCount = (postData) => async (dispatch) => {
+  console.log(postData)
+
+  //firebaseのgoodCountに1足している
+  var washingtonRef = db.collection('questions').doc(postData.questionId).collection('answers');
+  washingtonRef.update({
+    goodCount: firebase.firestore.FieldValue.increment(1)
+  });
+  var washingtonRef = db.collection('users').doc(postData.userId).collection('questions').doc(postData.questionId);
+  washingtonRef.update({
+    goodCount: firebase.firestore.FieldValue.increment(1)
+  });
+
+
+  let goodCount = postData.goodCount + 1;
+
+  const newdata = {
+    ...postData,
+    goodCount: goodCount
+  }
+
+  dispatch({
+    type: 'ADD_GOODCOUNT',
+    payload: newdata,
+    questionId: postData.questionId,
   });
 }
