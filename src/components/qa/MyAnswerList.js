@@ -32,8 +32,11 @@ class MyAnswerList extends Component{
                         <div className="ui fluid card" key={i}>
                             <div className="content">
                                 <Link to={`/qa/${item.questionId}`} className="header">
-                                {item.answer}
+                                    {item.answer}
                                 </Link>
+                                <div className="description">
+                                    いいね{item.goodCount}
+                                </div>
                             </div>
                         </div>
                     ))

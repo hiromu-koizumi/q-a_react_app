@@ -10,7 +10,7 @@ export default (state = {}, action) => {
             return {...state,..._.mapKeys(action.questions,'questionId')};
         case 'FETCH_QUESTION':
             return { ...state, [action.payload.questionId]: action.payload };
-        case 'ADD_GOODCOUNT':
+        case 'QUESTION_ADD_GOODCOUNT':
             return { ...state, [action.questionId]: action.payload};
         default:
             return state;

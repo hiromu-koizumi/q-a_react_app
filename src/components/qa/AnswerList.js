@@ -12,8 +12,8 @@ class AnswerList extends Component{
         this.props.fetchAnswers(this.props.id);
     }
 
-    onClick = (questionData) => {
-        this.props.answerGoodCount(questionData);       
+    onClick = (answerData) => {
+        this.props.answerGoodCount(answerData);       
     }
 
     render() {
@@ -35,7 +35,7 @@ class AnswerList extends Component{
                                 <div className="description">
                                     <p>{item.answer}</p>
                                 </div>
-                                <GoodButton onClick={this.onClick} questionData={item}/>
+                                <GoodButton onClick={this.onClick} postData={item}/>
                             </div>
                         </div>
                     ))
@@ -46,7 +46,6 @@ class AnswerList extends Component{
     }
 
     const mapStateToProps = (state) =>{  
-        console.log('AAA') 
         if (!state.answer){
             return　{
                 nodata:state

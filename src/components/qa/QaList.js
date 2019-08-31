@@ -36,7 +36,10 @@ class Item extends Component{
                                 <div className="description">
                                     <p>{item.question}</p>
                                 </div>
-                                <GoodButton onClick={this.onClick} questionData={item}/>
+                                <div className="description">
+                                    <p>回答数{item.answerCount}</p>
+                                </div>
+                                <GoodButton onClick={this.onClick} postData={item}/>
                             </div>
                         </div>
                     ))

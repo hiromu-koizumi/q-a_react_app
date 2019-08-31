@@ -7,7 +7,7 @@ import LoginForm from './LoginForm';
 class GoodButton extends React.Component {
 
     onClick = () => {
-        this.props.onClick(this.props.questionData);
+        this.props.onClick(this.props.postData);
     }
 
     render() {
@@ -17,7 +17,7 @@ class GoodButton extends React.Component {
                 <i className="heart icon"></i> 
             </div>
             <a　className="ui basic red left label">
-                {this.props.questionData.goodCount}
+                {this.props.postData.goodCount}
             </a>
         </div>
        )

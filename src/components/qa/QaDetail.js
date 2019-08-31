@@ -29,11 +29,11 @@ class QaDetail extends React.Component{
     }
 
     render(){
-        if(!this.props.post){
+        if(!this.props.questionData){
             return <div>Loading...</div>
         }
 
-        const  {name,title,question} = this.props.post
+        const  {name,title,question} = this.props.questionData
     
 
         return (
@@ -41,7 +41,7 @@ class QaDetail extends React.Component{
                 <h1>{title}</h1>
                 <h5>{name}</h5>
                 <h5>{question}</h5>
-                <GoodButton onClick={this.onClick} questionData={this.props.post}/>
+                <GoodButton onClick={this.onClick} postData={this.props.questionData}/>
                 <AnswerList id={this.props.match.params.id}/>
                 <AnswerForm　onSubmit={this.onSubmit} id={this.props.match.params.id}/>
             </div>
@@ -50,7 +50,7 @@ class QaDetail extends React.Component{
 }
 
 const mapStateToProps = (state,ownProps) => {
-    return {post:state.questions[ownProps.match.params.id],auth:state.auth.userId}
+    return {questionData:state.questions[ownProps.match.params.id],auth:state.auth.userId}
 }
 
 export default connect(mapStateToProps,{createAnswer,resetAnswer,fetchQuestion,fetchAnswers,questionGoodCount})(QaDetail);

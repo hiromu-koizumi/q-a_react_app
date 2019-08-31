@@ -39,6 +39,10 @@ class MyQuestionList extends Component{
                                 <div className="description">
                                     <p>{item.question}</p>
                                 </div>
+                                <div className="description">
+                                    <p>いいね{item.goodCount}</p>
+                                    <p>回答{item.answerCount}</p>
+                                </div>
                             </div>
                         </div>
                     ))
