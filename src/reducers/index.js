@@ -7,7 +7,7 @@ import myDataReducer from './myDataReducer';
 
 
 export default combineReducers({
-    data:postReducer,
+    questions:postReducer,
     form:formReducer,
     answer:answerReducer,
     auth:authReducer,

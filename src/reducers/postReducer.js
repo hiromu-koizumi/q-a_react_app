@@ -9,7 +9,7 @@ export default (state = {}, action) => {
         case 'INIT':
             return {...state,..._.mapKeys(action.questions,'postId')};
         case 'FETCH_QUESTION':
-            return { ...state, [action.payload.id]: action.payload };
+            return { ...state, [action.payload.postId]: action.payload };
         case 'ADD_GOODCOUNT':
             return { ...state, [action.postId]: action.payload};
         default:

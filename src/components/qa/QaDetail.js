@@ -1,8 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {createAnswer,resetAnswer,fetchQuestion,fetchAnswers} from '../../actions';
+import {createAnswer,resetAnswer,fetchQuestion,fetchAnswers,goodCount} from '../../actions';
 import AnswerForm from './AnswerForm';
 import AnswerList from './AnswerList';
+import GoodButton from './GoodButton';
 
 
 class QaDetail extends React.Component{
@@ -19,9 +20,12 @@ class QaDetail extends React.Component{
 
     onSubmit = (formValues,id) => {
         this.props.createAnswer(formValues,id,this.props.auth);
-        
         //再読み込みして新規投稿を取得している
         this.props.fetchAnswers(id)
+    }
+
+    onClick = (questionData) => {
+        this.props.goodCount(questionData);       
     }
 
     render(){
@@ -37,6 +41,7 @@ class QaDetail extends React.Component{
                 <h1>{title}</h1>
                 <h5>{name}</h5>
                 <h5>{question}</h5>
+                <GoodButton onClick={this.onClick} questionData={this.props.post}/>
                 <AnswerList id={this.props.match.params.id}/>
                 <AnswerForm　onSubmit={this.onSubmit} id={this.props.match.params.id}/>
             </div>
@@ -45,7 +50,7 @@ class QaDetail extends React.Component{
 }
 
 const mapStateToProps = (state,ownProps) => {
-    return {post:state.data[ownProps.match.params.id],auth:state.auth.userId}
+    return {post:state.questions[ownProps.match.params.id],auth:state.auth.userId}
 }
 
-export default connect(mapStateToProps,{createAnswer,resetAnswer,fetchQuestion,fetchAnswers})(QaDetail);
+export default connect(mapStateToProps,{createAnswer,resetAnswer,fetchQuestion,fetchAnswers,goodCount})(QaDetail);

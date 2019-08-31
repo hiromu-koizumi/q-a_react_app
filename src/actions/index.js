@@ -10,7 +10,6 @@ export const fetchQuestions = () => async (dispatch) => {
   // var uid = await firebase.auth().currentUser;
   console.log(firebase.auth().currentUser)
   const questions = [];
-  const goodCount = [];
   await db.collection('questions').orderBy('created').get()
     .then(snapshot => {
       // console.log(snapshot.docs);
@@ -128,7 +127,9 @@ export const fetchQuestion = (id) => (dispatch) => {
         name: snapshot.data().name,
         title: snapshot.data().title,
         question: snapshot.data().question,
-        id: id
+        goodCount:snapshot.data().goodCount,
+        userId:snapshot.data().userId,
+        postId: id
       }
 
       dispatch({
@@ -275,6 +276,7 @@ export const fetchMyAnswers = (userId) => (dispatch) => {
 
 
 export const goodCount = (postData) => async (dispatch) => {
+  console.log(postData)
 
   //firebaseのgoodCountに1足している
   var washingtonRef = db.collection('questions').doc(postData.postId);

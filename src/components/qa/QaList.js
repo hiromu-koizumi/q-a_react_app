@@ -12,8 +12,8 @@ class Item extends Component{
         this.props.fetchQuestions();
     }
 
-    onClick = (postData) => {
-        this.props.goodCount(postData);       
+    onClick = (questionData) => {
+        this.props.goodCount(questionData);       
     }
 
     render() {
@@ -36,7 +36,7 @@ class Item extends Component{
                                 <div className="description">
                                     <p>{item.question}</p>
                                 </div>
-                                <GoodButton onClick={this.onClick} postData={item}/>
+                                <GoodButton onClick={this.onClick} questionData={item}/>
                             </div>
                         </div>
                     ))
@@ -48,7 +48,7 @@ class Item extends Component{
 
     const mapStateToProps = (state) =>{        
         return { 
-            data: Object.values(state.data),
+            data: Object.values(state.questions),
         };
     }
 
