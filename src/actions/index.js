@@ -6,12 +6,12 @@ import "firebase/auth";
 firebase.initializeApp(config);
 const db = firebase.firestore();
 
-export const fetchPosts = () => async (dispatch) => {
+export const fetchQuestions = () => async (dispatch) => {
   // var uid = await firebase.auth().currentUser;
   console.log(firebase.auth().currentUser)
   const questions = [];
   const goodCount = [];
-  await db.collection('tweets').orderBy('created').get()
+  await db.collection('questions').orderBy('created').get()
     .then(snapshot => {
       // console.log(snapshot.docs);
       snapshot.docs.map(doc => {
@@ -37,7 +37,7 @@ export const createQuestion = (formValues, uid) => async (dispatch) => {
 
   let postId;
   //データベースに保存
-  await db.collection('tweets').add({
+  await db.collection('questions').add({
       ...formValues,
       userId: uid,
       goodCount: 0,
@@ -65,7 +65,7 @@ export const createQuestion = (formValues, uid) => async (dispatch) => {
 
 export const createAnswer = (formValues, postId, uid) => async (dispatch) => {
   let answerId;
-  await db.collection('tweets').doc(postId).collection('answer').add({
+  await db.collection('questions').doc(postId).collection('answers').add({
       ...formValues,
       created: firebase.firestore.FieldValue.serverTimestamp()
     }).then(doc => {
@@ -91,7 +91,7 @@ export const createAnswer = (formValues, postId, uid) => async (dispatch) => {
 
 export const fetchAnswers = (id) => (dispatch) => {
   const answers = [];
-  db.collection('tweets').doc(id).collection('answer').orderBy('created').get()
+  db.collection('questions').doc(id).collection('answers').orderBy('created').get()
     .then(snapshot => {
       snapshot.docs.map(doc => {
         //allitemsにデータを代入
@@ -119,9 +119,9 @@ export const resetAnswer = () => dispatch => {
 }
 
 //詳細ページで再読み込みする際、これがないとページが表示されない
-export const fetchPost = (id) => (dispatch) => {
+export const fetchQuestion = (id) => (dispatch) => {
   console.log(firebase.auth().currentUser)
-  db.collection('tweets').doc(id).get()
+  db.collection('questions').doc(id).get()
     .then(snapshot => {
       //allitemsにデータを代入
       const payload = {
@@ -277,7 +277,7 @@ export const fetchMyAnswers = (userId) => (dispatch) => {
 export const goodCount = (postData) => async (dispatch) => {
 
   //firebaseのgoodCountに1足している
-  var washingtonRef = db.collection('tweets').doc(postData.postId);
+  var washingtonRef = db.collection('questions').doc(postData.postId);
   washingtonRef.update({
     goodCount: firebase.firestore.FieldValue.increment(1)
   });

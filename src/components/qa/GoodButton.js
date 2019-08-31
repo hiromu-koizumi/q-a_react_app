@@ -17,7 +17,7 @@ class GoodButton extends React.Component {
                 <i className="heart icon"></i> 
             </div>
             <a　className="ui basic red left label">
-                1,048
+                {this.props.postData.goodCount}
             </a>
         </div>
        )

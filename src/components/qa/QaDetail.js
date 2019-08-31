@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {createAnswer,resetAnswer,fetchPost,fetchAnswers} from '../../actions';
+import {createAnswer,resetAnswer,fetchQuestion,fetchAnswers} from '../../actions';
 import AnswerForm from './AnswerForm';
 import AnswerList from './AnswerList';
 
@@ -8,7 +8,7 @@ import AnswerList from './AnswerList';
 class QaDetail extends React.Component{
 
     componentDidMount(){
-        this.props.fetchPost(this.props.match.params.id)
+        this.props.fetchQuestion(this.props.match.params.id)
     }
 
     componentWillUnmount(){
@@ -48,4 +48,4 @@ const mapStateToProps = (state,ownProps) => {
     return {post:state.data[ownProps.match.params.id],auth:state.auth.userId}
 }
 
-export default connect(mapStateToProps,{createAnswer,resetAnswer,fetchPost,fetchAnswers})(QaDetail);
+export default connect(mapStateToProps,{createAnswer,resetAnswer,fetchQuestion,fetchAnswers})(QaDetail);

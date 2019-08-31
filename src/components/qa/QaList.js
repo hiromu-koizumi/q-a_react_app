@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {fetchPosts,goodCount} from '../../actions';
+import {fetchQuestions,goodCount} from '../../actions';
 import {Link} from 'react-router-dom';
 import GoodButton from './GoodButton';
 
@@ -9,7 +9,7 @@ import GoodButton from './GoodButton';
 class Item extends Component{
     
     componentDidMount() {
-        this.props.fetchPosts();
+        this.props.fetchQuestions();
     }
 
     onClick = (postData) => {
@@ -52,4 +52,4 @@ class Item extends Component{
         };
     }
 
-export default connect(mapStateToProps,{fetchPosts,goodCount})(Item);
+export default connect(mapStateToProps,{fetchQuestions,goodCount})(Item);
