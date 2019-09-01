@@ -7,12 +7,9 @@ firebase.initializeApp(config);
 const db = firebase.firestore();
 
 export const fetchQuestions = () => async (dispatch) => {
-  // var uid = await firebase.auth().currentUser;
-  console.log(firebase.auth().currentUser)
   const questions = [];
-  await db.collection('questions').orderBy('created').get()
+  await db.collection('questions').orderBy('created','desc').limit(2).get()
     .then(snapshot => {
-      // console.log(snapshot.docs);
       snapshot.docs.map(doc => {
         //allitemsにデータを代入
         const question = {
