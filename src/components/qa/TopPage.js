@@ -10,15 +10,17 @@ import Pagination from './Pagination'
 class TopPage extends Component{
 
     componentDidMount() {
-      this.props.setCurrentPage()
+      this.props.setCurrentPage(this.props.page)
     }
     
     render() {
+
         const postsPerPage = 5;
         const indexOfLastPost = this.props.page * postsPerPage;
         const indexOfFirstPost = indexOfLastPost - postsPerPage;
         const currentPosts = this.props.data.slice(indexOfFirstPost, indexOfLastPost)
         const paginate = (pageNumber) => this.props.setCurrentPage(pageNumber)
+
             return (
                 < div className = "wrap" >
                     <div style={{textAlign:'center'}}>
