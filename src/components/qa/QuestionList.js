@@ -10,6 +10,7 @@ class Item extends Component{
     
     componentDidMount() {
         this.props.fetchQuestions();
+        console.log('didmou')
     }
 
     onClick = (questionData) => {
@@ -19,12 +20,6 @@ class Item extends Component{
     render() {
             return (
                 < div className = "wrap" >
-                    <div style={{textAlign:'center'}}>
-                        <Link to="/qa/new" className="ui button primary">
-                            質問する
-                        </Link>
-
-                    </div>
                     {/* propsにするかstateにするかで表示変わる。propsにすると */}
                     {this.props.data.map((item, i) => (
                         <div className="ui fluid card" key={i}>

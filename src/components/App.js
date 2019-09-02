@@ -4,7 +4,7 @@ import {Router,Route,Switch} from 'react-router-dom';
 import './App.css';
 import QuestionCreate from './qa/QuestionCreate';
 import QaDetail from './qa/QaDetail';
-import QaList from './qa/QaList';
+import TopPage from './qa/TopPage';
 import SignUp from './qa/SignUp';
 import MyPage from './qa/MyPage';
 import Login from './qa/Login';
@@ -23,7 +23,7 @@ const App = () => {
           <div>
             <Header/>
             <Switch>
-              <Route path="/" exact component={QaList}/>
+              <Route path="/" exact component={TopPage}/>
               <Route path="/qa/new" exact component={QuestionCreate}/>
               <Route path="/qa/signup" exact component={SignUp}/>
               <Route path="/qa/login" exact component={Login}/>

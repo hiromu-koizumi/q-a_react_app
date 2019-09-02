@@ -8,6 +8,7 @@ const db = firebase.firestore();
 
 export const fetchQuestions = () => async (dispatch) => {
   const questions = [];
+  var lastVisible;
   await db.collection('questions').orderBy('created','desc').limit(2).get()
     .then(snapshot => {
       snapshot.docs.map(doc => {
@@ -21,13 +22,39 @@ export const fetchQuestions = () => async (dispatch) => {
           goodCount: doc.data().goodCount,
           answerCount:doc.data().answerCount
         }
-        return questions.unshift(question);
+        return questions.push(question);
       }, );
+      lastVisible = snapshot.docs[snapshot.docs.length-1];
+      console.log("last", lastVisible);
       dispatch({
         type: 'INIT',
         questions
       });
     }, );
+
+  // await db.collection('questions').orderBy('created','desc').startAfter(lastVisible).limit(2).get()
+  //   .then(snapshot => {
+  //     snapshot.docs.map(doc => {
+  //       //allitemsにデータを代入
+  //       const question = {
+  //         name: doc.data().name,
+  //         title: doc.data().title,
+  //         question: doc.data().question,
+  //         questionId: doc.id,
+  //         userId: doc.data().userId,
+  //         goodCount: doc.data().goodCount,
+  //         answerCount:doc.data().answerCount
+  //       }
+  //       console.log("ここ",doc)
+  //       return questions.push(question);
+  //     }, );
+  //     var lastVisible = snapshot.docs[snapshot.docs.length-1];
+  //     console.log("last", lastVisible);
+  //     dispatch({
+  //       type: 'INIT',
+  //       questions
+  //     });
+  //   }, );
 }
 
 export const createQuestion = (formValues, uid) => async (dispatch) => {
