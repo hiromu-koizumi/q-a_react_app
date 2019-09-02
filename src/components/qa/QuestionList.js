@@ -10,7 +10,6 @@ class Item extends Component{
     
     componentDidMount() {
         this.props.fetchQuestions();
-        console.log('didmou')
     }
 
     onClick = (questionData) => {
@@ -21,7 +20,7 @@ class Item extends Component{
             return (
                 < div className = "wrap" >
                     {/* propsにするかstateにするかで表示変わる。propsにすると */}
-                    {this.props.data.map((item, i) => (
+                    {this.props.currentPosts.map((item, i) => (
                         <div className="ui fluid card" key={i}>
                             <div className="content">
                                 <Link to={`/qa/${item.questionId}`} className="header">

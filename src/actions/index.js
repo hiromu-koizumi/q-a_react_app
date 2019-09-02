@@ -9,7 +9,7 @@ const db = firebase.firestore();
 export const fetchQuestions = () => async (dispatch) => {
   const questions = [];
   var lastVisible;
-  await db.collection('questions').orderBy('created','desc').limit(2).get()
+  await db.collection('questions').orderBy('created','desc').limit(9).get()
     .then(snapshot => {
       snapshot.docs.map(doc => {
         //allitemsにデータを代入
@@ -376,5 +376,16 @@ export const answerGoodCount = (postData) => async (dispatch) => {
     type: 'ANSWER_ADD_GOODCOUNT',
     payload: newdata,
     answerId: postData.answerId,
+  });
+}
+
+export const setCurrentPage = (pageNumber) => async (dispatch) => {
+  if (!pageNumber){
+    pageNumber = 1;
+  }
+  
+  dispatch({
+    type: 'SET_CURRENT_PAGE',
+    payload: pageNumber,
   });
 }
