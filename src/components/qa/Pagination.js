@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
 import { connect } from 'react-redux';
 
@@ -16,7 +15,7 @@ const Pagination = ({postsPerPage, totalPosts, paginate, currentPageNumber}) => 
                         <a onClick={() => paginate(number)} className={[
                             'item',
                              currentPageNumber === number ? 'active' : ''
-                          ].join(' ')} key={number}>
+                          ].join(' ')} key={number} href='/#'>
                             {number}
                         </a>
                 ))}
