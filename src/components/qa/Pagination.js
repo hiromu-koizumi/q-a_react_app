@@ -9,7 +9,7 @@ const Pagination = ({postsPerPage, totalPosts, paginate, currentPageNumber}) => 
         pageNumbers.push(i);
     }
     return (
-        <nav>
+        <div className="content">
             <div className="ui pagination menu">
                 {pageNumbers.map(number => (
                         <a onClick={() => paginate(number)} className={[
@@ -20,7 +20,7 @@ const Pagination = ({postsPerPage, totalPosts, paginate, currentPageNumber}) => 
                         </a>
                 ))}
             </div>
-        </nav>
+        </div>
     )
 }
 

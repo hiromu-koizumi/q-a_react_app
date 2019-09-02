@@ -5,6 +5,8 @@ import {reducer as formReducer} from 'redux-form';
 import authReducer from './authReducer';
 import myDataReducer from './myDataReducer';
 import pageReducer from './pageReducer';
+import responseReducer from './responseReducer';
+
 
 
 export default combineReducers({
@@ -14,4 +16,5 @@ export default combineReducers({
     auth:authReducer,
     myData: myDataReducer,
     page: pageReducer,
+    response: responseReducer,
 });

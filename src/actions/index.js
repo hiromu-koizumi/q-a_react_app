@@ -31,30 +31,6 @@ export const fetchQuestions = () => async (dispatch) => {
         questions
       });
     }, );
-
-  // await db.collection('questions').orderBy('created','desc').startAfter(lastVisible).limit(2).get()
-  //   .then(snapshot => {
-  //     snapshot.docs.map(doc => {
-  //       //allitemsにデータを代入
-  //       const question = {
-  //         name: doc.data().name,
-  //         title: doc.data().title,
-  //         question: doc.data().question,
-  //         questionId: doc.id,
-  //         userId: doc.data().userId,
-  //         goodCount: doc.data().goodCount,
-  //         answerCount:doc.data().answerCount
-  //       }
-  //       console.log("ここ",doc)
-  //       return questions.push(question);
-  //     }, );
-  //     var lastVisible = snapshot.docs[snapshot.docs.length-1];
-  //     console.log("last", lastVisible);
-  //     dispatch({
-  //       type: 'INIT',
-  //       questions
-  //     });
-  //   }, );
 }
 
 export const createQuestion = (formValues, uid) => async (dispatch) => {
@@ -145,9 +121,8 @@ export const fetchAnswers = (id) => (dispatch) => {
           userId: doc.data().userId,
         }
         return answers.unshift(answer);
-
-        //リデューサー
       }, );
+      
       dispatch({
         type: 'LOAD_ANSWER',
         answers
@@ -388,4 +363,38 @@ export const setCurrentPage = (pageNumber) => async (dispatch) => {
     type: 'SET_CURRENT_PAGE',
     payload: pageNumber,
   });
+}
+
+
+export const createResponse = (formValues, questionId, answerId) => async (dispatch) => {
+  
+  await db.collection('questions').doc(questionId).collection('answers').doc(answerId).collection('responses').add({
+      ...formValues,
+      created: firebase.firestore.FieldValue.serverTimestamp()
+    }).then(doc => {
+      console.log(`${doc.id}をDBに保存した`);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+}
+
+export const fetchResponses = (questionId,answerId) => (dispatch) => {
+  const responses = [];
+  db.collection('questions').doc(questionId).collection('answers').doc(answerId).collection('responses').orderBy('created').get()
+    .then(snapshot => {
+      snapshot.docs.map(doc => {
+        //allitemsにデータを代入
+        const response = {
+          name: doc.data().name,
+          response: doc.data().response,
+        }
+        return responses.unshift(response);
+      }, );
+      
+      dispatch({
+        type: 'FETCH_RESPONSES',
+        payload:responses
+      });
+    }, );
 }

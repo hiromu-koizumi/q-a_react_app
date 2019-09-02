@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import {fetchAnswers,answerGoodCount} from '../../actions';
 import { Link } from 'react-router-dom';
 import GoodButton from './GoodButton';
+import ResponseButton from './ResponseButton';
+
 
 
 //質問の表示処理
@@ -22,6 +24,7 @@ class AnswerList extends Component{
                 <div>回答なし</div>
             );
         }
+        console.log(this.props.data)
             return (
                 < div className = "wrap" >
                     {/* propsにするかstateにするかで表示変わる。propsにすると */}
@@ -35,6 +38,7 @@ class AnswerList extends Component{
                                 <div className="description">
                                     <p>{item.answer}</p>
                                 </div>
+                                <ResponseButton questionId={item.questionId} answerId={item.answerId}/>
                                 <GoodButton onClick={this.onClick} postData={item}/>
                             </div>
                         </div>
