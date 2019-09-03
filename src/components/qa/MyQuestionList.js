@@ -35,7 +35,6 @@ class MyQuestionList extends Component{
                                 <Link to={`/qa/${item.questionId}`} className="header">
                                 {item.title}
                                 </Link>
-                                <div className="meta">{item.name}</div>
                                 <div className="description">
                                     <p>{item.question}</p>
                                 </div>

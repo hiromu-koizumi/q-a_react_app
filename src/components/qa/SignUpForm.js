@@ -12,6 +12,9 @@ const minLength = min => value =>
   value && value.length < min ? `パスワードは６文字以上にしてね` : undefined
 const minLength6 = minLength(6)
 
+const name = value =>
+  !value ? '名前を入力してね' : undefined
+
 class SignUpForm extends React.Component {
 
     renderError({error,touched}) {
@@ -42,8 +45,8 @@ class SignUpForm extends React.Component {
     render(){
        return (
            <form className="ui form error"　onSubmit={this.props.handleSubmit(this.onSubmit)}>
+               <Field name="name" component={this.renderInput} label="名前"  validate={name} />
                <Field name="mail" component={this.renderInput} label="メールアドレス"  validate={mail} warn={aol}/>
-
                <Field name="password" component={this.renderInput} label="パスワード"　validate={minLength6}/>
                <button className="ui green inverted button">登録する</button>
            </form>

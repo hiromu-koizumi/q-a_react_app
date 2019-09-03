@@ -18,7 +18,7 @@ class QuestionCreate extends Component{
 }
 
 const mapStateToProps = (state) => {
-    return {auth:state.auth.userId}
+    return {auth:state.auth}
 }
 
 export default connect(mapStateToProps,{createQuestion})(QuestionCreate);

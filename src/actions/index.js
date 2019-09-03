@@ -33,13 +33,14 @@ export const fetchQuestions = () => async (dispatch) => {
     }, );
 }
 
-export const createQuestion = (formValues, uid) => async (dispatch) => {
+export const createQuestion = (formValues, auth) => async (dispatch) => {
 
   let questionId;
   //データベースに保存
   await db.collection('questions').add({
       ...formValues,
-      userId: uid,
+      userId: auth.userId,
+      name: auth.name,
       goodCount: 0,
       answerCount:0,
       created: firebase.firestore.FieldValue.serverTimestamp()
@@ -51,7 +52,7 @@ export const createQuestion = (formValues, uid) => async (dispatch) => {
       console.log(error);
     });
 
-  db.collection('users').doc(uid).collection('questions').doc(questionId).set({
+  db.collection('users').doc(auth.userId).collection('questions').doc(questionId).set({
       ...formValues,
       goodCount: 0,
       answerCount:0,
@@ -65,11 +66,12 @@ export const createQuestion = (formValues, uid) => async (dispatch) => {
     });
 }
 
-export const createAnswer = (formValues, questionId, uid) => async (dispatch) => {
+export const createAnswer = (formValues, questionId, auth) => async (dispatch) => {
   let answerId;
   await db.collection('questions').doc(questionId).collection('answers').add({
       ...formValues,
-      userId:uid,
+      userId:auth.userId,
+      name:auth.name,
       questionId: questionId,
       goodCount:0,
       created: firebase.firestore.FieldValue.serverTimestamp()
@@ -81,7 +83,7 @@ export const createAnswer = (formValues, questionId, uid) => async (dispatch) =>
       console.log(error);
     });
 
-  db.collection('users').doc(uid).collection('answers').doc(answerId).set({
+  db.collection('users').doc(auth.userId).collection('answers').doc(answerId).set({
       ...formValues,
       questionId: questionId,
       answerId: answerId,
@@ -99,7 +101,7 @@ export const createAnswer = (formValues, questionId, uid) => async (dispatch) =>
   washingtonRef.update({
     answerCount: firebase.firestore.FieldValue.increment(1)
   });
-  var washingtonRef = db.collection('users').doc(uid).collection('questions').doc(questionId);
+  var washingtonRef = db.collection('users').doc(auth.userId).collection('questions').doc(questionId);
   washingtonRef.update({
     answerCount: firebase.firestore.FieldValue.increment(1)
   });
@@ -166,7 +168,6 @@ export const signUp = formValues => async (dispatch) => {
   //ユーザー登録
   await firebase.auth().createUserWithEmailAndPassword(formValues.mail, formValues.password).catch(function (error) {
     console.log('error')
-
   });
 
   //ユーザーログイン
@@ -178,20 +179,29 @@ export const signUp = formValues => async (dispatch) => {
     }).catch(function (error) {
       // Handle Errors here.
       console.log(error)
-
     });
 
-  //storeに保存
-  var user = firebase.auth().currentUser;
+    //ユーザーネームをfirestoreに保存
+    var user = await firebase.auth().currentUser;
+    await user.updateProfile({
+      displayName: formValues.name,
+    }).then(function() {
+      // Update successful.
+    }).catch(function(error) {
+      // An error happened.
+    });
+
   if (user) {
-    const uid = user.uid;
+    const name = user.displayName
+    const userId = user.uid;
     dispatch({
       type: 'SIGN_IN',
-      payload: uid
+      name:name,
+      userId:userId 
     });
 
-    db.collection('users').doc(uid).set({
-        userId: uid
+    db.collection('users').doc(userId).set({
+        userId: userId
       }).then(doc => {})
       .catch(error => {
         console.log(error);
@@ -210,7 +220,8 @@ export const signInAction = () => (dispatch) => {
     if (user) {
       dispatch({
         type: 'SIGN_IN',
-        payload: user.uid
+        userId: user.uid,
+        name:user.displayName
       });
     } else {
       console.log("error")
@@ -250,7 +261,7 @@ export const signOutAction = () => (dispatch) => {
 
 export const fetchMyQuestions = (userId) => (dispatch) => {
   const questions = [];
-  console.log(userId)
+  
   db.collection('users').doc(userId).collection('questions').orderBy('created').get()
     .then(snapshot => {
       snapshot.docs.map(doc => {
@@ -276,7 +287,7 @@ export const fetchMyQuestions = (userId) => (dispatch) => {
 
 export const fetchMyAnswers = (userId) => (dispatch) => {
   const answers = [];
-  console.log(userId)
+
   db.collection('users').doc(userId).collection('answers').orderBy('created').get()
     .then(snapshot => {
       snapshot.docs.map(doc => {
@@ -300,7 +311,6 @@ export const fetchMyAnswers = (userId) => (dispatch) => {
 
 
 export const questionGoodCount = (postData) => async (dispatch) => {
-  console.log(postData)
 
   //firebaseのgoodCountに1足している
   var washingtonRef = db.collection('questions').doc(postData.questionId);
@@ -390,7 +400,7 @@ export const fetchResponses = (questionId,answerId) => (dispatch) => {
           response: doc.data().response,
         }
         return responses.push(response);
-      }, );
+      },);
       
       dispatch({
         type: 'FETCH_RESPONSES',

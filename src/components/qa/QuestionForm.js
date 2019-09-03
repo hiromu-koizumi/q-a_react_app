@@ -31,7 +31,7 @@ class QuestionForm extends React.Component {
     render(){
        return (
            <form className="ui form error"　onSubmit={this.props.handleSubmit(this.onSubmit)}>
-               <Field name="name" component={this.renderInput} label="名前"/>
+               {/* <Field name="name" component={this.renderInput} label="名前"/> */}
                <Field name="title" component={this.renderInput} label="タイトル"/>
                <Field name="question" component={this.renderInput} label="質問"/>
                <button className="ui green inverted button">質問する</button>

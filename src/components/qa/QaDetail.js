@@ -50,7 +50,7 @@ class QaDetail extends React.Component{
 }
 
 const mapStateToProps = (state,ownProps) => {
-    return {questionData:state.questions[ownProps.match.params.id],auth:state.auth.userId}
+    return {questionData:state.questions[ownProps.match.params.id],auth:state.auth}
 }
 
 export default connect(mapStateToProps,{createAnswer,resetAnswer,fetchQuestion,fetchAnswers,questionGoodCount})(QaDetail);
