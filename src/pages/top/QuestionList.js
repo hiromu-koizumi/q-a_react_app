@@ -24,12 +24,8 @@ class Item extends Component{
                         <div className="ui fluid card" key={i}>
                             <div className="content">
                                 <Link to={`/qa/${item.questionId}`} className="header">
-                                {item.title}
+                                {item.question}
                                 </Link>
-                                <div className="meta">{item.name}</div>
-                                <div className="description">
-                                    <p>{item.question}</p>
-                                </div>
                                 <div className="description">
                                     <p>回答数{item.answerCount}</p>
                                 </div>

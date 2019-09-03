@@ -12,10 +12,10 @@ const ResponseList = ({questionId,answerId,response}) => {
             {response.map((item, i) => (
                 <div className="ui fluid card" key={i}>
                     <div className="content">
-                        <div className="meta">{item.name}</div>
                         <div className="description">
                             <p>{item.response}</p>
                         </div>
+                        <div className="meta">{item.name}</div>
                         <ResponseButton questionId={questionId} answerId={answerId}/>
                     </div>
                 </div>

@@ -5,7 +5,6 @@ import QuestionForm from './QuestionForm';
 
 class QuestionCreatePage extends Component{
     
-  
     onSubmit = (formValues) => {
         this.props.createQuestion(formValues,this.props.auth);
     }

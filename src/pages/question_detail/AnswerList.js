@@ -33,10 +33,10 @@ class AnswerList extends Component{
                         <div key={i}>
                             <div className="ui fluid card" >
                                 <div className="content">
-                                    <div className="meta">{item.name}</div>
                                     <div className="description">
                                         <p>{item.answer}</p>
                                     </div>
+                                    <div className="meta">{item.name}</div>
                                     <ResponseButton questionId={item.questionId} answerId={item.answerId}/>
                                     <GoodButton onClick={this.onClick} postData={item}/>
                                 </div>

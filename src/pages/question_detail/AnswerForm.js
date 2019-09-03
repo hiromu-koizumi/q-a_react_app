@@ -31,7 +31,6 @@ class AnswerForm extends React.Component {
     render(){
        return (
            <form className="ui form error"　onSubmit={this.props.handleSubmit(this.onSubmit)}>
-               {/* <Field name="name" component={this.renderInput} label="名前"/> */}
                <Field name="answer" component={this.renderInput} label="回答"/>
                <button className="ui button primary">回答する</button>
            </form>
@@ -41,10 +40,6 @@ class AnswerForm extends React.Component {
 
 const validate = formValues => {
     const errors = {};
-
-    // if (!formValues.name){
-    //     errors.name = '名前入力してね';
-    // }
 
     if(!formValues.answer){
         errors.answer = '回答入力してね';

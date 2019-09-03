@@ -33,14 +33,13 @@ class QaDetail extends React.Component{
             return <div>Loading...</div>
         }
 
-        const  {name,title,question} = this.props.questionData
+        const  {name,question} = this.props.questionData
     
 
         return (
             <div>
-                <h1>{title}</h1>
-                <h5>{name}</h5>
                 <h5>{question}</h5>
+                <p className="ui description">{name}</p>
                 <GoodButton onClick={this.onClick} postData={this.props.questionData}/>
                 <AnswerList id={this.props.match.params.id}/>
                 <AnswerForm　onSubmit={this.onSubmit} id={this.props.match.params.id}/>
