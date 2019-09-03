@@ -5,7 +5,6 @@ import SignUpForm from './SignUpForm';
 
 class SignUp extends Component{
     
-  
     onSubmit = (formValues) => {
        this.props.signUp(formValues);       
     }

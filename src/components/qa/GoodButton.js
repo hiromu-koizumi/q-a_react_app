@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loginAction } from '../../actions';
-import LoginForm from './LoginForm';
+import LoginForm from '../../pages/login/LoginForm';
 
 
 class GoodButton extends React.Component {

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { createQuestion } from '../../actions';
 import QuestionForm from './QuestionForm';
 
-class QuestionCreate extends Component{
+class QuestionCreatePage extends Component{
     
   
     onSubmit = (formValues) => {
@@ -21,4 +21,4 @@ const mapStateToProps = (state) => {
     return {auth:state.auth}
 }
 
-export default connect(mapStateToProps,{createQuestion})(QuestionCreate);
+export default connect(mapStateToProps,{createQuestion})(QuestionCreatePage);

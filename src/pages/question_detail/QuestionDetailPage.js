@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {createAnswer,resetAnswer,fetchQuestion,fetchAnswers,questionGoodCount} from '../../actions';
 import AnswerForm from './AnswerForm';
 import AnswerList from './AnswerList';
-import GoodButton from './GoodButton';
+import GoodButton from '../../components/qa/GoodButton';
 
 
 class QaDetail extends React.Component{

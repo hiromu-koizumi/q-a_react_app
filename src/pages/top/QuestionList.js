@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {fetchQuestions,questionGoodCount} from '../../actions';
 import {Link} from 'react-router-dom';
-import GoodButton from './GoodButton';
+import GoodButton from '../../components/qa/GoodButton';
 
 
 //質問の表示処理
