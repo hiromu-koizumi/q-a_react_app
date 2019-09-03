@@ -389,12 +389,13 @@ export const fetchResponses = (questionId,answerId) => (dispatch) => {
           name: doc.data().name,
           response: doc.data().response,
         }
-        return responses.unshift(response);
+        return responses.push(response);
       }, );
       
       dispatch({
         type: 'FETCH_RESPONSES',
-        payload:responses
+        payload:responses,
+        answerId:answerId
       });
     }, );
 }

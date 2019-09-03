@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { connect } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
 import ResponseForm from './ResponseForm';
@@ -12,8 +12,11 @@ const ResponseButton = ({questionId, answerId, createResponse,fetchResponses}) =
   const onSubmit = (formValues) => {
     createResponse(formValues,questionId,answerId);
     fetchResponses(questionId,answerId);
-
 　  }
+
+  useEffect(() => {
+    fetchResponses(questionId,answerId);
+  });
 
   return (
     <div className="">

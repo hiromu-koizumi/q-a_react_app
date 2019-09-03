@@ -4,6 +4,7 @@ import {fetchAnswers,answerGoodCount} from '../../actions';
 import { Link } from 'react-router-dom';
 import GoodButton from './GoodButton';
 import ResponseButton from './ResponseButton';
+import ResponseList from './ResponseList';
 
 
 
@@ -24,23 +25,23 @@ class AnswerList extends Component{
                 <div>回答なし</div>
             );
         }
-        console.log(this.props.data)
-            return (
+
+        return (
                 < div className = "wrap" >
                     {/* propsにするかstateにするかで表示変わる。propsにすると */}
                     {this.props.data.map((item, i) => (
-                        <div className="ui fluid card" key={i}>
-                            <div className="content">
-                                <Link to={`/qa/${item.questionId}`} className="header">
-                                {item.title}
-                                </Link>
-                                <div className="meta">{item.name}</div>
-                                <div className="description">
-                                    <p>{item.answer}</p>
+                        <div key={i}>
+                            <div className="ui fluid card" >
+                                <div className="content">
+                                    <div className="meta">{item.name}</div>
+                                    <div className="description">
+                                        <p>{item.answer}</p>
+                                    </div>
+                                    <ResponseButton questionId={item.questionId} answerId={item.answerId}/>
+                                    <GoodButton onClick={this.onClick} postData={item}/>
                                 </div>
-                                <ResponseButton questionId={item.questionId} answerId={item.answerId}/>
-                                <GoodButton onClick={this.onClick} postData={item}/>
                             </div>
+                                <ResponseList questionId={item.questionId} answerId={item.answerId}/>
                         </div>
                     ))
                     }
@@ -55,6 +56,7 @@ class AnswerList extends Component{
                 nodata:state
             }
         }
+        console.log(Object.values(state.answer))
         return { 
             data: Object.values(state.answer),
         };
