@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createQuestion } from '../../actions';
 import QuestionForm from './QuestionForm';
+import Unusable from '../../components/qa/Unusable';
 
 class QuestionCreatePage extends Component{
     
@@ -10,6 +11,11 @@ class QuestionCreatePage extends Component{
     }
 
     render() {
+
+        if(!this.props.auth.isSignedIn){
+           return <Unusable/>
+        }
+
         return (
             <QuestionForm onSubmit={this.onSubmit}/>    
         )

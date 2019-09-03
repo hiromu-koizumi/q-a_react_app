@@ -2,21 +2,23 @@ import React, { useState,useEffect } from 'react';
 import { connect } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
 import ResponseForm from './ResponseForm';
-import {createResponse,fetchResponses} from '../../actions'
+import {createAnswer,fetchAnswers} from '../../actions'
+import AnswerForm from './AnswerForm'
 
-const ResponseButton = ({questionId, answerId, createResponse,fetchResponses,auth}) => {
+const AnswerButton = ({questionId, answerId, createAnswer,fetchAnswers,auth}) => {
   const [showButton, setShowButton] = useState(true);
   const [showMessage, setShowMessage] = useState(false);
   const onClick = () => {setShowMessage(false)}
 
-  const onSubmit = (formValues) => {
-    createResponse(formValues,questionId,answerId,auth);
-    fetchResponses(questionId,answerId);
-　  }
-
   useEffect(() => {
-    fetchResponses(questionId,answerId);
+    // fetchResponses(questionId,answerId);
   });
+
+  const onSubmit = (formValues) => {
+    createAnswer(formValues,questionId,auth);
+    //再読み込みして新規投稿を取得している
+    fetchAnswers(questionId)
+  }
 
   return (
     <div className="">
@@ -26,7 +28,7 @@ const ResponseButton = ({questionId, answerId, createResponse,fetchResponses,aut
           onClick={() => setShowMessage(true)}
           size="lg"
         >
-          <i className="comment outline icon"></i>
+          回答する
         </button>
       )}
       <CSSTransition
@@ -41,7 +43,7 @@ const ResponseButton = ({questionId, answerId, createResponse,fetchResponses,aut
           onClose={() => setShowMessage(false)}
           className="ui card"
         >
-            <ResponseForm onClick={onClick} onSubmit={onSubmit}/>
+            <AnswerForm onClick={onClick} onSubmit={onSubmit}/>
         </div>
       </CSSTransition>
     </div>
@@ -52,4 +54,4 @@ const mapStateToProps = (state) => {
   return {auth:state.auth}
 }
 
-export default connect(mapStateToProps,{createResponse,fetchResponses})(ResponseButton);
+export default connect(mapStateToProps,{createAnswer,fetchAnswers})(AnswerButton);

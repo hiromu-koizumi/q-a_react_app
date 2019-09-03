@@ -20,11 +20,6 @@ class AnswerList extends Component{
     }
 
     render() {
-        if (this.props.nodata){
-            return(
-                <div>回答なし</div>
-            );
-        }
 
         return (
                 < div className = "wrap" >
@@ -51,12 +46,7 @@ class AnswerList extends Component{
     }
 
     const mapStateToProps = (state) =>{  
-        if (!state.answer){
-            return　{
-                nodata:state
-            }
-        }
-        console.log(Object.values(state.answer))
+
         return { 
             data: Object.values(state.answer),
         };

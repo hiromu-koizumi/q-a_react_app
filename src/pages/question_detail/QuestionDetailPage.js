@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {createAnswer,resetAnswer,fetchQuestion,fetchAnswers,questionGoodCount} from '../../actions';
 import AnswerForm from './AnswerForm';
 import AnswerList from './AnswerList';
+import AnswerButton from './AnswerButton';
 import GoodButton from '../../components/qa/GoodButton';
 
 
@@ -16,12 +17,6 @@ class QaDetail extends React.Component{
         //ページを離れる時にstateのanswerの値を削除している
         //消さないと、回答のないページを開いた時に以前開いたページの回答を表示してしまう
        this.props.resetAnswer()
-    }
-
-    onSubmit = (formValues,id) => {
-        this.props.createAnswer(formValues,id,this.props.auth);
-        //再読み込みして新規投稿を取得している
-        this.props.fetchAnswers(id)
     }
 
     onClick = (questionData) => {
@@ -40,9 +35,9 @@ class QaDetail extends React.Component{
             <div>
                 <h5>{question}</h5>
                 <p className="ui description">{name}</p>
+                <AnswerButton questionId={this.props.match.params.id}/>
                 <GoodButton onClick={this.onClick} postData={this.props.questionData}/>
                 <AnswerList id={this.props.match.params.id}/>
-                <AnswerForm　onSubmit={this.onSubmit} id={this.props.match.params.id}/>
             </div>
         )
     }

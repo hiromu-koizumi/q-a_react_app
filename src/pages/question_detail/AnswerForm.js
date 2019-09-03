@@ -24,16 +24,20 @@ class AnswerForm extends React.Component {
     }
 
     onSubmit = (formValues) => {
-        console.log(this.props.id)
-        this.props.onSubmit(formValues,this.props.id);
+        this.props.onSubmit(formValues);
     }
 
     render(){
        return (
-           <form className="ui form error"　onSubmit={this.props.handleSubmit(this.onSubmit)}>
-               <Field name="answer" component={this.renderInput} label="回答"/>
-               <button className="ui button primary">回答する</button>
-           </form>
+            <div className="content">
+                <button className="ui icon button" onClick={this.props.onClick}>
+                    <i className='x icon'></i>
+                </button>
+                <form className="ui form error"　onSubmit={this.props.handleSubmit(this.onSubmit)}>
+                    <Field name="answer" component={this.renderInput} label="回答"/>
+                    <button className="ui button primary">回答する</button>
+                </form>
+            </div>
        )
     }
 };

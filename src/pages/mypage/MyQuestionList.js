@@ -7,7 +7,6 @@ import {Link} from 'react-router-dom';
 //質問の表示処理
 class MyQuestionList extends Component{
 
-    
     componentDidMount(){
         if(this.props.userId){
             this.props.fetchMyQuestions(this.props.userId)
@@ -53,12 +52,10 @@ class MyQuestionList extends Component{
 
    
     const mapStateToProps = (state) => {
-        console.log("state")
         if (state.myData.questions){
             return {userId:state.auth.userId,questions:Object.values(state.myData.questions)}
         }
             return {userId:state.auth.userId}
-        
     }
     
 

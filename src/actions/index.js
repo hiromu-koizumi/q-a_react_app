@@ -181,35 +181,37 @@ export const signUp = formValues => async (dispatch) => {
       console.log(error)
     });
 
-    //ユーザーネームをfirestoreに保存
-    var user = await firebase.auth().currentUser;
-    await user.updateProfile({
-      displayName: formValues.name,
-    }).then(function() {
-      // Update successful.
-    }).catch(function(error) {
-      // An error happened.
+    // 作成したユーザーにログインして、updateProfileを使用して、ユーザー名をfirestoreに保存している。登録時にユーザー名を保存する方法がわからないためこの方法をとっている。
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
+       user.updateProfile({
+          displayName: formValues.name,
+        }).then(function() {
+
+          //storeにユーザー情報を保存
+          const name = user.displayName
+          const userId = user.uid;
+          dispatch({
+            type: 'SIGN_IN',
+            name:name,
+            userId:userId 
+          });
+      
+          //firestoreにユーザーIDを保存
+          db.collection('users').doc(userId).set({
+              userId: userId
+            }).then(doc => {})
+            .catch(error => {
+              console.log(error);
+            });
+        }).catch(function(error) {
+        });
+
+      } else {
+        console.log("error")
+      }
     });
 
-  if (user) {
-    const name = user.displayName
-    const userId = user.uid;
-    dispatch({
-      type: 'SIGN_IN',
-      name:name,
-      userId:userId 
-    });
-
-    db.collection('users').doc(userId).set({
-        userId: userId
-      }).then(doc => {})
-      .catch(error => {
-        console.log(error);
-      });
-
-  } else {
-    console.log('e')
-  }
 }
 
 //既にログイン済みの人のログイン情報をstoreに保存している
@@ -376,10 +378,11 @@ export const setCurrentPage = (pageNumber) => async (dispatch) => {
 }
 
 
-export const createResponse = (formValues, questionId, answerId) => async (dispatch) => {
+export const createResponse = (formValues, questionId, answerId,auth) => async (dispatch) => {
   
   await db.collection('questions').doc(questionId).collection('answers').doc(answerId).collection('responses').add({
       ...formValues,
+      name:auth.name,
       created: firebase.firestore.FieldValue.serverTimestamp()
     }).then(doc => {
       console.log(`${doc.id}をDBに保存した`);

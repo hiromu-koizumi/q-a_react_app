@@ -35,7 +35,6 @@ class ResponseForm extends React.Component {
                     <i className='x icon'></i>
                 </button>
                 <form className="ui form error"　onSubmit={this.props.handleSubmit(this.onSubmit)}>
-                    <Field name="name" component={this.renderInput} label="名前" />
                     <Field name="response" component={this.renderInput} label="返信"/>
                     <button className="ui green inverted button" >登録する</button>
                 </form>

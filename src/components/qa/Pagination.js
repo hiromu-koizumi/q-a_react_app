@@ -24,11 +24,4 @@ const Pagination = ({postsPerPage, totalPosts, paginate, currentPageNumber}) => 
     )
 }
 
-const mapStateToProps = (state) =>{        
-    return { 
-        page: state.page.currentPageNumber
-    };
-}
-
-
-export default connect(mapStateToProps)(Pagination);
+export default Pagination;
