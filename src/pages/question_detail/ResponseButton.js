@@ -40,7 +40,7 @@ const ResponseButton = ({questionId, answerId, createResponse,fetchResponses,aut
           onClose={() => setShowMessage(false)}
           className="ui card"
         >
-            <ResponseForm onClick={onClick} onSubmit={onSubmit}/>
+            <ResponseForm onClick={onClick} onSubmit={onSubmit} auth={auth}/>
         </div>
       </CSSTransition>
     </div>

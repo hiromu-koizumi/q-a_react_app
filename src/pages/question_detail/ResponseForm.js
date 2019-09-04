@@ -1,5 +1,6 @@
 import React from 'react';
 import {Field,reduxForm} from 'redux-form';
+import {Link} from 'react-router-dom';
 
 
 class ResponseForm extends React.Component {
@@ -29,6 +30,16 @@ class ResponseForm extends React.Component {
     }
 
     render(){
+        console.log(this.props)
+
+        if (this.props.auth.isSignedIn === null){
+            return (
+                <Link to="/qa/signup" className="content">
+                    登録してね
+                </Link>
+            ) 
+        }
+
        return (
             <div className="content">
                 <button className="ui icon button" onClick={this.props.onClick}>

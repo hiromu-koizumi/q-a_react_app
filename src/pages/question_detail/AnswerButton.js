@@ -39,7 +39,7 @@ const AnswerButton = ({questionId, answerId, createAnswer,fetchAnswers,auth}) =>
           onClose={() => setShowMessage(false)}
           className="ui card"
         >
-            <AnswerForm onClick={onClick} onSubmit={onSubmit}/>
+            <AnswerForm onClick={onClick} onSubmit={onSubmit} auth={auth}/>
         </div>
       </CSSTransition>
     </div>
