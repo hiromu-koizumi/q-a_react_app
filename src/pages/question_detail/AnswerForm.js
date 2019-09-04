@@ -25,6 +25,7 @@ class AnswerForm extends React.Component {
 
     onSubmit = (formValues) => {
         this.props.onSubmit(formValues);
+        this.props.onClick()
     }
 
     render(){

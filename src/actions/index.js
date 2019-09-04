@@ -402,9 +402,9 @@ export const fetchResponses = (questionId,answerId) => (dispatch) => {
           name: doc.data().name,
           response: doc.data().response,
         }
-        return responses.push(response);
+        responses.push(response);
       },);
-      
+      console.log(responses)
       dispatch({
         type: 'FETCH_RESPONSES',
         payload:responses,

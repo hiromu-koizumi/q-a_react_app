@@ -11,7 +11,6 @@ const ResponseButton = ({questionId, answerId, createResponse,fetchResponses,aut
 
   const onSubmit = (formValues) => {
     createResponse(formValues,questionId,answerId,auth);
-    fetchResponses(questionId,answerId);
 　  }
 
   useEffect(() => {
@@ -49,7 +48,9 @@ const ResponseButton = ({questionId, answerId, createResponse,fetchResponses,aut
 }
 
 const mapStateToProps = (state) => {
-  return {auth:state.auth}
+  return {
+    auth:state.auth,
+  }
 }
 
 export default connect(mapStateToProps,{createResponse,fetchResponses})(ResponseButton);

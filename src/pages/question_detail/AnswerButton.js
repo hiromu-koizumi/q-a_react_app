@@ -10,10 +10,6 @@ const AnswerButton = ({questionId, answerId, createAnswer,fetchAnswers,auth}) =>
   const [showMessage, setShowMessage] = useState(false);
   const onClick = () => {setShowMessage(false)}
 
-  useEffect(() => {
-    // fetchResponses(questionId,answerId);
-  });
-
   const onSubmit = (formValues) => {
     createAnswer(formValues,questionId,auth);
     //再読み込みして新規投稿を取得している
