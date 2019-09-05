@@ -18,7 +18,7 @@ class Item extends Component{
 
     render() {
             return (
-                < div className = "wrap" >
+                < div className = "ui container" >
                     {/* propsにするかstateにするかで表示変わる。propsにすると */}
                     {this.props.currentPosts.map((item, i) => (
                         <div className="ui fluid card" key={i}>
