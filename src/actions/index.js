@@ -9,7 +9,7 @@ const db = firebase.firestore();
 export const fetchQuestions = () => async (dispatch) => {
   const questions = [];
   var lastVisible;
-  await db.collection('questions').orderBy('created','desc').limit(9).get()
+  await db.collection('questions').orderBy('created','desc').limit(10).get()
     .then(snapshot => {
       snapshot.docs.map(doc => {
         //allitemsにデータを代入
@@ -20,7 +20,8 @@ export const fetchQuestions = () => async (dispatch) => {
           questionId: doc.id,
           userId: doc.data().userId,
           goodCount: doc.data().goodCount,
-          answerCount:doc.data().answerCount
+          answerCount:doc.data().answerCount,
+          created: doc.data().created,
         }
         return questions.push(question);
       }, );
@@ -31,6 +32,43 @@ export const fetchQuestions = () => async (dispatch) => {
         questions
       });
     }, );
+}
+export const scrollFetchQuestions = (questionData) => async (dispatch) => {
+  if(questionData){
+    dispatch({
+      type: 'LOADING',
+      payload:true
+    });
+    const lastCreated = questionData.created
+    const questions = [];
+    await db.collection('questions').where("created","<",lastCreated).orderBy('created','desc').limit(10).get()
+      .then(snapshot => {
+        snapshot.docs.map(doc => {
+          //allitemsにデータを代入
+          const question = {
+            name: doc.data().name,
+            title: doc.data().title,
+            question: doc.data().question,
+            questionId: doc.id,
+            userId: doc.data().userId,
+            goodCount: doc.data().goodCount,
+            answerCount:doc.data().answerCount,
+            created: doc.data().created,
+          }
+          return questions.push(question);
+        }, );
+
+        dispatch({
+          type: 'SCROLL_FETCH_QUESTIONS',
+          questions
+        });
+
+        dispatch({
+          type: 'LOADING',
+          payload:false
+        });
+      }, );
+  }
 }
 
 export const createQuestion = (formValues, auth) => async (dispatch) => {

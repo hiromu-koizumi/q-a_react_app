@@ -6,6 +6,7 @@ import authReducer from './authReducer';
 import myDataReducer from './myDataReducer';
 import pageReducer from './pageReducer';
 import responseReducer from './responseReducer';
+import loadingReducer from './loadingReducer';
 
 
 
@@ -17,4 +18,5 @@ export default combineReducers({
     myData: myDataReducer,
     page: pageReducer,
     response: responseReducer,
+    loading: loadingReducer,
 });

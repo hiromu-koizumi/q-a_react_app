@@ -13,14 +13,14 @@ class Item extends Component{
     }
 
     onClick = (questionData) => {
-        this.props.questionGoodCount(questionData);       
+        this.props.questionGoodCount(questionData);     
     }
 
     render() {
             return (
                 < div className = "ui container" >
                     {/* propsにするかstateにするかで表示変わる。propsにすると */}
-                    {this.props.currentPosts.map((item, i) => (
+                    {this.props.data.map((item, i) => (
                         <div className="ui fluid card" key={i}>
                             <div className="content">
                                 <Link to={`/qa/${item.questionId}`} className="header">
