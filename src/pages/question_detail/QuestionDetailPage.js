@@ -1,9 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {createAnswer,resetAnswer,fetchQuestion,fetchAnswers,questionGoodCount} from '../../actions';
-import AnswerForm from './AnswerForm';
+import AnswerForm from './answer_create/AnswerForm';
 import AnswerList from './AnswerList';
-import AnswerButton from './AnswerButton';
+import AnswerButton from './answer_create/AnswerButton';
 import GoodButton from '../../components/qa/GoodButton';
 
 

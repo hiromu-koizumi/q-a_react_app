@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import {fetchAnswers,answerGoodCount} from '../../actions';
 import { Link } from 'react-router-dom';
 import GoodButton from '../../components/qa/GoodButton';
-import ResponseButton from './ResponseButton';
+import ResponseButton from './response_create/ResponseButton';
 import ResponseList from './ResponseList';
 
 

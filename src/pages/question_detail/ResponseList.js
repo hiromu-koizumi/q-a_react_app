@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import ResponseButton from './ResponseButton';
+import ResponseButton from './response_create/ResponseButton';
 
 const ResponseList = ({questionId,answerId,response}) => {
     if(!response){

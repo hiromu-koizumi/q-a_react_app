@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {Router,Route,Switch} from 'react-router-dom';
-import './App.css';
+// import './App.css';
+// import '../../public/style/css'
+// import './app.scss'
 import QuestionCreatePage from '../pages/question_create/QuestionCreatePage';
 import QaDetail from '../pages/question_detail/QuestionDetailPage';
 import TopPage from '../pages/top/TopPage';

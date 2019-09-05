@@ -1,9 +1,10 @@
 import React, { useState,useEffect } from 'react';
 import { connect } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
-import ResponseForm from './ResponseForm';
-import {createAnswer,fetchAnswers} from '../../actions'
+import ResponseForm from '../response_create/ResponseForm';
+import {createAnswer,fetchAnswers} from '../../../actions'
 import AnswerForm from './AnswerForm'
+import './style.scss'
 
 const AnswerButton = ({questionId, answerId, createAnswer,fetchAnswers,auth}) => {
   const [showButton, setShowButton] = useState(true);
@@ -30,7 +31,7 @@ const AnswerButton = ({questionId, answerId, createAnswer,fetchAnswers,auth}) =>
       <CSSTransition
         in={showMessage}
         timeout={300}
-        classNames="alert"
+        classNames="answer"
         unmountOnExit
         onEnter={() => setShowButton(false)}
         onExited={() => setShowButton(true)}
