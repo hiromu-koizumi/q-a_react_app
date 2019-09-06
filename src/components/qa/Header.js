@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import FirebaseAuth from './FirebaseAuth'
+import FirebaseAuth from '../FirebaseAuth'
 import { connect } from 'react-redux';
 
 const Header = ({isSignedIn}) => {

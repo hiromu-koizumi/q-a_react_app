@@ -1,0 +1,30 @@
+.navi-bar{
+    height: 50px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    right: 0;
+    z-index: 100;
+    background: #FFF;
+    border-top: 1px solid #EEE;
+
+    &-link{
+    position: relative;
+    color: #828a97;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    float: left;
+    width: 33%;
+    height: 50px;
+    color: #AAA;
+    text-decoration: none;
+    text-align: center;
+    line-height: 45px;
+    padding-top: 2px;
+    }
+    .big-icon{
+        font-size: 29px;
+    }
+}
