@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {fetchQuestions,questionGoodCount} from '../../actions';
 import {Link} from 'react-router-dom';
-import GoodButton from '../../components/qa/GoodButton';
+import GoodButton from '../../components/qa/good_button/GoodButton';
+import './style.scss'
 
 
 
@@ -27,10 +28,12 @@ class Item extends Component{
                                 <Link to={`/qa/${item.questionId}`} className="header">
                                 {item.question}
                                 </Link>
-                                <div className="description">
-                                    <p>回答数{item.answerCount}</p>
-                                </div>
+                                <div className="reaction-wrap">
                                 <GoodButton onClick={this.onClick} postData={item}/>
+                                <div className="comment-icon">
+                                    <p><i className="icon comment outline"></i>{item.answerCount}</p>
+                                </div>
+                                </div>
                             </div>
                         </div>
                     ))

@@ -4,7 +4,7 @@ import {createAnswer,resetAnswer,fetchQuestion,fetchAnswers,questionGoodCount} f
 import AnswerForm from './answer_create/AnswerForm';
 import AnswerList from './AnswerList';
 import AnswerButton from './answer_create/AnswerButton';
-import GoodButton from '../../components/qa/GoodButton';
+import GoodButton from '../../components/qa/good_button/GoodButton';
 
 
 class QaDetail extends React.Component{
@@ -32,12 +32,14 @@ class QaDetail extends React.Component{
     
 
         return (
-            <div>
-                <button onClick={() => this.props.history.goBack()}>戻る</button>
+            <div className="ui container">
+                <button className='back-button' onClick={() => this.props.history.goBack()}><i className="angle left icon"></i></button>
                 <h5>{question}</h5>
-                <p className="ui description">{name}</p>
+                <div className="flex">
+                    <p className="ui description">{name}</p>
+                    <GoodButton onClick={this.onClick} postData={this.props.questionData}/>
+                </div>
                 <AnswerButton questionId={this.props.match.params.id}/>
-                <GoodButton onClick={this.onClick} postData={this.props.questionData}/>
                 <AnswerList id={this.props.match.params.id}/>
             </div>
         )

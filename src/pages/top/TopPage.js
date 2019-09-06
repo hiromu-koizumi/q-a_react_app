@@ -4,6 +4,8 @@ import {setCurrentPage,fetchQuestions,scrollFetchQuestions} from '../../actions'
 import {Link} from 'react-router-dom';
 import QuestionList from './QuestionList';
 import {Waypoint} from 'react-waypoint';
+import Header from '../../components/qa/header/Header';
+
 
 
 
@@ -24,11 +26,7 @@ class TopPage extends Component{
     render() {
             return (
                 < div className = "wrap" >
-                    <div style={{textAlign:'center'}}>
-                        <Link to="/qa/new" className="ui button primary">
-                            質問する
-                        </Link>
-                    </div>
+                    <Header/>
                     <QuestionList/>
                     <Waypoint onEnter={this.scrollFetchQuestions}/>
                     {this.props.loading && (

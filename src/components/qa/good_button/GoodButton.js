@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { loginAction } from '../../actions';
-import LoginForm from '../../pages/login/LoginForm';
+import { loginAction } from '../../../actions';
+import LoginForm from '../../../pages/login/LoginForm';
+import './style.scss'
 
 
 class GoodButton extends React.Component {
@@ -12,13 +13,13 @@ class GoodButton extends React.Component {
 
     render() {
        return (
-        <div className="ui labeled button" >
-             <div onClick={this.onClick} className="ui circular red button">
-                <i className="heart icon"></i> 
+        <div className="good-button-wrap">
+             <div onClick={this.onClick} className="">
+                <i className="heart icon red"></i> 
             </div>
-            <a　className="ui basic red left label">
+            <div　className="">
                 {this.props.postData.goodCount}
-            </a>
+            </div>
         </div>
        )
     }

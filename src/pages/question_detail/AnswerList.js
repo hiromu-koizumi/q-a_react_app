@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {fetchAnswers,answerGoodCount} from '../../actions';
 import { Link } from 'react-router-dom';
-import GoodButton from '../../components/qa/GoodButton';
+import GoodButton from '../../components/qa/good_button/GoodButton';
 import ResponseButton from './response_create/ResponseButton';
 import ResponseList from './ResponseList';
 
@@ -26,14 +26,16 @@ class AnswerList extends Component{
                     {/* propsにするかstateにするかで表示変わる。propsにすると */}
                     {this.props.data.map((item, i) => (
                         <div key={i}>
-                            <div className="ui fluid card" >
+                            <div className="ui fluid card">
                                 <div className="content">
                                     <div className="description">
                                         <p>{item.answer}</p>
                                     </div>
-                                    <div className="meta">{item.name}</div>
-                                    <ResponseButton questionId={item.questionId} answerId={item.answerId}/>
-                                    <GoodButton onClick={this.onClick} postData={item}/>
+                                    <div className="flex">
+                                        <div className="meta">{item.name}</div>
+                                        <GoodButton onClick={this.onClick} postData={item}/>
+                                        <ResponseButton questionId={item.questionId} answerId={item.answerId}/>
+                                    </div>
                                 </div>
                             </div>
                                 <ResponseList questionId={item.questionId} answerId={item.answerId}/>

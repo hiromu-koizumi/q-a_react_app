@@ -39,8 +39,14 @@ export const scrollFetchQuestions = (questionData) => async (dispatch) => {
       type: 'LOADING',
       payload:true
     });
-    const lastCreated = questionData.created
+    const lastCreated = await questionData.created
     const questions = [];
+    
+    //質問詳細ページで再読込してトップページに戻るとquestionDataを取得する前に呼び出されエラーになるので追加
+    if(!lastCreated){
+      return
+    }
+    
     await db.collection('questions').where("created","<",lastCreated).orderBy('created','desc').limit(10).get()
       .then(snapshot => {
         snapshot.docs.map(doc => {

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
 import ResponseForm from './ResponseForm';
 import {createResponse,fetchResponses} from '../../../actions'
+import Unusable from '../../../components/qa/unusable/Unusable'
 import './style.scss'
 
 const ResponseButton = ({questionId, answerId, createResponse,fetchResponses,auth}) => {
@@ -19,7 +20,7 @@ const ResponseButton = ({questionId, answerId, createResponse,fetchResponses,aut
   });
 
   return (
-    <div className="">
+    <div className="response-button">
       {showButton && (
         <button
           className="ui icon button"
@@ -40,8 +41,10 @@ const ResponseButton = ({questionId, answerId, createResponse,fetchResponses,aut
         <div
           onClose={() => setShowMessage(false)}
           className="ui card"
-        >
-            <ResponseForm onClick={onClick} onSubmit={onSubmit} auth={auth}/>
+        > 
+        {auth.isSignedIn === null ?
+        <Unusable/> :
+            <ResponseForm onClick={onClick} onSubmit={onSubmit} auth={auth}/>}
         </div>
       </CSSTransition>
     </div>

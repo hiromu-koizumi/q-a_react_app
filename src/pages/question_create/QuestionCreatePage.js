@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createQuestion } from '../../actions';
 import QuestionForm from './QuestionForm';
-import Unusable from '../../components/qa/Unusable';
+import Unusable from '../../components/qa/unusable/Unusable';
 
 class QuestionCreatePage extends Component{
     

@@ -4,3 +4,23 @@
   margin: 0 auto;
   position: relative;
 }
+
+a{
+  color: white;
+}
+
+@font-face {
+  font-family: 'MyFont3';
+  src: url("../static/font/六つ子フォント.otf");
+}
+
+.back-button{
+  font-size:25px;
+}
+
+.flex{
+  display: flex;
+}
+.right{
+  text-align: right;
+}

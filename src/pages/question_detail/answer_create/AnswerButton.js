@@ -4,6 +4,8 @@ import { CSSTransition } from 'react-transition-group';
 import ResponseForm from '../response_create/ResponseForm';
 import {createAnswer,fetchAnswers} from '../../../actions'
 import AnswerForm from './AnswerForm'
+import Unusable from '../../../components/qa/unusable/Unusable'
+
 import './style.scss'
 
 const AnswerButton = ({questionId, answerId, createAnswer,fetchAnswers,auth}) => {
@@ -18,7 +20,7 @@ const AnswerButton = ({questionId, answerId, createAnswer,fetchAnswers,auth}) =>
   }
 
   return (
-    <div className="">
+    <div className="answer-button ">
       {showButton && (
         <button
           className="ui icon button"
@@ -40,7 +42,9 @@ const AnswerButton = ({questionId, answerId, createAnswer,fetchAnswers,auth}) =>
           onClose={() => setShowMessage(false)}
           className="ui card"
         >
-            <AnswerForm onClick={onClick} onSubmit={onSubmit} auth={auth}/>
+          {auth.isSignedIn === null ?
+        <Unusable/> :
+            <AnswerForm onClick={onClick} onSubmit={onSubmit} auth={auth}/>}
         </div>
       </CSSTransition>
     </div>

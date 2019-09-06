@@ -9,9 +9,9 @@ import SignUp from '../pages/signup/SignUpPage';
 import MyPage from '../pages/mypage/MyPage';
 import Login from '../pages/login/LoginPage';
 import history from '../history';
-import Header from '../components/qa/Header';
+import Header from './qa/header/Header';
 import NaviBar from '../components/qa/navi_bar/NaviBar'
-import Unusable from '../components/qa/Unusable'
+import Unusable from './qa/unusable/Unusable'
 import ScrollMemory from 'react-router-scroll-memory';
 
 
@@ -23,7 +23,6 @@ const App = () => {
           <Router history={history}>
           <div className="container">
           <ScrollMemory />
-            <Header/>
             <Switch>
               <Route path="/" exact component={TopPage}/>
               <Route path="/qa/new" exact component={QuestionCreatePage}/>
