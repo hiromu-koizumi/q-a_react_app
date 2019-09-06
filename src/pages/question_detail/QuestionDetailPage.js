@@ -20,7 +20,7 @@ class QaDetail extends React.Component{
     }
 
     onClick = (questionData) => {
-        this.props.questionGoodCount(questionData);       
+        this.props.questionGoodCount(questionData); 
     }
 
     render(){
@@ -33,6 +33,7 @@ class QaDetail extends React.Component{
 
         return (
             <div>
+                <button onClick={() => this.props.history.goBack()}>戻る</button>
                 <h5>{question}</h5>
                 <p className="ui description">{name}</p>
                 <AnswerButton questionId={this.props.match.params.id}/>

@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 import GoodButton from '../../components/qa/GoodButton';
 
 
+
 //質問の表示処理
 class Item extends Component{
     

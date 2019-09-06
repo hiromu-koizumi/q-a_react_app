@@ -12,7 +12,7 @@ import history from '../history';
 import Header from '../components/qa/Header';
 import NaviBar from '../components/qa/navi_bar/NaviBar'
 import Unusable from '../components/qa/Unusable'
-
+import ScrollMemory from 'react-router-scroll-memory';
 
 
 const App = () => {
@@ -22,6 +22,7 @@ const App = () => {
       <div>
           <Router history={history}>
           <div className="container">
+          <ScrollMemory />
             <Header/>
             <Switch>
               <Route path="/" exact component={TopPage}/>

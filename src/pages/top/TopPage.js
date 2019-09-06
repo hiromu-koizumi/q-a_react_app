@@ -4,7 +4,7 @@ import {setCurrentPage,fetchQuestions,scrollFetchQuestions} from '../../actions'
 import {Link} from 'react-router-dom';
 import QuestionList from './QuestionList';
 import {Waypoint} from 'react-waypoint';
-import { ScrollManager, WindowScroller, ElementScroller } from 'react-scroll-manager';
+
 
 
 
@@ -23,8 +23,6 @@ class TopPage extends Component{
     
     render() {
             return (
-                <WindowScroller>
-
                 < div className = "wrap" >
                     <div style={{textAlign:'center'}}>
                         <Link to="/qa/new" className="ui button primary">
@@ -34,11 +32,9 @@ class TopPage extends Component{
                     <QuestionList/>
                     <Waypoint onEnter={this.scrollFetchQuestions}/>
                     {this.props.loading && (
-                        <div class="ui active centered inline loader"></div>
+                        <div className="ui active centered inline loader"></div>
                     )}
                 </div>
-                </WindowScroller>
-
             );
         }
     }
