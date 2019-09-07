@@ -20,15 +20,16 @@ const ResponseButton = ({questionId, answerId, createResponse,fetchResponses,aut
   });
 
   return (
-    <div className="response-button">
+    <div className="response">
       {showButton && (
-        <button
-          className=""
-          onClick={() => setShowMessage(true)}
-          size="lg"
-        >
-          <i className="comment outline icon"></i>
-        </button>
+        <div className="response-button">
+          <button  
+            onClick={() => setShowMessage(true)}
+            size="lg"
+          >
+            <i className="comment outline icon"></i>
+          </button>
+        </div>
       )}
       <CSSTransition
         in={showMessage}
@@ -40,7 +41,7 @@ const ResponseButton = ({questionId, answerId, createResponse,fetchResponses,aut
       >
         <div
           onClose={() => setShowMessage(false)}
-          className="ui card"
+          className="response-form-wrap ui card"
         > 
         {auth.isSignedIn === null ?
         <Unusable/> :

@@ -8,7 +8,8 @@ import './style.scss'
 class QuestionCreatePage extends Component{
     
     onSubmit = (formValues) => {
-        this.props.createQuestion(formValues,this.props.auth);
+        this.props.createQuestion(formValues, this.props.auth);
+        this.props.history.push('/')
     }
 
     render() {

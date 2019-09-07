@@ -24,7 +24,6 @@ class QuestionForm extends React.Component {
     }
 
     onSubmit = (formValues) => {
-        console.log(this.props.id)
         this.props.onSubmit(formValues);
     }
 
@@ -44,7 +43,7 @@ const validate = formValues => {
     const errors = {};
 
     if(!formValues.question){
-        errors.answer = '質問を入力してね';
+        errors.question = '質問を入力してね';
     }
 
     return errors;

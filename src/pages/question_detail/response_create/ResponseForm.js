@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 
 
 class ResponseForm extends React.Component {
+    
 
     renderError({error,touched}) {
         if (touched && error)
@@ -27,10 +28,10 @@ class ResponseForm extends React.Component {
 
     onSubmit = (formValues) => {
         this.props.onSubmit(formValues);
+        this.props.onClick();
     }
 
     render(){
-        console.log(this.props)
 
         if (this.props.auth.isSignedIn === null){
             return (
@@ -41,13 +42,17 @@ class ResponseForm extends React.Component {
         }
 
        return (
-            <div className="content">
-                <button className="ui icon button" onClick={this.props.onClick}>
-                    <i className='x icon'></i>
-                </button>
+           <div className="content">
+               <div className="x-button">
+                    <button className="" onClick={this.props.onClick}>
+                        <i className='x icon'></i>
+                    </button>
+               </div>
                 <form className="ui form error"　onSubmit={this.props.handleSubmit(this.onSubmit)}>
-                    <Field name="response" component={this.renderInput} label="返信"/>
-                    <button className="ui green inverted button" >登録する</button>
+                    <Field name="response" component={this.renderInput} label="返信" />
+                    <div className="response-inner-button">
+                        <button className="ui green inverted button" >返信</button>
+                    </div>
                 </form>
            </div>
         )
@@ -57,12 +62,8 @@ class ResponseForm extends React.Component {
 const validate = formValues => {
     const errors = {};
 
-    if (!formValues.name){
-        errors.name = '名前入力してね';
-    }
-
     if(!formValues.response){
-        errors.answer = '返信をを入力してね';
+        errors.response = '返信をを入力してね';
     }
 
     return errors;

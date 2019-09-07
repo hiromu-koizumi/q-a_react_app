@@ -20,15 +20,17 @@ const AnswerButton = ({questionId, answerId, createAnswer,fetchAnswers,auth}) =>
   }
 
   return (
-    <div className="answer-button ">
+    <div className="answer">
       {showButton && (
-        <button
-          className="ui icon button"
-          onClick={() => setShowMessage(true)}
-          size="lg"
-        >
-          回答する
-        </button>
+        <div className="answer-button">
+          <button
+            className="ui icon button"
+            onClick={() => setShowMessage(true)}
+            size="lg"
+          >
+            回答する
+          </button>
+        </div>
       )}
       <CSSTransition
         in={showMessage}
@@ -40,7 +42,7 @@ const AnswerButton = ({questionId, answerId, createAnswer,fetchAnswers,auth}) =>
       >
         <div
           onClose={() => setShowMessage(false)}
-          className="ui card"
+          className="answer-form-wrap ui card"
         >
           {auth.isSignedIn === null ?
         <Unusable/> :

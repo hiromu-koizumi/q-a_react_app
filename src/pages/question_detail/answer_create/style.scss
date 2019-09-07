@@ -16,7 +16,23 @@
     transition: opacity 300ms, transform 300ms;
   }
 
-  .answer-button{
-    text-align: center;
-    margin-bottom: 1rem; 
+  .answer{
+    margin-bottom:1rem;
+
+    .answer-button{
+      text-align: center;
+      margin-bottom: 1rem; 
+    }
+    
+    .answer-form-wrap{
+      width: 100%;
+    }
+  }
+
+  .x-button{
+    text-align: right;
+  }
+  
+  .answer-inner-button{
+    text-align:center;
   }

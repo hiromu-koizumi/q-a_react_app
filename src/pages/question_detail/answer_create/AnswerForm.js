@@ -39,13 +39,17 @@ class AnswerForm extends React.Component {
             ) 
         }
        return (
-            <div className="content">
-                <button className="ui icon button" onClick={this.props.onClick}>
-                    <i className='x icon'></i>
-                </button>
+           <div className="content">
+               <div className="x-button">
+                    <button className="" onClick={this.props.onClick}>
+                        <i className='x icon'></i>
+                    </button>
+               </div>
                 <form className="ui form error"　onSubmit={this.props.handleSubmit(this.onSubmit)}>
-                    <Field name="answer" component={this.renderInput} label="回答"/>
-                    <button className="ui button primary">回答する</button>
+                   <Field name="answer" component={this.renderInput} label="回答" />
+                   <div className="answer-inner-button">
+                        <button className="ui button primary">回答する</button>
+                   </div>
                 </form>
             </div>
        )

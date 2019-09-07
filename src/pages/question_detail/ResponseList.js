@@ -15,10 +15,10 @@ const ResponseList = ({questionId,answerId,response}) => {
                         <div className="description">
                             <p>{item.response}</p>
                         </div>
-                        <div className="flex">
+                        <div className="">
                             <div className="meta name">{item.name}</div>
-                            <ResponseButton questionId={questionId} answerId={answerId}/>
                         </div>
+                            <ResponseButton questionId={questionId} answerId={answerId}/>
                     </div>
                 </div>
             ))
