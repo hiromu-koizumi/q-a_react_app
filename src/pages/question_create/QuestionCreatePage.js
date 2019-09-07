@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { createQuestion } from '../../actions';
 import QuestionForm from './QuestionForm';
 import Unusable from '../../components/qa/unusable/Unusable';
+import './style.scss'
 
 class QuestionCreatePage extends Component{
     

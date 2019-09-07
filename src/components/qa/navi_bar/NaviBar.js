@@ -1,10 +1,16 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import FirebaseAuth from '../../FirebaseAuth'
 import { connect } from 'react-redux';
 import './style.scss'
+import {signInAction} from '../../../actions'
 
-const NaviBar = ({isSignedIn}) => {
+const NaviBar = ({ isSignedIn,signInAction}) => {
+
+    useEffect(() => {
+        signInAction();
+    });
+    
     return(
         <div className="navi-bar">
             <div className="container">
@@ -13,7 +19,7 @@ const NaviBar = ({isSignedIn}) => {
                 </Link>
 
                 {isSignedIn ?
-                <Link to="/" className="navi-bar-link big-icon">
+                <Link to="/qa/new" className="navi-bar-link big-icon">
                     <i className="icon plus square outline navi-bar-icon"></i>
                 </Link> :
                 <Link to="/qa/unusable" className="navi-bar-link big-icon">
@@ -40,4 +46,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps)(NaviBar);
+export default connect(mapStateToProps,{signInAction})(NaviBar);

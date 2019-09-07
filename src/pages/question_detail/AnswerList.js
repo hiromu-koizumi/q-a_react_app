@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import GoodButton from '../../components/qa/good_button/GoodButton';
 import ResponseButton from './response_create/ResponseButton';
 import ResponseList from './ResponseList';
-
+import './style.scss'
 
 
 //質問の表示処理
@@ -22,17 +22,17 @@ class AnswerList extends Component{
     render() {
 
         return (
-                < div className = "wrap" >
+                < div className = "" >
                     {/* propsにするかstateにするかで表示変わる。propsにすると */}
                     {this.props.data.map((item, i) => (
-                        <div key={i}>
+                        <div className = "answer-list-wrap" key={i}>
                             <div className="ui fluid card">
                                 <div className="content">
                                     <div className="description">
                                         <p>{item.answer}</p>
                                     </div>
                                     <div className="flex">
-                                        <div className="meta">{item.name}</div>
+                                        <div className="meta name">{item.name}</div>
                                         <GoodButton onClick={this.onClick} postData={item}/>
                                         <ResponseButton questionId={item.questionId} answerId={item.answerId}/>
                                     </div>

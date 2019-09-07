@@ -280,7 +280,6 @@ export const signInAction = () => (dispatch) => {
 //ログインするとonAuthStateChangedが自動的に呼び出されstoreに保存される
 //onAuthStateChangedはdidmountなどで一度呼び出した後じゃないと自動呼び出しされないようだ
 export const loginAction = (formValues) => async (dispatch) => {
-
   //LOCALに設定することでログイン状態を永続化している
   await firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
     .then(function () {

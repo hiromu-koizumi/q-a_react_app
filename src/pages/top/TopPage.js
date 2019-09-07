@@ -25,12 +25,14 @@ class TopPage extends Component{
     
     render() {
             return (
-                < div className = "wrap" >
+                < div className = "top-wrap" >
                     <Header/>
                     <QuestionList/>
                     <Waypoint onEnter={this.scrollFetchQuestions}/>
                     {this.props.loading && (
-                        <div className="ui active centered inline loader"></div>
+                        <div className="loader-wrap">
+                            <div className="ui active centered inline loader"></div>
+                        </div>
                     )}
                 </div>
             );

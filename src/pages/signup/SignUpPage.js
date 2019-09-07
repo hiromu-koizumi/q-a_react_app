@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { signUp } from '../../actions';
 import SignUpForm from './SignUpForm';
+import './style.scss'
 
 class SignUp extends Component{
     

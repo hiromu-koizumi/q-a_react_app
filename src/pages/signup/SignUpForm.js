@@ -44,11 +44,13 @@ class SignUpForm extends React.Component {
 
     render(){
        return (
-           <form className="ui form error"　onSubmit={this.props.handleSubmit(this.onSubmit)}>
+           <form className="signup-form-wrap ui form error container"　onSubmit={this.props.handleSubmit(this.onSubmit)}>
                <Field name="name" component={this.renderInput} label="名前"  validate={name} />
                <Field name="mail" component={this.renderInput} label="メールアドレス"  validate={mail} warn={aol}/>
-               <Field name="password" component={this.renderInput} label="パスワード"　validate={minLength6}/>
-               <button className="ui green inverted button">登録する</button>
+               <Field name="password" component={this.renderInput} label="パスワード" validate={minLength6} />
+               <div className="signup-button">
+                    <button className="ui green inverted button">登録する</button>
+               </div>
            </form>
        )
     }

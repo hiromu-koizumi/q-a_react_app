@@ -30,9 +30,11 @@ class QuestionForm extends React.Component {
 
     render(){
        return (
-           <form className="ui form error"　onSubmit={this.props.handleSubmit(this.onSubmit)}>
-               <Field name="question" component={this.renderInput} label="質問"/>
-               <button className="ui green inverted button">質問する</button>
+           <form className="question-form-wrap ui form container"　onSubmit={this.props.handleSubmit(this.onSubmit)}>
+               <Field name="question" component={this.renderInput} label="質問" />
+               <div className="question-button">
+                    <button className="ui green inverted button">質問する</button>
+               </div>
            </form>
        )
     }

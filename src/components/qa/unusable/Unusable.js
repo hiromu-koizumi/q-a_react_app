@@ -4,7 +4,7 @@ import './style.scss'
 
 const Unusable = ({questionId,answerId,response}) => {
     return (
-        <div className = "ui container">
+        <div className = "unusable-wrap ui container">
             <div className="signup">
                 <p>
                 すいません。。投稿・マイページ機能を使うには登録が必要です。<br/>
@@ -20,7 +20,7 @@ const Unusable = ({questionId,answerId,response}) => {
             </div>
             <div>
                 <div className="signin-button">
-                        <Link to={"/qa/signin"} className="header">
+                        <Link to={"/qa/login"} className="header">
                             ログインする
                         </Link>
                 </div>

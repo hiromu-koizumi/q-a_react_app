@@ -36,7 +36,7 @@ class QaDetail extends React.Component{
                 <button className='back-button' onClick={() => this.props.history.goBack()}><i className="angle left icon"></i></button>
                 <h5>{question}</h5>
                 <div className="flex">
-                    <p className="ui description">{name}</p>
+                    <p className="name">{name}</p>
                     <GoodButton onClick={this.onClick} postData={this.props.questionData}/>
                 </div>
                 <AnswerButton questionId={this.props.match.params.id}/>

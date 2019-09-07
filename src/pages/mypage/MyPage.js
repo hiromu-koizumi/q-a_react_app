@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {fetchMyQuestions,signInAction} from '../../actions';
 import MyQuestionList from './MyQuestionList';
 import MyAnswerList from './MyAnswerList';
 
@@ -22,4 +21,4 @@ const mapStateToProps = (state) => {
     return {userId:state.auth.userId,answers:state.myData.answers}
 }
 
-export default connect(mapStateToProps,{fetchMyQuestions,signInAction})(MyPage);
+export default connect(mapStateToProps)(MyPage);
