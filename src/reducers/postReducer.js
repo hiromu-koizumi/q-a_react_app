@@ -1,8 +1,5 @@
 import _ from 'lodash';
 
-
-
-
 //レデューサー
 export default (state = {}, action) => {
     switch (action.type) {
@@ -14,6 +11,8 @@ export default (state = {}, action) => {
             return { ...state, [action.questionId]: action.payload};
         case 'SCROLL_FETCH_QUESTIONS':
             return {...state,..._.mapKeys(action.questions,'questionId')};
+        case 'RESET_QUWSTIONS':
+            return {}
         default:
             return state;
     }

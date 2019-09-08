@@ -8,7 +8,6 @@ const db = firebase.firestore();
 
 export const fetchQuestions = () => async (dispatch) => {
   const questions = [];
-  var lastVisible;
   await db.collection('questions').orderBy('created','desc').limit(10).get()
     .then(snapshot => {
       snapshot.docs.map(doc => {
@@ -25,8 +24,7 @@ export const fetchQuestions = () => async (dispatch) => {
         }
         return questions.push(question);
       }, );
-      lastVisible = snapshot.docs[snapshot.docs.length-1];
-      console.log("last", lastVisible);
+
       dispatch({
         type: 'INIT',
         questions
@@ -108,6 +106,11 @@ export const createQuestion = (formValues, auth) => async (dispatch) => {
     .catch(error => {
       console.log(error);
     });
+
+    //投稿した質問がトップ画面の一番上に表示されるようにstoreをリセットしている
+    dispatch({
+      type:"RESET_QUWSTIONS",
+    })
 }
 
 export const createAnswer = (formValues, questionId, auth) => async (dispatch) => {
