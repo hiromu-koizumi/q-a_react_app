@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {setCurrentPage,fetchQuestions,scrollFetchQuestions} from '../../actions';
+import {fetchQuestions,scrollFetchQuestions} from '../../actions';
 import {Link} from 'react-router-dom';
 import QuestionList from './QuestionList';
 import {Waypoint} from 'react-waypoint';
@@ -13,9 +13,6 @@ import Header from '../../components/qa/header/Header';
 //質問の表示処理
 class TopPage extends Component{
 
-    componentDidMount() {
-      this.props.setCurrentPage(this.props.page)
-    }
 
     scrollFetchQuestions = () =>{
         let questionsLastNum = this.props.data.length - 1
@@ -48,4 +45,4 @@ class TopPage extends Component{
     }
 
 
-export default connect(mapStateToProps,{setCurrentPage,fetchQuestions,scrollFetchQuestions})(TopPage);
+export default connect(mapStateToProps,{fetchQuestions,scrollFetchQuestions})(TopPage);

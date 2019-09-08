@@ -409,16 +409,6 @@ export const answerGoodCount = (postData) => async (dispatch) => {
   });
 }
 
-export const setCurrentPage = (pageNumber) => async (dispatch) => {
-  if (!pageNumber){
-    pageNumber = 1;
-  }
-  
-  dispatch({
-    type: 'SET_CURRENT_PAGE',
-    payload: pageNumber,
-  });
-}
 
 
 export const createResponse = (formValues, questionId, answerId,auth) => async (dispatch) => {

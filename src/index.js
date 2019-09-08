@@ -13,11 +13,6 @@ const middlewares = [thunk];
 const store = createStore(reducers,composeEnhancers(applyMiddleware(...middlewares)));
 
 
-//react-tool使用に必要
-// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-// const store = createStore(reducers,composeEnhancers(applyMiddleware(reduxThunk)));
-
-
 ReactDOM.render(
     <Provider store={store}>
         <App/>
