@@ -107,10 +107,6 @@ export const createQuestion = (formValues, auth) => async (dispatch) => {
       console.log(error);
     });
 
-    //投稿した質問がトップ画面の一番上に表示されるようにstoreをリセットしている
-    dispatch({
-      type:"RESET_QUWSTIONS",
-    })
 }
 
 export const createAnswer = (formValues, questionId, auth) => async (dispatch) => {
