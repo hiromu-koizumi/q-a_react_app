@@ -25,7 +25,7 @@ class MyAnswerList extends Component{
     render() {
         if(this.props.answers){
             return (
-                < div className = "wrap" >
+                < div className = "myanswer-wrap ui container" >
                     <p>回答</p>
                     {/* propsにするかstateにするかで表示変わる。propsにすると */}
                     {this.props.answers.map((item, i) => (
@@ -34,8 +34,8 @@ class MyAnswerList extends Component{
                                 <Link to={`/qa/${item.questionId}`} className="header">
                                     {item.answer}
                                 </Link>
-                                <div className="description">
-                                    いいね{item.goodCount}
+                                <div className="description myanswer-icon">
+                                    <i className="heart icon red"></i>{item.goodCount}
                                 </div>
                             </div>
                         </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import MyQuestionList from './MyQuestionList';
 import MyAnswerList from './MyAnswerList';
+import './style.scss'
 
 
 class MyPage extends React.Component{
