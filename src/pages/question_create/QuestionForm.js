@@ -1,5 +1,6 @@
 import React from 'react';
 import {Field,reduxForm} from 'redux-form';
+import Textarea from 'react-textarea-autosize';
 
 class QuestionForm extends React.Component {
 
@@ -17,11 +18,13 @@ class QuestionForm extends React.Component {
         return(
             <div className={className}>
                 <label>{label}</label>
-                <input {...input} autoComplete="off"/>
+                <Textarea autoFocus {...input} autoComplete="off" rows="1"/>
                 {this.renderError(meta)}
             </div>
         )
     }
+
+   
 
     onSubmit = (formValues) => {
         this.props.onSubmit(formValues);

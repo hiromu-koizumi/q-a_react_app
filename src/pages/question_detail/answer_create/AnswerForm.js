@@ -1,6 +1,8 @@
 import React from 'react';
 import {Field,reduxForm} from 'redux-form';
 import {Link} from 'react-router-dom';
+import Textarea from 'react-textarea-autosize';
+
 
 
 class AnswerForm extends React.Component {
@@ -19,7 +21,7 @@ class AnswerForm extends React.Component {
         return(
             <div className={className}>
                 <label>{label}</label>
-                <input {...input} autoComplete="off"/>
+                <Textarea autoFocus {...input} autoComplete="off" rows="1"/>
                 {this.renderError(meta)}
             </div>
         )
