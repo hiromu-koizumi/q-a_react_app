@@ -8,7 +8,8 @@ class Login extends Component{
     
   
     onSubmit = (formValues) => {
-       this.props.loginAction(formValues);       
+       this.props.loginAction(formValues); 
+       this.props.history.push('/')      
     }
 
     render() {

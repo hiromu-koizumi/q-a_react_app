@@ -7,7 +7,8 @@ import './style.scss'
 class SignUp extends Component{
     
     onSubmit = (formValues) => {
-       this.props.signUp(formValues);       
+       this.props.signUp(formValues);  
+       this.props.history.push('/')     
     }
 
     render() {

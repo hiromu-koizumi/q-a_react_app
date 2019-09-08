@@ -45,7 +45,7 @@ class LoginForm extends React.Component {
 
                <Field name="password" component={this.renderInput} label="パスワード" validate={minLength6} />
                <div className="login-button">
-                    <button className="ui green inverted button">登録する</button>
+                    <button className="ui green inverted button">ログインする</button>
                </div> 
            </form>
        )
