@@ -322,7 +322,7 @@ export const signOutAction = () => (dispatch) => {
 export const fetchMyQuestions = (userId) => (dispatch) => {
   const questions = [];
   
-  db.collection('users').doc(userId).collection('questions').orderBy('created').get()
+  db.collection('users').doc(userId).collection('questions').orderBy('created','desc').limit(10).get()
     .then(snapshot => {
       snapshot.docs.map(doc => {
         //allitemsにデータを代入
@@ -333,22 +333,69 @@ export const fetchMyQuestions = (userId) => (dispatch) => {
           questionId: doc.data().questionId,
           goodCount: doc.data().goodCount,
           answerCount:doc.data().answerCount,
+          created: doc.data().created
         }
-        return questions.unshift(question);
+        return questions.push(question);
 
         //リデューサー
       }, );
       dispatch({
         type: 'FETCH_MY_QUESTIONS',
-        payload: questions
+        questions
       });
     }, );
+}
+
+export const scrollFetchMyQuestions = (questionData,userId) => async (dispatch) => {
+  if(questionData){
+    dispatch({
+      type: 'LOADING',
+      payload:true
+    });
+    const lastCreated = await questionData.created
+    const questions = [];
+    console.log(lastCreated)
+
+    //質問詳細ページで再読込してトップページに戻るとquestionDataを取得する前に呼び出されエラーになるので追加
+    if(!lastCreated){
+      return;
+    }
+    
+    await db.collection('users').doc(userId).collection('questions').where("created","<",lastCreated).orderBy('created','desc').limit(5).get()
+      .then(snapshot => {
+        console.log('aaa')
+        snapshot.docs.map(doc => {
+          console.log(doc)
+          //allitemsにデータを代入
+          const question = {
+            question: doc.data().question,
+            questionId: doc.id,
+            goodCount: doc.data().goodCount,
+            answerCount:doc.data().answerCount,
+            created: doc.data().created,
+          }
+
+          return questions.push(question);
+        }, );
+
+
+        dispatch({
+          type: 'FETCH_MY_QUESTIONS',
+          questions
+        });
+
+        dispatch({
+          type: 'LOADING',
+          payload:false
+        });
+      }, );
+  }
 }
 
 export const fetchMyAnswers = (userId) => (dispatch) => {
   const answers = [];
 
-  db.collection('users').doc(userId).collection('answers').orderBy('created').get()
+  db.collection('users').doc(userId).collection('answers').orderBy('created','desc').limit(8).get()
     .then(snapshot => {
       snapshot.docs.map(doc => {
         //allitemsにデータを代入
@@ -357,18 +404,63 @@ export const fetchMyAnswers = (userId) => (dispatch) => {
           questionId: doc.data().questionId,
           docId: doc.id,
           goodCount:doc.data().goodCount,
+          created: doc.data().created
         }
-        return answers.unshift(answer);
+        return answers.push(answer);
 
         //リデューサー
       }, );
       dispatch({
         type: 'FETCH_MY_ANSWERS',
-        payload: answers
+        answers
       });
     }, );
 }
 
+export const scrollFetchMyAnswers = (answerData,userId) => async (dispatch) => {
+  if(answerData){
+    dispatch({
+      type: 'LOADING',
+      payload:true
+    });
+    const lastCreated = await answerData.created
+    const answers = [];
+    console.log(lastCreated)
+
+    //質問詳細ページで再読込してトップページに戻るとquestionDataを取得する前に呼び出されエラーになるので追加
+    if(!lastCreated){
+      return;
+    }
+    
+    await db.collection('users').doc(userId).collection('answers').where("created","<",lastCreated).orderBy('created','desc').limit(5).get()
+      .then(snapshot => {
+        console.log('aaa')
+        snapshot.docs.map(doc => {
+          console.log(doc)
+          //allitemsにデータを代入
+          const answer = {
+            answer: doc.data().answer,
+            docId: doc.id,
+            goodCount: doc.data().goodCount,
+            created: doc.data().created,
+          }
+
+          return answers.push(answer);
+        }, );
+
+
+        dispatch({
+          type: 'FETCH_MY_ANSWERS',
+          answers
+        });
+
+        dispatch({
+          type: 'LOADING',
+          payload:false
+        });
+      }, );
+  }
+}
 
 export const questionGoodCount = (postData) => async (dispatch) => {
 

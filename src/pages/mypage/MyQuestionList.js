@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {fetchMyQuestions} from '../../actions';
+import {fetchMyQuestions,scrollFetchMyQuestions} from '../../actions';
 import {Link} from 'react-router-dom';
+import {Waypoint} from 'react-waypoint';
+
 
 
 //質問の表示処理
@@ -21,6 +23,10 @@ class MyQuestionList extends Component{
             this.props.fetchMyQuestions(this.props.userId)
         }
       }
+      scrollFetchMyQuestions = () =>{
+        let questionsLastNum = this.props.questions.length - 1
+        this.props.scrollFetchMyQuestions(this.props.questions[questionsLastNum],this.props.userId)
+    }
 
     render() {
         if(this.props.questions){
@@ -42,6 +48,12 @@ class MyQuestionList extends Component{
                         </div>
                     ))
                     }
+                    <Waypoint onEnter={this.scrollFetchMyQuestions}/>
+                    {this.props.loading && (
+                        <div className="loader-wrap">
+                            <div className="ui active centered inline loader"></div>
+                        </div>
+                    )}
                 </div>
             );
         }else{
@@ -52,11 +64,16 @@ class MyQuestionList extends Component{
 
    
     const mapStateToProps = (state) => {
-        if (state.myData.questions){
-            return {userId:state.auth.userId,questions:Object.values(state.myData.questions)}
+        if (state.myQuestions){
+            return {
+                userId:state.auth.userId,
+                questions:Object.values(state.myQuestions),
+                loading:state.loading.loading
+            
+            }
         }
             return {userId:state.auth.userId}
     }
     
 
-export default connect(mapStateToProps,{fetchMyQuestions})(MyQuestionList);
+export default connect(mapStateToProps,{fetchMyQuestions,scrollFetchMyQuestions})(MyQuestionList);

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {fetchMyAnswers} from '../../actions';
+import {fetchMyAnswers,scrollFetchMyAnswers} from '../../actions';
 import {Link} from 'react-router-dom';
+import {Waypoint} from 'react-waypoint';
+
 
 
 //質問の表示処理
@@ -21,6 +23,10 @@ class MyAnswerList extends Component{
             this.props.fetchMyAnswers(this.props.userId)
         }
       }
+    scrollFetchMyAnswers = () =>{
+        let answersLastNum = this.props.answers.length - 1
+        this.props.scrollFetchMyAnswers(this.props.answers[answersLastNum],this.props.userId)
+    }
 
     render() {
         if(this.props.answers){
@@ -41,6 +47,12 @@ class MyAnswerList extends Component{
                         </div>
                     ))
                     }
+                     <Waypoint onEnter={this.scrollFetchMyAnswers}/>
+                    {this.props.loading && (
+                        <div className="loader-wrap">
+                            <div className="ui active centered inline loader"></div>
+                        </div>
+                    )}
                 </div>
             );
         }else{
@@ -51,12 +63,17 @@ class MyAnswerList extends Component{
 
    
     const mapStateToProps = (state) => {
-        if (state.myData.answers){
-            return {userId:state.auth.userId,answers:Object.values(state.myData.answers)}
+
+        if (state.myAnswers){
+            return {
+                userId:state.auth.userId,
+                answers:Object.values(state.myAnswers),
+                loading:state.loading.loading
+            }
         }
             return {userId:state.auth.userId}
         
     }
     
 
-export default connect(mapStateToProps,{fetchMyAnswers})(MyAnswerList);
+export default connect(mapStateToProps,{fetchMyAnswers,scrollFetchMyAnswers})(MyAnswerList);
