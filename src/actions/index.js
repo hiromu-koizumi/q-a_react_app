@@ -109,7 +109,7 @@ export const createQuestion = (formValues, auth) => async (dispatch) => {
 
 }
 
-export const createAnswer = (formValues, questionId, auth) => async (dispatch) => {
+export const createAnswer = (formValues, questionId, auth, questionData) => async (dispatch) => {
   let answerId;
   await db.collection('questions').doc(questionId).collection('answers').add({
       ...formValues,
@@ -144,11 +144,15 @@ export const createAnswer = (formValues, questionId, auth) => async (dispatch) =
   washingtonRef.update({
     answerCount: firebase.firestore.FieldValue.increment(1)
   });
-  var washingtonRef = db.collection('users').doc(auth.userId).collection('questions').doc(questionId);
+  var washingtonRef = db.collection('users').doc(questionData.userId).collection('questions').doc(questionId);
   washingtonRef.update({
     answerCount: firebase.firestore.FieldValue.increment(1)
   });
 
+  // var washingtonRef = db.collection('users').doc(postData.userId).collection('questions').doc(postData.questionId);
+  // washingtonRef.update({
+  //   goodCount: firebase.firestore.FieldValue.increment(1)
+  // });
 }
 
 export const fetchAnswers = (id) => (dispatch) => {
