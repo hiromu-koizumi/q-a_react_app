@@ -36,7 +36,7 @@ class TopPage extends Component{
         }
     }
 
-    const mapStateToProps = (state) =>{        
+    const mapStateToProps = (state) =>{
         return { 
             data: Object.values(state.questions),
             page: state.page.currentPageNumber,

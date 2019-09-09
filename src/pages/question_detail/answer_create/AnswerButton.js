@@ -8,13 +8,12 @@ import Unusable from '../../../components/qa/unusable/Unusable'
 
 import './style.scss'
 
-const AnswerButton = ({questionId, answerId, createAnswer,fetchAnswers,auth,questionData}) => {
+const AnswerButton = ({questionId, createAnswer,fetchAnswers,auth,questionData}) => {
   const [showButton, setShowButton] = useState(true);
   const [showMessage, setShowMessage] = useState(false);
   const onClick = () => {setShowMessage(false)}
 
   const onSubmit = (formValues) => {
-    console.log(questionData)
     createAnswer(formValues,questionId,auth,questionData);
     //再読み込みして新規投稿を取得している
     fetchAnswers(questionId)
@@ -47,7 +46,7 @@ const AnswerButton = ({questionId, answerId, createAnswer,fetchAnswers,auth,ques
         >
           {auth.isSignedIn === null ?
         <Unusable/> :
-            <AnswerForm onClick={onClick} onSubmit={onSubmit} auth={auth} questionData={questionData}/>}
+            <AnswerForm onClick={onClick} onSubmit={onSubmit} auth={auth}/>}
         </div>
       </CSSTransition>
     </div>

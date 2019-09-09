@@ -19,7 +19,10 @@ class MyPage extends React.Component{
 }
 
 const mapStateToProps = (state) => {
-    return {userId:state.auth.userId,answers:state.myData.answers}
+    return {
+        userId:state.auth.userId,
+        answers:state.myData.answers,
+    }
 }
 
 export default connect(mapStateToProps)(MyPage);
