@@ -28,15 +28,16 @@ class QaDetail extends React.Component{
             return <div>Loading...</div>
         }
 
-        const  {name,question} = this.props.questionData
+        // const  {name,question} = this.props.questionData
+        const  {question} = this.props.questionData
     
 
         return (
             <div className="ui container">
                 <button className='back-button' onClick={() => this.props.history.goBack()}><i className="angle left icon"></i></button>
                 <h5>{question}</h5>
-                <div className="flex">
-                    <p className="name">{name}</p>
+                <div className="flex-end">
+                    {/* <p className="name">{name}</p> */}
                     <GoodButton onClick={this.onClick} postData={this.props.questionData}/>
                 </div>
                 <AnswerButton questionId={this.props.match.params.id} questionData={this.props.questionData}/>

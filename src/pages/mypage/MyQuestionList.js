@@ -35,8 +35,8 @@ class MyQuestionList extends Component{
                                 {item.question}
                                 </Link>
                                 <div className="myquestion-icon description flex">
-                                    <p><i className="heart icon red"></i>{item.goodCount}</p>
-                                    <p className="myquestion-comment-icon"><i className="comment outline icon"></i>{item.answerCount}</p>
+                                    <div><i className="heart icon red"></i>{item.goodCount}</div>
+                                    <div className="myquestion-comment-icon"><i className="comment outline icon"></i>{item.answerCount}</div>
                                 </div>
                             </div>
                         </div>

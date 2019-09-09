@@ -10,9 +10,95 @@
 }
 
 .myquestion-wrap{
-    margin-top: 1rem;
-}
-.myanswer-wrap{
-    margin-top: 3rem;
+    margin-top: 2rem;
     margin-bottom: 4rem;
 }
+.myanswer-wrap{
+    margin-top: 2rem;
+    margin-bottom: 4rem;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+  }
+  
+  li {
+    list-style: none;
+    margin: 0 1px;
+  }
+  
+  button {
+    appearance: none;
+  
+    padding: 10px 20px;
+    margin: 0;
+    border: none;
+    background: lightgray;
+    cursor: pointer;
+  }
+  
+//   [role="tabpanel"] {
+//     // border: 1px solid lightgray;
+//     // padding: 2rem;
+//     // max-width: 480px;
+//     // line-height: 175%;
+//   }
+
+// [role="tablist"] {
+//     display: flex;
+//   }
+  
+.tab{
+    background: #FFF;
+    height: 40px;
+    border-bottom: 1px #dbdbdb solid;
+    position: relative;
+    display: flex;
+
+    .tab-container{
+        display: flex;
+        flex: 1;
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    a{
+        display: block;
+        flex: 1;
+        text-align: center;
+        text-decoration: none;
+        padding-top: 2px;
+        line-height: 37px;
+        height: 39px;
+        font-size: 11px;
+        color: #b0b0b0;
+        font-weight: bold;
+        position: relative;
+    }
+    .tab-botton-active{
+        color:#2f9a7f;
+      &:after {
+          content: '';
+      width: 100%;
+      display: block;
+      position: absolute;
+      height: 2px;
+      background: #2f9a7f;
+      bottom: -1px;
+      }
+    }
+}
+
+
+  .tabpanel{
+      display: none;
+    }
+  .tabpanel-active{
+      display: block;
+  }
+
+  
+  

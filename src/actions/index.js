@@ -13,7 +13,7 @@ export const fetchQuestions = () => async (dispatch) => {
       snapshot.docs.map(doc => {
         //allitemsにデータを代入
         const question = {
-          name: doc.data().name,
+          // name: doc.data().name,
           title: doc.data().title,
           question: doc.data().question,
           questionId: doc.id,
@@ -50,7 +50,7 @@ export const scrollFetchQuestions = (questionData) => async (dispatch) => {
         snapshot.docs.map(doc => {
           //allitemsにデータを代入
           const question = {
-            name: doc.data().name,
+            // name: doc.data().name,
             title: doc.data().title,
             question: doc.data().question,
             questionId: doc.id,
@@ -82,7 +82,7 @@ export const createQuestion = (formValues, auth) => async (dispatch) => {
   await db.collection('questions').add({
       ...formValues,
       userId: auth.userId,
-      name: auth.name,
+      // name: auth.name,
       goodCount: 0,
       answerCount:0,
       created: firebase.firestore.FieldValue.serverTimestamp()
@@ -114,7 +114,7 @@ export const createAnswer = (formValues, questionId, auth, questionData) => asyn
   await db.collection('questions').doc(questionId).collection('answers').add({
       ...formValues,
       userId:auth.userId,
-      name:auth.name,
+      // name:auth.name,
       questionId: questionId,
       goodCount:0,
       created: firebase.firestore.FieldValue.serverTimestamp()
@@ -158,7 +158,7 @@ export const fetchAnswers = (id) => (dispatch) => {
       snapshot.docs.map(doc => {
         //allitemsにデータを代入
         const answer = {
-          name: doc.data().name,
+          // name: doc.data().name,
           answer: doc.data().answer,
           answerId: doc.id,
           questionId:doc.data().questionId,
@@ -190,7 +190,7 @@ export const fetchQuestion = (id) => (dispatch) => {
     .then(snapshot => {
       //allitemsにデータを代入
       const payload = {
-        name: snapshot.data().name,
+        // name: snapshot.data().name,
         title: snapshot.data().title,
         question: snapshot.data().question,
         goodCount:snapshot.data().goodCount,
@@ -227,19 +227,37 @@ export const signUp = formValues => async (dispatch) => {
     // 作成したユーザーにログインして、updateProfileを使用して、ユーザー名をfirestoreに保存している。登録時にユーザー名を保存する方法がわからないためこの方法をとっている。
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
-       user.updateProfile({
-          displayName: formValues.name,
-        }).then(function() {
+      //　ユーザー名を保存する処理
+      //  user.updateProfile({
+      //     displayName: formValues.name,
+      //   }).then(function() {
+
+      //     //storeにユーザー情報を保存
+      //     const name = user.displayName
+      //     const userId = user.uid;
+      //     dispatch({
+      //       type: 'SIGN_IN',
+      //       name:name,
+      //       userId:userId 
+      //     });
+      
+      //     //firestoreにユーザーIDを保存
+      //     db.collection('users').doc(userId).set({
+      //         userId: userId
+      //       }).then(doc => {})
+      //       .catch(error => {
+      //         console.log(error);
+      //       });
+      //   }).catch(function(error) {
+      //   });
 
           //storeにユーザー情報を保存
-          const name = user.displayName
           const userId = user.uid;
           dispatch({
             type: 'SIGN_IN',
-            name:name,
             userId:userId 
           });
-      
+
           //firestoreにユーザーIDを保存
           db.collection('users').doc(userId).set({
               userId: userId
@@ -247,8 +265,6 @@ export const signUp = formValues => async (dispatch) => {
             .catch(error => {
               console.log(error);
             });
-        }).catch(function(error) {
-        });
 
       } else {
         console.log("error")
@@ -266,7 +282,7 @@ export const signInAction = () => (dispatch) => {
       dispatch({
         type: 'SIGN_IN',
         userId: user.uid,
-        name:user.displayName
+        // name:user.displayName
       });
     } else {
       console.log("error")
@@ -311,7 +327,7 @@ export const fetchMyQuestions = (userId) => (dispatch) => {
       snapshot.docs.map(doc => {
         //allitemsにデータを代入
         const question = {
-          name: doc.data().name,
+          // name: doc.data().name,
           title: doc.data().title,
           question: doc.data().question,
           questionId: doc.data().questionId,
@@ -414,7 +430,7 @@ export const createResponse = (formValues, questionId, answerId,auth) => async (
   
   await db.collection('questions').doc(questionId).collection('answers').doc(answerId).collection('responses').add({
       ...formValues,
-      name:auth.name,
+      // name:auth.name,
       created: firebase.firestore.FieldValue.serverTimestamp()
     }).then(doc => {
       console.log(`${doc.id}をDBに保存した`);
@@ -431,7 +447,7 @@ export const fetchResponses = (questionId,answerId) => (dispatch) => {
       snapshot.docs.map(doc => {
         //allitemsにデータを代入
         const response = {
-          name: doc.data().name,
+          // name: doc.data().name,
           response: doc.data().response,
         }
         responses.push(response);
@@ -443,4 +459,18 @@ export const fetchResponses = (questionId,answerId) => (dispatch) => {
         answerId:answerId
       });
     }, );
+}
+
+export const myPageTabChange = (event) => (dispatch) => {
+          // イベント発生源の要素を取得
+          const element = event.currentTarget;
+    
+          // aria-controls 属性の値を取得
+          const tabState = element.getAttribute('id');
+
+      dispatch({
+        type: 'MYPAGE_TAB_CHANGE',
+        payload:tabState,
+      });
+    
 }

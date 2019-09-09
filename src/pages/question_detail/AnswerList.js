@@ -31,8 +31,8 @@ class AnswerList extends Component{
                                     <div className="description">
                                         <p>{item.answer}</p>
                                     </div>
-                                    <div className="flex">
-                                        <div className="meta name">{item.name}</div>
+                                    <div className="flex-end">
+                                        {/* <div className="meta name">{item.name}</div> */}
                                         <GoodButton onClick={this.onClick} postData={item}/>
                                     </div>
                                         <ResponseButton questionId={item.questionId} answerId={item.answerId}/>

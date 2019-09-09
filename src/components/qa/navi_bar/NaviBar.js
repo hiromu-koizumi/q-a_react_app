@@ -18,7 +18,6 @@ const NaviBar = ({ isSignedIn,signInAction}) => {
                     <i className="icon comment outline navi-bar-icon"></i>
                 </Link>
                 {/* <FirebaseAuth/> */}
-
                 {isSignedIn ?
                 <Link to="/qa/new" className="navi-bar-link big-icon">
                     <i className="icon plus square outline navi-bar-icon"></i>

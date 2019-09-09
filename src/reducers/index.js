@@ -7,6 +7,7 @@ import myDataReducer from './myDataReducer';
 import pageReducer from './pageReducer';
 import responseReducer from './responseReducer';
 import loadingReducer from './loadingReducer';
+import myPageTabReducer from './myPageTabReducer';
 
 
 
@@ -16,6 +17,7 @@ export default combineReducers({
     answer:answerReducer,
     auth:authReducer,
     myData: myDataReducer,
+    myPageTab: myPageTabReducer,
     page: pageReducer,
     response: responseReducer,
     loading: loadingReducer,
