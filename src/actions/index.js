@@ -268,7 +268,6 @@ export const signUp = formValues => async (dispatch) => {
     } else {
       console.log("error")
     }
-    this.props.history.push('/')     
   });
 
 }
