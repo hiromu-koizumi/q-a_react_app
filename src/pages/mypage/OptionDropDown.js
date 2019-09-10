@@ -6,8 +6,14 @@ import {signOutAction} from '../../actions'
 const OptionDropDown = ({signOutAction}) => {
 
     const onSignOutClick = () => {
-            signOutAction();
-       }
+        var result = window.confirm('本当にログアウトしますか？');
+    if( result ) {
+        signOutAction();
+    }
+    else {
+            }
+    }
+
 
     return(
         <div className="option-drop-down">
@@ -15,7 +21,7 @@ const OptionDropDown = ({signOutAction}) => {
             <div className="divider"></div>
             <a href="/qa/privacy">プライバシーポリシー</a>
             <div className="divider"></div>
-            <a onClick={onSignOutClick}>ログアウト</a>
+            <a onClick={onSignOutClick}><span>ログアウト</span></a>
         </div>
     )
 
