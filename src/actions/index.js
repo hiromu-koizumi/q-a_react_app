@@ -579,3 +579,17 @@ export const myPageOptionChange = (event) => (dispatch) => {
 
 }
 
+export const userDeleteAction = () => (dispatch) => {
+  var user = firebase.auth().currentUser;
+  console.log('ooiiiiii')
+
+user.delete().then(function() {
+  dispatch({
+    type: 'SIGN_OUT'
+  })
+  // User deleted.
+}).catch(function(error) {
+  // An error happened.
+});
+}
+
