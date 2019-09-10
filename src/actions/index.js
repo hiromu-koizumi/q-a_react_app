@@ -8,7 +8,7 @@ const db = firebase.firestore();
 
 export const fetchQuestions = () => async (dispatch) => {
   const questions = [];
-  await db.collection('questions').orderBy('created','desc').limit(10).get()
+  await db.collection('questions').orderBy('created', 'desc').limit(10).get()
     .then(snapshot => {
       snapshot.docs.map(doc => {
         //allitemsにデータを代入
@@ -19,7 +19,7 @@ export const fetchQuestions = () => async (dispatch) => {
           questionId: doc.id,
           userId: doc.data().userId,
           goodCount: doc.data().goodCount,
-          answerCount:doc.data().answerCount,
+          answerCount: doc.data().answerCount,
           created: doc.data().created,
         }
         return questions.push(question);
@@ -32,20 +32,20 @@ export const fetchQuestions = () => async (dispatch) => {
     }, );
 }
 export const scrollFetchQuestions = (questionData) => async (dispatch) => {
-  if(questionData){
+  if (questionData) {
     dispatch({
       type: 'LOADING',
-      payload:true
+      payload: true
     });
     const lastCreated = await questionData.created
     const questions = [];
-    
+
     //質問詳細ページで再読込してトップページに戻るとquestionDataを取得する前に呼び出されエラーになるので追加
-    if(!lastCreated){
+    if (!lastCreated) {
       return
     }
-    
-    await db.collection('questions').where("created","<",lastCreated).orderBy('created','desc').limit(10).get()
+
+    await db.collection('questions').where("created", "<", lastCreated).orderBy('created', 'desc').limit(10).get()
       .then(snapshot => {
         snapshot.docs.map(doc => {
           //allitemsにデータを代入
@@ -56,7 +56,7 @@ export const scrollFetchQuestions = (questionData) => async (dispatch) => {
             questionId: doc.id,
             userId: doc.data().userId,
             goodCount: doc.data().goodCount,
-            answerCount:doc.data().answerCount,
+            answerCount: doc.data().answerCount,
             created: doc.data().created,
           }
           return questions.push(question);
@@ -69,7 +69,7 @@ export const scrollFetchQuestions = (questionData) => async (dispatch) => {
 
         dispatch({
           type: 'LOADING',
-          payload:false
+          payload: false
         });
       }, );
   }
@@ -84,7 +84,7 @@ export const createQuestion = (formValues, auth) => async (dispatch) => {
       userId: auth.userId,
       // name: auth.name,
       goodCount: 0,
-      answerCount:0,
+      answerCount: 0,
       created: firebase.firestore.FieldValue.serverTimestamp()
     }).then(doc => {
       console.log(`${doc.id}をDBに保存した`);
@@ -97,7 +97,7 @@ export const createQuestion = (formValues, auth) => async (dispatch) => {
   db.collection('users').doc(auth.userId).collection('questions').doc(questionId).set({
       ...formValues,
       goodCount: 0,
-      answerCount:0,
+      answerCount: 0,
       questionId: questionId,
       created: firebase.firestore.FieldValue.serverTimestamp()
     }).then(doc => {
@@ -113,10 +113,10 @@ export const createAnswer = (formValues, questionId, auth, questionData) => asyn
   let answerId;
   await db.collection('questions').doc(questionId).collection('answers').add({
       ...formValues,
-      userId:auth.userId,
+      userId: auth.userId,
       // name:auth.name,
       questionId: questionId,
-      goodCount:0,
+      goodCount: 0,
       created: firebase.firestore.FieldValue.serverTimestamp()
     }).then(doc => {
       console.log(`${doc.id}をDBに保存した`);
@@ -130,7 +130,7 @@ export const createAnswer = (formValues, questionId, auth, questionData) => asyn
       ...formValues,
       questionId: questionId,
       answerId: answerId,
-      goodCount:0,
+      goodCount: 0,
       created: firebase.firestore.FieldValue.serverTimestamp()
     }).then(doc => {
       console.log(`${doc.id}をDBに保存した`);
@@ -138,15 +138,15 @@ export const createAnswer = (formValues, questionId, auth, questionData) => asyn
     .catch(error => {
       console.log(error);
     });
-  
+
   //投稿データに総回答数を保存している
   let questionRef = db.collection('questions').doc(questionId);
-    questionRef.update({
-      answerCount: firebase.firestore.FieldValue.increment(1)
+  questionRef.update({
+    answerCount: firebase.firestore.FieldValue.increment(1)
   });
   let userQuestionRef = db.collection('users').doc(questionData.userId).collection('questions').doc(questionId);
-    userQuestionRef.update({
-      answerCount: firebase.firestore.FieldValue.increment(1)
+  userQuestionRef.update({
+    answerCount: firebase.firestore.FieldValue.increment(1)
   });
 
 }
@@ -161,13 +161,13 @@ export const fetchAnswers = (id) => (dispatch) => {
           // name: doc.data().name,
           answer: doc.data().answer,
           answerId: doc.id,
-          questionId:doc.data().questionId,
+          questionId: doc.data().questionId,
           goodCount: doc.data().goodCount,
           userId: doc.data().userId,
         }
         return answers.unshift(answer);
       }, );
-      
+
       dispatch({
         type: 'LOAD_ANSWER',
         answers
@@ -193,8 +193,8 @@ export const fetchQuestion = (id) => (dispatch) => {
         // name: snapshot.data().name,
         title: snapshot.data().title,
         question: snapshot.data().question,
-        goodCount:snapshot.data().goodCount,
-        userId:snapshot.data().userId,
+        goodCount: snapshot.data().goodCount,
+        userId: snapshot.data().userId,
         questionId: id
       }
 
@@ -224,9 +224,9 @@ export const signUp = formValues => async (dispatch) => {
       console.log(error)
     });
 
-    // 作成したユーザーにログインして、updateProfileを使用して、ユーザー名をfirestoreに保存している。登録時にユーザー名を保存する方法がわからないためこの方法をとっている。
-    firebase.auth().onAuthStateChanged(function (user) {
-      if (user) {
+  // 作成したユーザーにログインして、updateProfileを使用して、ユーザー名をfirestoreに保存している。登録時にユーザー名を保存する方法がわからないためこの方法をとっている。
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
       //　ユーザー名を保存する処理
       //  user.updateProfile({
       //     displayName: formValues.name,
@@ -240,7 +240,7 @@ export const signUp = formValues => async (dispatch) => {
       //       name:name,
       //       userId:userId 
       //     });
-      
+
       //     //firestoreにユーザーIDを保存
       //     db.collection('users').doc(userId).set({
       //         userId: userId
@@ -251,25 +251,25 @@ export const signUp = formValues => async (dispatch) => {
       //   }).catch(function(error) {
       //   });
 
-          //storeにユーザー情報を保存
-          const userId = user.uid;
-          dispatch({
-            type: 'SIGN_IN',
-            userId:userId 
-          });
+      //storeにユーザー情報を保存
+      const userId = user.uid;
+      dispatch({
+        type: 'SIGN_IN',
+        userId: userId
+      });
 
-          //firestoreにユーザーIDを保存
-          db.collection('users').doc(userId).set({
-              userId: userId
-            }).then(doc => {})
-            .catch(error => {
-              console.log(error);
-            });
+      //firestoreにユーザーIDを保存
+      db.collection('users').doc(userId).set({
+          userId: userId
+        }).then(doc => {})
+        .catch(error => {
+          console.log(error);
+        });
 
-      } else {
-        console.log("error")
-      }
-    });
+    } else {
+      console.log("error")
+    }
+  });
 
 }
 
@@ -321,8 +321,8 @@ export const signOutAction = () => (dispatch) => {
 
 export const fetchMyQuestions = (userId) => (dispatch) => {
   const questions = [];
-  
-  db.collection('users').doc(userId).collection('questions').orderBy('created','desc').limit(10).get()
+
+  db.collection('users').doc(userId).collection('questions').orderBy('created', 'desc').limit(10).get()
     .then(snapshot => {
       snapshot.docs.map(doc => {
         //allitemsにデータを代入
@@ -332,7 +332,7 @@ export const fetchMyQuestions = (userId) => (dispatch) => {
           question: doc.data().question,
           questionId: doc.data().questionId,
           goodCount: doc.data().goodCount,
-          answerCount:doc.data().answerCount,
+          answerCount: doc.data().answerCount,
           created: doc.data().created
         }
         return questions.push(question);
@@ -346,22 +346,22 @@ export const fetchMyQuestions = (userId) => (dispatch) => {
     }, );
 }
 
-export const scrollFetchMyQuestions = (questionData,userId) => async (dispatch) => {
-  if(questionData){
+export const scrollFetchMyQuestions = (questionData, userId) => async (dispatch) => {
+  if (questionData) {
     dispatch({
       type: 'LOADING',
-      payload:true
+      payload: true
     });
     const lastCreated = await questionData.created
     const questions = [];
     console.log(lastCreated)
 
     //質問詳細ページで再読込してトップページに戻るとquestionDataを取得する前に呼び出されエラーになるので追加
-    if(!lastCreated){
+    if (!lastCreated) {
       return;
     }
-    
-    await db.collection('users').doc(userId).collection('questions').where("created","<",lastCreated).orderBy('created','desc').limit(5).get()
+
+    await db.collection('users').doc(userId).collection('questions').where("created", "<", lastCreated).orderBy('created', 'desc').limit(5).get()
       .then(snapshot => {
         console.log('aaa')
         snapshot.docs.map(doc => {
@@ -371,7 +371,7 @@ export const scrollFetchMyQuestions = (questionData,userId) => async (dispatch) 
             question: doc.data().question,
             questionId: doc.id,
             goodCount: doc.data().goodCount,
-            answerCount:doc.data().answerCount,
+            answerCount: doc.data().answerCount,
             created: doc.data().created,
           }
 
@@ -386,7 +386,7 @@ export const scrollFetchMyQuestions = (questionData,userId) => async (dispatch) 
 
         dispatch({
           type: 'LOADING',
-          payload:false
+          payload: false
         });
       }, );
   }
@@ -395,7 +395,7 @@ export const scrollFetchMyQuestions = (questionData,userId) => async (dispatch) 
 export const fetchMyAnswers = (userId) => (dispatch) => {
   const answers = [];
 
-  db.collection('users').doc(userId).collection('answers').orderBy('created','desc').limit(8).get()
+  db.collection('users').doc(userId).collection('answers').orderBy('created', 'desc').limit(8).get()
     .then(snapshot => {
       snapshot.docs.map(doc => {
         //allitemsにデータを代入
@@ -403,7 +403,7 @@ export const fetchMyAnswers = (userId) => (dispatch) => {
           answer: doc.data().answer,
           questionId: doc.data().questionId,
           docId: doc.id,
-          goodCount:doc.data().goodCount,
+          goodCount: doc.data().goodCount,
           created: doc.data().created
         }
         return answers.push(answer);
@@ -417,22 +417,22 @@ export const fetchMyAnswers = (userId) => (dispatch) => {
     }, );
 }
 
-export const scrollFetchMyAnswers = (answerData,userId) => async (dispatch) => {
-  if(answerData){
+export const scrollFetchMyAnswers = (answerData, userId) => async (dispatch) => {
+  if (answerData) {
     dispatch({
       type: 'LOADING',
-      payload:true
+      payload: true
     });
     const lastCreated = await answerData.created
     const answers = [];
     console.log(lastCreated)
 
     //質問詳細ページで再読込してトップページに戻るとquestionDataを取得する前に呼び出されエラーになるので追加
-    if(!lastCreated){
+    if (!lastCreated) {
       return;
     }
-    
-    await db.collection('users').doc(userId).collection('answers').where("created","<",lastCreated).orderBy('created','desc').limit(5).get()
+
+    await db.collection('users').doc(userId).collection('answers').where("created", "<", lastCreated).orderBy('created', 'desc').limit(5).get()
       .then(snapshot => {
         console.log('aaa')
         snapshot.docs.map(doc => {
@@ -456,7 +456,7 @@ export const scrollFetchMyAnswers = (answerData,userId) => async (dispatch) => {
 
         dispatch({
           type: 'LOADING',
-          payload:false
+          payload: false
         });
       }, );
   }
@@ -466,8 +466,8 @@ export const questionGoodCount = (postData) => async (dispatch) => {
 
   //firebaseのgoodCountに1足している
   let questionRef = db.collection('questions').doc(postData.questionId);
-    questionRef.update({
-      goodCount: firebase.firestore.FieldValue.increment(1)
+  questionRef.update({
+    goodCount: firebase.firestore.FieldValue.increment(1)
   });
   let userQuestionRef = db.collection('users').doc(postData.userId).collection('questions').doc(postData.questionId);
   userQuestionRef.update({
@@ -518,8 +518,8 @@ export const answerGoodCount = (postData) => async (dispatch) => {
 
 
 
-export const createResponse = (formValues, questionId, answerId,auth) => async (dispatch) => {
-  
+export const createResponse = (formValues, questionId, answerId, auth) => async (dispatch) => {
+
   await db.collection('questions').doc(questionId).collection('answers').doc(answerId).collection('responses').add({
       ...formValues,
       // name:auth.name,
@@ -532,7 +532,7 @@ export const createResponse = (formValues, questionId, answerId,auth) => async (
     });
 }
 
-export const fetchResponses = (questionId,answerId) => (dispatch) => {
+export const fetchResponses = (questionId, answerId) => (dispatch) => {
   const responses = [];
   db.collection('questions').doc(questionId).collection('answers').doc(answerId).collection('responses').orderBy('created').get()
     .then(snapshot => {
@@ -543,26 +543,26 @@ export const fetchResponses = (questionId,answerId) => (dispatch) => {
           response: doc.data().response,
         }
         responses.push(response);
-      },);
+      }, );
       console.log(responses)
       dispatch({
         type: 'FETCH_RESPONSES',
-        payload:responses,
-        answerId:answerId
+        payload: responses,
+        answerId: answerId
       });
     }, );
 }
 
 export const myPageTabChange = (event) => (dispatch) => {
-          // イベント発生源の要素を取得
-          const element = event.currentTarget;
-    
-          // aria-controls 属性の値を取得
-          const tabState = element.getAttribute('id');
+  // イベント発生源の要素を取得
+  const element = event.currentTarget;
 
-      dispatch({
-        type: 'MYPAGE_TAB_CHANGE',
-        payload:tabState,
-      });
-    
+  // aria-controls 属性の値を取得
+  const tabState = element.getAttribute('id');
+
+  dispatch({
+    type: 'MYPAGE_TAB_CHANGE',
+    payload: tabState,
+  });
+
 }

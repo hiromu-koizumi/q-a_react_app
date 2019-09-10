@@ -1,11 +1,11 @@
-.container{
+.container {
   width: 100%;
   max-width: 600px;
   margin: 0 auto;
   position: relative;
 }
 
-a{
+a {
   color: white;
 }
 
@@ -14,21 +14,24 @@ a{
   src: url("../static/font/六つ子フォント.otf");
 }
 
-.back-button{
-  font-size:25px;
+.back-button {
+  font-size: 25px;
 }
 
-.flex{
+.flex {
   display: flex;
 }
-.flex-end{
+
+.flex-end {
   display: flex;
   justify-content: flex-end;
 
 }
-.right{
+
+.right {
   text-align: right;
 }
-button{
-  border:none;
+
+button {
+  border: none;
 }

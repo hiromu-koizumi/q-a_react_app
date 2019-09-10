@@ -20,18 +20,18 @@ import './style.scss'
                     <a href="#!" className={'tab-button' + ' ' + (tab === 'panel2' ? 'tab-botton-active' : '')} id="panel2" onClick={handleClick}>回答</a>
                 </div>
             </div>
-            <div role="tabpanel"
+            <div
             id="panel1"
             className={'tabpanel' + ' ' + (tab === 'panel1' ? 'tabpanel-active' : '')}
-          >
-         <MyQuestionList/>
-      </div>
-      <div role="tabpanel"
+            >
+            <MyQuestionList/>
+        </div>
+        <div 
            id="panel2"
            className={'tabpanel' + ' ' + (tab === 'panel2' ? 'tabpanel-active' : '')}
            >
-        <MyAnswerList/>
-      </div>
+            <MyAnswerList/>
+        </div>
     </div>
         )
     

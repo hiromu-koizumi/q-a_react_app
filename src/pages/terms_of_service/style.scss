@@ -1,0 +1,19 @@
+.terms-wrap{
+    margin: 16px;
+    padding: 16px;
+    background: #FFF;
+    border-radius: 4px;
+    margin-bottom: 4rem;
+
+    ol{
+        padding-left: 13px;
+    }
+
+    li{
+        list-style: outside decimal;
+        font-size: 0.95em;
+        line-height: 140%;
+        margin: 10px 0 0 0;
+    }
+}
+

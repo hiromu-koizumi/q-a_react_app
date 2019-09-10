@@ -1,19 +1,21 @@
-.myquestion-icon{
+.myquestion-icon {
     justify-content: flex-end;
-    .myquestion-comment-icon{
+
+    .myquestion-comment-icon {
         padding-left: 8px;
     }
 }
 
-.myanswer-icon{
+.myanswer-icon {
     text-align: right;
 }
 
-.myquestion-wrap{
+.myquestion-wrap {
     margin-top: 2rem;
     margin-bottom: 4rem;
 }
-.myanswer-wrap{
+
+.myanswer-wrap {
     margin-top: 2rem;
     margin-bottom: 4rem;
 }
@@ -21,42 +23,31 @@
 ul {
     padding: 0;
     margin: 0;
-  }
-  
-  li {
+}
+
+li {
     list-style: none;
     margin: 0 1px;
-  }
-  
-  button {
+}
+
+button {
     appearance: none;
-  
+
     padding: 10px 20px;
     margin: 0;
     border: none;
     background: lightgray;
     cursor: pointer;
-  }
-  
-//   [role="tabpanel"] {
-//     // border: 1px solid lightgray;
-//     // padding: 2rem;
-//     // max-width: 480px;
-//     // line-height: 175%;
-//   }
+}
 
-// [role="tablist"] {
-//     display: flex;
-//   }
-  
-.tab{
+.tab {
     background: #FFF;
     height: 40px;
     border-bottom: 1px #dbdbdb solid;
     position: relative;
     display: flex;
 
-    .tab-container{
+    .tab-container {
         display: flex;
         flex: 1;
         width: 100%;
@@ -65,7 +56,7 @@ ul {
         position: relative;
     }
 
-    a{
+    a {
         display: block;
         flex: 1;
         text-align: center;
@@ -78,27 +69,27 @@ ul {
         font-weight: bold;
         position: relative;
     }
-    .tab-botton-active{
-        color:#2f9a7f;
-      &:after {
-          content: '';
-      width: 100%;
-      display: block;
-      position: absolute;
-      height: 2px;
-      background: #2f9a7f;
-      bottom: -1px;
-      }
+
+    .tab-botton-active {
+        color: #2f9a7f;
+
+        &:after {
+            content: '';
+            width: 100%;
+            display: block;
+            position: absolute;
+            height: 2px;
+            background: #2f9a7f;
+            bottom: -1px;
+        }
     }
 }
 
 
-  .tabpanel{
-      display: none;
-    }
-  .tabpanel-active{
-      display: block;
-  }
+.tabpanel {
+    display: none;
+}
 
-  
-  
+.tabpanel-active {
+    display: block;
+}
