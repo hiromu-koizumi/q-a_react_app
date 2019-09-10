@@ -9,6 +9,7 @@ import pageReducer from './pageReducer';
 import responseReducer from './responseReducer';
 import loadingReducer from './loadingReducer';
 import myPageTabReducer from './myPageTabReducer';
+import myPageOptionReducer from './myPageOptionReducer';
 
 
 
@@ -23,4 +24,5 @@ export default combineReducers({
     page: pageReducer,
     response: responseReducer,
     loading: loadingReducer,
+    myPageOption: myPageOptionReducer,
 });

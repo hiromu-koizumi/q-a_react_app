@@ -566,3 +566,17 @@ export const myPageTabChange = (event) => (dispatch) => {
   });
 
 }
+
+export const myPageOptionChange = (event) => (dispatch) => {
+  // イベント発生源の要素を取得
+  const showMessage = event;
+  const showButton = !event;
+
+  dispatch({
+    type: 'CHANGE_OPTION',
+    showMessage:showMessage,
+    showButton: showButton,
+  });
+
+}
+
