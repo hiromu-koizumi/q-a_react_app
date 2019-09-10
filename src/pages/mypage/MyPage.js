@@ -19,7 +19,7 @@ import './style.scss'
     }
 
     return (
-        <div className="aaaaa" >
+        <div className="" >
             <div className="tab">
                 <div className="tab-container">
                     <a href="#!" className={'tab-button' + ' ' + (tab === 'panel1' ? 'tab-botton-active' : '')} id="panel1" onClick={handleClick}>質問</a>

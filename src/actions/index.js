@@ -191,7 +191,6 @@ export const fetchQuestion = (id) => (dispatch) => {
       //allitemsにデータを代入
       const payload = {
         // name: snapshot.data().name,
-        title: snapshot.data().title,
         question: snapshot.data().question,
         goodCount: snapshot.data().goodCount,
         userId: snapshot.data().userId,
@@ -269,6 +268,7 @@ export const signUp = formValues => async (dispatch) => {
     } else {
       console.log("error")
     }
+    this.props.history.push('/')     
   });
 
 }

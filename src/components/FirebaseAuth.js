@@ -21,7 +21,7 @@ class FirebaseAuth extends React.Component{
            return (
             <button className="ui red google button" onClick={this.onSignOutClick}>
               ログアウト
-        </button>
+            </button>
            )
        }else{
            return (

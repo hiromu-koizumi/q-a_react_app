@@ -3,6 +3,7 @@ import { CSSTransition } from 'react-transition-group';
 import {connect} from 'react-redux';
 import './style.scss'
 import {myPageOptionChange} from '../../actions';
+import OptionDropDown from './OptionDropDown'
 
 
 const OptionButton = ({showButton,showMessage,setShowMessage,myPageOptionChange}) => {
@@ -30,11 +31,9 @@ const OptionButton = ({showButton,showMessage,setShowMessage,myPageOptionChange}
       >
         <div
         //   onClose={() => setShowMessage(false)}
-          className="answer-form-wrap ui card"
+          className=""
         >
-            <div>
-                aaaaaa
-            </div>
+            <OptionDropDown/>
             {/* <AnswerForm onClick={onClick} onSubmit={onSubmit} auth={auth}/> */}
         </div>
       </CSSTransition>

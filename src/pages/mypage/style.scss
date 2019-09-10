@@ -99,3 +99,20 @@ button {
         background: white;
     }
 }
+
+.option-drop-down{
+    padding:1rem;
+    a{
+        color:black
+    }
+
+    .divider{
+        border-top: 1px solid rgba(34,36,38,0.1);
+    height: 0em;
+    margin: 0.5em 0em;
+    }
+}
+
+.option-button{
+    text-align:right;
+}
