@@ -12,12 +12,12 @@ const OptionDropDown = ({signOutAction,userDeleteAction}) => {
         if(confirmation){
             signOutAction();
         }else{
-
         }
     }
     else {
             }
     }
+
     const onUserDeleteClick = () => {
         var result = window.confirm('本当に退会しますか？');
     if( result ) {

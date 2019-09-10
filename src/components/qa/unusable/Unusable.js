@@ -25,6 +25,13 @@ const Unusable = ({questionId,answerId,response}) => {
                         </Link>
                 </div>
             </div>
+            <div>
+                <div className="signin-button">
+                        <Link to={"/qa/password"} className="header">
+                            パスワードを忘れた方
+                        </Link>
+                </div>
+            </div>
         </div>
     );
 }

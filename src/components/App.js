@@ -10,6 +10,7 @@ import MyPage from '../pages/mypage/MyPage';
 import Login from '../pages/login/LoginPage';
 import TermsPage from '../pages/terms_of_service/TermsPage';
 import PrivacyPage from '../pages/privacy_policy/PrivacyPage';
+import PasswordPage from '../pages/password/PasswordPage';
 import history from '../history';
 import Header from './qa/header/Header';
 import NaviBar from '../components/qa/navi_bar/NaviBar'
@@ -35,6 +36,7 @@ const App = () => {
               <Route path="/qa/unusable" exact component={Unusable}/>
               <Route path="/qa/terms" exact component={TermsPage}/>
               <Route path="/qa/privacy" exact component={PrivacyPage}/>
+              <Route path="/qa/password" exact component={PasswordPage}/>
               {/* qa/:idのあとにrouteを追加するとpathがqa:idに設定され、Qadetailを読み込んでしまう 。routeは、このrouteより上に追加する。*/}
               <Route path="/qa/:id" exact component={QaDetail}/>
             </Switch>

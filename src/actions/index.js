@@ -592,4 +592,16 @@ user.delete().then(function() {
   // An error happened.
 });
 }
+export const passwordResettingAction = (email) => (dispatch) => {
+console.log(email)
+  let auth = firebase.auth();
+let emailAddress = email;
+
+auth.sendPasswordResetEmail(emailAddress).then(function() {
+  // Email sent.
+}).catch(function(error) {
+  // An error happened.
+});
+  
+}
 
