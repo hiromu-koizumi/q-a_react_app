@@ -185,7 +185,6 @@ export const resetAnswer = () => dispatch => {
 
 //詳細ページで再読み込みする際、これがないとページが表示されない
 export const fetchQuestion = (id) => (dispatch) => {
-  console.log(firebase.auth().currentUser)
   db.collection('questions').doc(id).get()
     .then(snapshot => {
       //allitemsにデータを代入
@@ -353,7 +352,6 @@ export const scrollFetchMyQuestions = (questionData, userId) => async (dispatch)
     });
     const lastCreated = await questionData.created
     const questions = [];
-    console.log(lastCreated)
 
     //質問詳細ページで再読込してトップページに戻るとquestionDataを取得する前に呼び出されエラーになるので追加
     if (!lastCreated) {
@@ -362,7 +360,6 @@ export const scrollFetchMyQuestions = (questionData, userId) => async (dispatch)
 
     await db.collection('users').doc(userId).collection('questions').where("created", "<", lastCreated).orderBy('created', 'desc').limit(5).get()
       .then(snapshot => {
-        console.log('aaa')
         snapshot.docs.map(doc => {
           console.log(doc)
           //allitemsにデータを代入
@@ -424,7 +421,6 @@ export const scrollFetchMyAnswers = (answerData, userId) => async (dispatch) => 
     });
     const lastCreated = await answerData.created
     const answers = [];
-    console.log(lastCreated)
 
     //質問詳細ページで再読込してトップページに戻るとquestionDataを取得する前に呼び出されエラーになるので追加
     if (!lastCreated) {
@@ -433,7 +429,6 @@ export const scrollFetchMyAnswers = (answerData, userId) => async (dispatch) => 
 
     await db.collection('users').doc(userId).collection('answers').where("created", "<", lastCreated).orderBy('created', 'desc').limit(5).get()
       .then(snapshot => {
-        console.log('aaa')
         snapshot.docs.map(doc => {
           console.log(doc)
           //allitemsにデータを代入
@@ -543,7 +538,6 @@ export const fetchResponses = (questionId, answerId) => (dispatch) => {
         }
         responses.push(response);
       }, );
-      console.log(responses)
       dispatch({
         type: 'FETCH_RESPONSES',
         payload: responses,
@@ -581,7 +575,6 @@ export const myPageOptionChange = (event) => (dispatch) => {
 
 export const userDeleteAction = () => (dispatch) => {
   var user = firebase.auth().currentUser;
-  console.log('ooiiiiii')
 
 user.delete().then(function() {
   dispatch({
