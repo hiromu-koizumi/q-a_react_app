@@ -39,13 +39,15 @@ const ResponseButton = ({questionId, answerId, createResponse,fetchResponses,aut
         onEnter={() => setShowButton(false)}
         onExited={() => setShowButton(true)}
       >
-        <div
+        <div className="response-form-wrap">
+          <div
           onClose={() => setShowMessage(false)}
-          className="response-form-wrap ui card"
-        > 
-        {auth.isSignedIn === null ?
-        <Unusable/> :
-            <ResponseForm onClick={onClick} onSubmit={onSubmit} auth={auth}/>}
+          className="ui card"
+          > 
+            {auth.isSignedIn === null ?
+              <Unusable/> :
+              <ResponseForm onClick={onClick} onSubmit={onSubmit} auth={auth}/>}
+          </div>
         </div>
       </CSSTransition>
     </div>
