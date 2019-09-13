@@ -7,29 +7,22 @@ const OptionDropDown = ({signOutAction,userDeleteAction}) => {
 
     const onSignOutClick = () => {
         var result = window.confirm('本当にログアウトしますか？');
-    if( result ) {
-        var confirmation = window.confirm('押し間違いもあるので最終確認します。ログアウトしますか？');
-        if(confirmation){
-            signOutAction();
-        }else{
-        }
-    }
-    else {
+        if( result ) {
+            var confirmation = window.confirm('押し間違いもあるので最終確認します。ログアウトしますか？');
+            if(confirmation){
+                signOutAction();
             }
+        }
     }
 
     const onUserDeleteClick = () => {
         var result = window.confirm('本当に退会しますか？');
-    if( result ) {
-        var confirmation = window.confirm('押し間違いもあるので最終確認します。退会しますか？');
-        if(confirmation){
-            userDeleteAction();
-        }else{
-
-        }
-    }
-    else {
+        if( result ) {
+            var confirmation = window.confirm('押し間違いもあるので最終確認します。退会しますか？');
+            if(confirmation){
+                userDeleteAction();
             }
+        }
     }
 
 

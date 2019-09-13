@@ -358,7 +358,7 @@ export const scrollFetchMyQuestions = (questionData, userId) => async (dispatch)
       return;
     }
 
-    await db.collection('users').doc(userId).collection('questions').where("created", "<", lastCreated).orderBy('created', 'desc').limit(5).get()
+    await db.collection('users').doc(userId).collection('questions').where("created", "<", lastCreated).orderBy('created', 'desc').limit(10).get()
       .then(snapshot => {
         snapshot.docs.map(doc => {
           console.log(doc)
@@ -391,7 +391,7 @@ export const scrollFetchMyQuestions = (questionData, userId) => async (dispatch)
 export const fetchMyAnswers = (userId) => (dispatch) => {
   const answers = [];
 
-  db.collection('users').doc(userId).collection('answers').orderBy('created', 'desc').limit(8).get()
+  db.collection('users').doc(userId).collection('answers').orderBy('created', 'desc').limit(10).get()
     .then(snapshot => {
       snapshot.docs.map(doc => {
         //allitemsにデータを代入
@@ -427,7 +427,7 @@ export const scrollFetchMyAnswers = (answerData, userId) => async (dispatch) => 
       return;
     }
 
-    await db.collection('users').doc(userId).collection('answers').where("created", "<", lastCreated).orderBy('created', 'desc').limit(5).get()
+    await db.collection('users').doc(userId).collection('answers').where("created", "<", lastCreated).orderBy('created', 'desc').limit(10).get()
       .then(snapshot => {
         snapshot.docs.map(doc => {
           console.log(doc)

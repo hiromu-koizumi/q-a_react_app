@@ -40,13 +40,15 @@ const AnswerButton = ({questionId, createAnswer,fetchAnswers,auth,questionData})
         onEnter={() => setShowButton(false)}
         onExited={() => setShowButton(true)}
       >
-        <div
-          onClose={() => setShowMessage(false)}
-          className="answer-form-wrap ui card"
-        >
-          {auth.isSignedIn === null ?
-        <Unusable/> :
+        <div className="answer-form-wrap">
+          <div
+            onClose={() => setShowMessage(false)}
+            className="ui card"
+          >
+            {auth.isSignedIn === null ?
+            <Unusable/> :
             <AnswerForm onClick={onClick} onSubmit={onSubmit} auth={auth}/>}
+          </div>
         </div>
       </CSSTransition>
     </div>

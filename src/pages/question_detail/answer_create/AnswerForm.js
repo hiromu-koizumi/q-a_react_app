@@ -22,7 +22,7 @@ class AnswerForm extends React.Component {
             <div className={className}>
                 <label>{label}</label>
                 <Textarea autoFocus {...input} autoComplete="off" rows="1"/>
-                {this.renderError(meta)}
+                {/* {this.renderError(meta)} */}
             </div>
         )
     }

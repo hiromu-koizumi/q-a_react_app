@@ -54,4 +54,5 @@ const mapStateToProps = (state,ownProps) => {
     }
 }
 
+
 export default connect(mapStateToProps,{resetAnswer,fetchQuestion,fetchAnswers,questionGoodCount})(QaDetail);
