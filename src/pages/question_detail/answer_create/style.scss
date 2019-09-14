@@ -1,31 +1,35 @@
 .answer-enter {
     opacity: 0;
     transform: scale(0.9);
-  }
-  .answer-enter-active {
-    opacity: 1;
-    transform: translateX(0);
-    transition: opacity 300ms, transform 300ms;
+
+    &-active {
+      opacity: 1;
+      transform: translateX(0);
+      transition: opacity 300ms, transform 300ms;
+    }
   }
   .answer-exit {
     opacity: 1;
-  }
-  .answer-exit-active {
-    opacity: 0;
-    transform: scale(0.9);
-    transition: opacity 300ms, transform 300ms;
+
+    &-active {
+      opacity: 0;
+      transform: scale(0.9);
+      transition: opacity 300ms, transform 300ms;
+    }
   }
 
+  #answer-form{
+    width:100%;
+  }
   .answer{
     margin-bottom:1rem;
 
-    .answer-button{
+    &-button{
       text-align: center;
       margin-bottom: 1rem; 
     }
     
-    .answer-form-wrap{
-      width: 100%;
+    &-form-wrap{
       margin-top: 1rem;
     }
   }

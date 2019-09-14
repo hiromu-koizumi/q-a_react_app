@@ -42,7 +42,7 @@ const ResponseButton = ({questionId, answerId, createResponse,fetchResponses,aut
         <div className="response-form-wrap">
           <div
           onClose={() => setShowMessage(false)}
-          className="ui card"
+          className="ui card"　id="response-form"
           > 
             {auth.isSignedIn === null ?
               <Unusable/> :

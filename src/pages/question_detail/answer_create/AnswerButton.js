@@ -44,6 +44,7 @@ const AnswerButton = ({questionId, createAnswer,fetchAnswers,auth,questionData})
           <div
             onClose={() => setShowMessage(false)}
             className="ui card"
+            id="answer-form"
           >
             {auth.isSignedIn === null ?
             <Unusable/> :
