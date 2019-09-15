@@ -48,9 +48,9 @@ class AnswerForm extends React.Component {
                     </button>
                </div>
                 <form className="ui form error"　onSubmit={this.props.handleSubmit(this.onSubmit)}>
-                   <Field name="answer" component={this.renderInput} label="回答" />
+                   <Field name="answer" component={this.renderInput}/>
                    <div className="answer-inner-button">
-                        <button className="ui button primary">回答する</button>
+                        <button className="">回答</button>
                    </div>
                 </form>
             </div>

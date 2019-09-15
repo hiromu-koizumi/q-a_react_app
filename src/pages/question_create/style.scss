@@ -1,6 +1,12 @@
 .question-button{
     text-align: center;
+    margin-top:2rem;
+    button{
+        background:rgb(225, 137, 146);
+        color:white;
+        border-radius: 4px;
+    }
 }
 .question-form-wrap{
-    margin-top: 2rem;
+    margin-top: 4rem;
 }

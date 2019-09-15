@@ -50,9 +50,9 @@ class ResponseForm extends React.Component {
                     </button>
                </div>
                 <form className="ui form error"　onSubmit={this.props.handleSubmit(this.onSubmit)}>
-                    <Field name="response" component={this.renderInput} label="返信" />
+                    <Field name="response" component={this.renderInput}/>
                     <div className="response-inner-button">
-                        <button className="ui green inverted button" >返信</button>
+                        <button className="" >返信</button>
                     </div>
                 </form>
            </div>

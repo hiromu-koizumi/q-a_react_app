@@ -32,12 +32,11 @@ class MyAnswerList extends Component{
         if(this.props.answers){
             return (
                 < div className = "myanswer-wrap ui container" >
-                    <p>回答</p>
                     {/* propsにするかstateにするかで表示変わる。propsにすると */}
                     {this.props.answers.map((item, i) => (
                         <div className="ui fluid card" key={i}>
                             <div className="content">
-                                <Link to={`/qa/${item.questionId}`} className="header">
+                                <Link to={`/qa/${item.questionId}`} className="my-answer-link">
                                     {item.answer}
                                 </Link>
                                 <div className="description myanswer-icon">

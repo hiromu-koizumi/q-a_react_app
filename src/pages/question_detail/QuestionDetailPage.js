@@ -25,7 +25,7 @@ class QaDetail extends React.Component{
 
     render(){
         if(!this.props.questionData){
-            return <div>Loading...</div>
+            return <div className="loading-text">Loading...</div>
         }
 
         // const  {name,question} = this.props.questionData
@@ -34,7 +34,9 @@ class QaDetail extends React.Component{
 
         return (
             <div className="ui container">
-                <button className='back-button' onClick={() => this.props.history.goBack()}><i className="angle left icon"></i></button>
+                <div className="back-button-wrap">
+                    <button className='back-button' onClick={() => this.props.history.goBack()}><i className="angle left icon"></i></button>
+                </div>
                 <p className="question-top">{question}</p>
                 <div className="flex-end">
                     {/* <p className="name">{name}</p> */}

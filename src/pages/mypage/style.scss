@@ -70,8 +70,10 @@ button {
         position: relative;
     }
 
+    
+
     .tab-botton-active {
-        color: #2f9a7f;
+        color: rgb(225, 137, 146);
 
         &:after {
             content: '';
@@ -79,7 +81,7 @@ button {
             display: block;
             position: absolute;
             height: 2px;
-            background: #2f9a7f;
+            background: rgb(225, 137, 146);
             bottom: -1px;
         }
     }
@@ -119,4 +121,14 @@ button {
 
 .option-button{
     text-align:right;
+    button{
+        color: #b0b0b0
+    }
+}
+
+.my-answer-link{
+    color:black;
+}
+.my-question-link{
+    color:black;
 }

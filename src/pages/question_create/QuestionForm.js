@@ -33,9 +33,9 @@ class QuestionForm extends React.Component {
     render(){
        return (
            <form className="question-form-wrap ui form container"　onSubmit={this.props.handleSubmit(this.onSubmit)}>
-               <Field name="question" component={this.renderInput} label="質問" />
+               <Field name="question" component={this.renderInput}/>
                <div className="question-button">
-                    <button className="ui green inverted button">質問する</button>
+                    <button className="">質問する</button>
                </div>
            </form>
        )

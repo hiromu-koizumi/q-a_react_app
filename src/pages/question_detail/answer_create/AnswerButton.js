@@ -24,7 +24,7 @@ const AnswerButton = ({questionId, createAnswer,fetchAnswers,auth,questionData})
       {showButton && (
         <div className="answer-button">
           <button
-            className="ui icon button"
+            className=""
             onClick={() => setShowMessage(true)}
             size="lg"
           >

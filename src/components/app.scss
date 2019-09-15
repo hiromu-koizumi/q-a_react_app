@@ -18,13 +18,20 @@ body{
   src: url("../static/font/六つ子フォント.otf");
 }
 
+.back-button-wrap{
+  position: fixed;
+  z-index: 5;
+}
+
 .back-button {
   font-size: 25px;
-  background: white;
+  background: transparent;
   padding:0px;
   padding-top: 1rem;
   position: relative;
   left: -8px;
+  top: -73px;
+  color:gray;
 }
 
 .flex {
