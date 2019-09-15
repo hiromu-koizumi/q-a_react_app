@@ -50,7 +50,7 @@ class AnswerForm extends React.Component {
                 <form className="ui form error"　onSubmit={this.props.handleSubmit(this.onSubmit)}>
                    <Field name="answer" component={this.renderInput}/>
                    <div className="answer-inner-button">
-                        <button className="">回答</button>
+                        <button className="">送信</button>
                    </div>
                 </form>
             </div>

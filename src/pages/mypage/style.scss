@@ -3,6 +3,8 @@
 
     .myquestion-comment-icon {
         padding-left: 8px;
+        position: relative;
+        top: 2.5px;
     }
 }
 
@@ -131,4 +133,15 @@ button {
 }
 .my-question-link{
     color:black;
+}
+
+.mypage-heart-label{
+    align-self: center;
+    position: relative;
+    color: rgb(225, 137, 146);
+    font-size: 20px;
+    cursor: pointer;
+    position: relative;
+    padding-right: 3px;
+    top: 2px;
 }

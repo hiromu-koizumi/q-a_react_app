@@ -6,27 +6,30 @@ const Unusable = ({questionId,answerId,response}) => {
     return (
         <div className = "unusable-wrap ui container">
             <div className="signup">
-                <p>
-                すいません。。投稿・マイページ機能を使うには登録が必要です。<br/>
-                登録はすぐに終わるので、ぜひ試しに使ってみて下さい！
+                <p className="signup-please">
+                    すいません。。投稿・マイページ機能を使うには登録が必要です。<br/>
+                    登録はすぐに終わるので、ぜひ試しに使ってみて下さい！
                 </p>
-                <div className="signup-button">
-                    <div　className="ui teal button">
+                <div className="unusable-signup-button-wrap">
+                    <div　className="unusable-signup-button">
                         <Link to={"/qa/signup"} className="header">
-                            登録
+                            新規登録
                         </Link>
                     </div>
                 </div>
             </div>
+            <div className="unusable-or">
+                または
+            </div>
             <div>
-                <div className="signin-button">
-                        <Link to={"/qa/login"} className="header">
-                            ログインする
-                        </Link>
+                <div className="unusable-signin-button">
+                    <Link to={"/qa/login"} className="header">
+                        ログインする
+                    </Link>
                 </div>
             </div>
             <div>
-                <div className="signin-button">
+                <div className="unusable-password-button">
                         <Link to={"/qa/password"} className="header">
                             パスワードを忘れた方
                         </Link>

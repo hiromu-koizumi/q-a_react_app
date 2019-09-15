@@ -1,19 +1,60 @@
 .signup{
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 .signup-button{
     text-align: center;
 }
-.signin-button{
+.unusable-signin-button{
+    background: #dcd4d4;
+    color: #e18992;
+    border-radius: 4px;
+    width: 80%;
+    height: 36px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top:1rem;
+}
+
+.unusable-password-button{
     text-align: center;
+    margin-top:3rem;
     
     a{
-        color: lightseagreen;
-        border-bottom: solid 3px lightseagreen;
+        color: rgb(225, 137, 146);
+        border-bottom: solid 3px rgb(225, 137, 146);
+
     }
 }
+
 
 .unusable-wrap{
     margin-top: 2rem;
     margin-bottom: 2rem;
+}
+
+.signup-please{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.unusable-signup-button-wrap{
+}
+.unusable-signup-button{
+    background: #e18992;
+    color: white;
+    border-radius: 4px;
+    width: 80%;
+    height: 36px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.unusable-or{
+    text-align: center;
 }

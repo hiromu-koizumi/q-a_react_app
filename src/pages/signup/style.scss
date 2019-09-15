@@ -1,6 +1,18 @@
 .signup-form-wrap{
     margin-top: 2rem;
 }
-.signup-button{
-    text-align: center;
+.signup-form-button{
+    margin-top:2rem;
+    background: #e18992;
+    color: white;
+    border-radius: 4px;
+    width: 100%;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    button{
+        background:transparent;
+        color:white
+    }
 }
