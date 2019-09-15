@@ -20,7 +20,12 @@ $bubble-r: .5*$bubble-d; // bubble-radius
     border-width: $ext;
 }
 
-input {
+.question-top{
+    margin-top:1rem;
+    margin-left:1rem;
+}
+
+.heart-input {
   position: absolute;
   left: -100vw;
     
@@ -41,12 +46,14 @@ input {
     }
 }
 
-label {
+.heart-label {
     align-self: center;
     position: relative;
     color: #aab8c2;
     font-size: 20px;
     cursor: pointer;
+    position: relative;
+    top:-1px;
     
     &:before, &:after {
         position: absolute;

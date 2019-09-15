@@ -25,9 +25,11 @@ class Item extends Component{
                     {this.props.data.map((item, i) => (
                         <div className="ui fluid card" key={i}>
                             <div className="content">
-                                <Link to={`/qa/${item.questionId}`} className="header">
-                                {item.question}
-                                </Link>
+                                <div>
+                                    <Link to={`/qa/${item.questionId}`} className="question-heading">
+                                    {item.question}
+                                    </Link>
+                                </div>
                                 <div className="reaction-wrap">
                                 <GoodButton onClick={this.onClick} postData={item}/>
                                 <div className="comment-icon">
