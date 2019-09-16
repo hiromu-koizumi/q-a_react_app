@@ -18,7 +18,7 @@ class QuestionForm extends React.Component {
         return(
             <div className={className}>
                 <label>{label}</label>
-                <Textarea autoFocus {...input} autoComplete="off" rows="1"/>
+                <Textarea {...input} autoComplete="off" rows="1"/>
                 {this.renderError(meta)}
             </div>
         )
