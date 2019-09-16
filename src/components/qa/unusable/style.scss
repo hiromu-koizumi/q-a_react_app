@@ -15,6 +15,13 @@
     justify-content: center;
     align-items: center;
     margin-top:1rem;
+    a:hover{
+        color:white;
+    }
+    a{
+        width: 100%;
+        text-align: center;
+    }
 }
 
 .unusable-password-button{
@@ -22,9 +29,8 @@
     margin-top:3rem;
     
     a{
-        color: rgb(225, 137, 146);
-        border-bottom: solid 3px rgb(225, 137, 146);
-
+        color: #e18992;
+        border-bottom: solid 3px #e18992;
     }
 }
 
@@ -41,8 +47,6 @@
     margin-bottom: 2rem;
 }
 
-.unusable-signup-button-wrap{
-}
 .unusable-signup-button{
     background: #e18992;
     color: white;
@@ -53,6 +57,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    a:hover{
+        color:white;
+    }
+    a{
+        width: 100%;
+        text-align: center;
+    }
+    
 }
 
 .unusable-or{

@@ -3,8 +3,6 @@
 
     .myquestion-comment-icon {
         padding-left: 8px;
-        position: relative;
-        top: 2.5px;
     }
 }
 
@@ -75,7 +73,7 @@ button {
     
 
     .tab-botton-active {
-        color: rgb(225, 137, 146);
+        color: #e18992;
 
         &:after {
             content: '';
@@ -83,12 +81,15 @@ button {
             display: block;
             position: absolute;
             height: 2px;
-            background: rgb(225, 137, 146);
+            background: #e18992;
             bottom: -1px;
         }
     }
 }
 
+.no-push-heart{
+    color:#e18992;
+}
 
 .tabpanel {
     display: none;
@@ -133,15 +134,4 @@ button {
 }
 .my-question-link{
     color:black;
-}
-
-.mypage-heart-label{
-    align-self: center;
-    position: relative;
-    color: rgb(225, 137, 146);
-    font-size: 20px;
-    cursor: pointer;
-    position: relative;
-    padding-right: 3px;
-    top: 2px;
 }

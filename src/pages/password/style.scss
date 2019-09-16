@@ -1,9 +1,4 @@
-.login-wrap{
-    margin-top: 2rem;
-}
-
-.login-button{
-    text-align: center;
+.password-form-button{
     margin-top:2rem;
     background: #e18992;
     color: white;
@@ -16,6 +11,14 @@
     button{
         background:transparent;
         color:white;
-        width: 100%
+        width:100%;
     }
+}
+.password-form-text{
+    text-align: left;
+    padding-top: 3rem;
+    margin-right: 1rem;
+    margin-left: 1rem;
+    font-size: 13px;
+    margin-bottom: 2rem;
 }

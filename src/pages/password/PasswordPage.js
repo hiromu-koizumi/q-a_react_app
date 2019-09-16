@@ -2,17 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { passwordResettingAction } from '../../actions';
 import PasswordForm from './PasswordForm';
-// import './style.scss'
+import './style.scss'
 
-// const PasswordPage = () => {
-
-//     const submit = (formValues) =>{
-//         passwordResettingAction(formValues)
-//     }
-//     return (
-//         <PasswordForm submit={submit}/>
-//     )
-// }
 
 class PasswordPage extends Component{
     

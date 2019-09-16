@@ -1,11 +1,11 @@
 
   export default {
-    apiKey: "AIzaSyA8CA_8IFf_VbGz5SiGQ5xeRJzfsGXTwOY",
-    authDomain: "qa-cos.firebaseapp.com",
-    databaseURL: "https://qa-cos.firebaseio.com",
-    projectId: "qa-cos",
+    apiKey: "AIzaSyCY4eJe6lU2LhHBevul1B9WxrDAn6zaxgE",
+    authDomain: "cos-qa.firebaseapp.com",
+    databaseURL: "https://cos-qa.firebaseio.com",
+    projectId: "cos-qa",
     storageBucket: "",
-    messagingSenderId: "852795969827",
-    appId: "1:852795969827:web:da542e799ca3e6af"
+    messagingSenderId: "751668701798",
+    appId: "1:751668701798:web:f659bd210d968417fe5ba7"
   };
   // Initialize Firebase

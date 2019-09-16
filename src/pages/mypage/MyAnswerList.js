@@ -40,7 +40,7 @@ class MyAnswerList extends Component{
                                     {item.answer}
                                 </Link>
                                 <div className="description myanswer-icon">
-                                <label className="mypage-heart-label">❤</label>{item.goodCount}
+                                    <div className=''><i className="no-push-heart ui heart icon"></i>{item.goodCount}</div>
                                 </div>
                             </div>
                         </div>

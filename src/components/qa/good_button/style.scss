@@ -27,7 +27,7 @@ $bubble-r: .5*$bubble-d; // bubble-radius
   left: -100vw;
     
     &:checked + label {
-        color: rgb(225, 137, 146);
+        color: #e18992;
         will-change: font-size;        
         animation: heart 1s cubic-bezier(.17, .89, .32, 1.49);
         
@@ -47,10 +47,7 @@ $bubble-r: .5*$bubble-d; // bubble-radius
     align-self: center;
     position: relative;
     color: #d3dde4;
-    font-size: 20px;
     cursor: pointer;
-    position: relative;
-    top:-1px;
     
     &:before, &:after {
         position: absolute;

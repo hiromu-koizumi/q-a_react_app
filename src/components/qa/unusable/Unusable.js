@@ -12,7 +12,7 @@ const Unusable = ({questionId,answerId,response}) => {
                 </p>
                 <div className="unusable-signup-button-wrap">
                     <div　className="unusable-signup-button">
-                        <Link to={"/qa/signup"} className="header">
+                        <Link to={"/qa/signup"} className="">
                             新規登録
                         </Link>
                     </div>
@@ -23,14 +23,14 @@ const Unusable = ({questionId,answerId,response}) => {
             </div>
             <div>
                 <div className="unusable-signin-button">
-                    <Link to={"/qa/login"} className="header">
+                    <Link to={"/qa/login"} className="">
                         ログインする
                     </Link>
                 </div>
             </div>
             <div>
                 <div className="unusable-password-button">
-                        <Link to={"/qa/password"} className="header">
+                        <Link to={"/qa/password"} className="">
                             パスワードを忘れた方
                         </Link>
                 </div>

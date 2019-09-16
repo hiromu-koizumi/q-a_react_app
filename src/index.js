@@ -8,9 +8,11 @@ import reducers from './reducers';
 import App from './components/App';
 
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
+// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
 const middlewares = [thunk];
-const store = createStore(reducers,composeEnhancers(applyMiddleware(...middlewares)));
+const store = createStore(reducers,applyMiddleware(...middlewares));
+// const store = createStore(reducers,composeEnhancers(applyMiddleware(...middlewares)));
+
 
 
 ReactDOM.render(

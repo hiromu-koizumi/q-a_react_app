@@ -31,7 +31,7 @@ class Item extends Component{
                                     </Link>
                                 </div>
                                 <div className="reaction-wrap">
-                                <GoodButton onClick={this.onClick} postData={item}/>
+                                <div className=''><i className="no-push-heart ui heart icon"></i>{item.goodCount}</div>
                                 <div className="comment-icon">
                                     <p><i className="icon comment outline"></i>{item.answerCount}</p>
                                 </div>
