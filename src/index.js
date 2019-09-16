@@ -7,13 +7,14 @@ import thunk from 'redux-thunk';
 import reducers from './reducers';
 import App from './components/App';
 
-
-// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
+var store
 const middlewares = [thunk];
-const store = createStore(reducers,applyMiddleware(...middlewares));
-// const store = createStore(reducers,composeEnhancers(applyMiddleware(...middlewares)));
-
-
+if(window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__){
+    const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;    
+     store = createStore(reducers,composeEnhancers(applyMiddleware(...middlewares)));
+}else{
+     store = createStore(reducers,applyMiddleware(...middlewares));
+}
 
 ReactDOM.render(
     <Provider store={store}>

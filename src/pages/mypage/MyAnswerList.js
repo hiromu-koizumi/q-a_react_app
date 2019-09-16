@@ -39,8 +39,9 @@ class MyAnswerList extends Component{
                                 <Link to={`/qa/${item.questionId}`} className="my-answer-link">
                                     {item.answer}
                                 </Link>
-                                <div className="description myanswer-icon">
+                                <div className="description myanswer-icon flex">
                                     <div className=''><i className="no-push-heart ui heart icon"></i>{item.goodCount}</div>
+                                    <div className="myanswer-comment-icon"><i className="comment outline icon"></i>{item.responseCount}</div>
                                 </div>
                             </div>
                         </div>
@@ -70,8 +71,7 @@ class MyAnswerList extends Component{
                 loading:state.loading.loading
             }
         }
-            return {userId:state.auth.userId}
-        
+            return {userId:state.auth.userId}      
     }
     
 

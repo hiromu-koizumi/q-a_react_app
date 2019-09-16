@@ -35,10 +35,10 @@ class AnswerList extends Component{
                                         {/* <div className="meta name">{item.name}</div> */}
                                         <GoodButton onClick={this.onClick} postData={item}/>
                                     </div>
-                                        <ResponseButton questionId={item.questionId} answerId={item.answerId}/>
+                                        <ResponseButton answerUserId={item.userId} questionId={item.questionId} answerId={item.answerId}/>
                                 </div>
                             </div>
-                                <ResponseList questionId={item.questionId} answerId={item.answerId}/>
+                                <ResponseList answerUserId={item.userId} questionId={item.questionId} answerId={item.answerId}/>
                         </div>
                     ))
                     }

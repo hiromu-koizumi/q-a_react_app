@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux';
 import ResponseButton from './response_create/ResponseButton';
 
-const ResponseList = ({questionId,answerId,response}) => {
+const ResponseList = ({questionId,answerId,response,answerUserId}) => {
     if(!response){
       return <div>Loading</div>;
     }
@@ -18,7 +18,7 @@ const ResponseList = ({questionId,answerId,response}) => {
                         <div className="">
                             <div className="meta name">{item.name}</div>
                         </div>
-                            <ResponseButton questionId={questionId} answerId={answerId}/>
+                            <ResponseButton answerUserId={answerUserId} questionId={questionId} answerId={answerId}/>
                     </div>
                 </div>
             ))

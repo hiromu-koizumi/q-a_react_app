@@ -7,17 +7,21 @@
 }
 
 .myanswer-icon {
-    text-align: right;
+    justify-content: flex-end;
 }
 
 .myquestion-wrap {
     margin-top: 2rem;
-    margin-bottom: 4rem;
+    padding-bottom: 6rem;
+}
+
+.myanswer-comment-icon{
+    padding-left:8px;
 }
 
 .myanswer-wrap {
     margin-top: 2rem;
-    margin-bottom: 4rem;
+    padding-bottom: 6rem;
 }
 
 ul {
@@ -134,4 +138,15 @@ button {
 }
 .my-question-link{
     color:black;
+}
+
+.x-button-option{
+    text-align: right;
+    position: relative;
+    left: 5px;
+    button{
+        background: white;
+        padding: 0px;
+        color: gray;
+    }
 }

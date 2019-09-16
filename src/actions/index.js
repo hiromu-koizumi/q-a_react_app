@@ -131,6 +131,7 @@ export const createAnswer = (formValues, questionId, auth, questionData) => asyn
       questionId: questionId,
       answerId: answerId,
       goodCount: 0,
+      responseCount:0,
       created: firebase.firestore.FieldValue.serverTimestamp()
     }).then(doc => {
       console.log(`${doc.id}をDBに保存した`);
@@ -400,7 +401,8 @@ export const fetchMyAnswers = (userId) => (dispatch) => {
           questionId: doc.data().questionId,
           docId: doc.id,
           goodCount: doc.data().goodCount,
-          created: doc.data().created
+          created: doc.data().created,
+          responseCount: doc.data().responseCount,
         }
         return answers.push(answer);
 
@@ -437,6 +439,7 @@ export const scrollFetchMyAnswers = (answerData, userId) => async (dispatch) => 
             docId: doc.id,
             goodCount: doc.data().goodCount,
             created: doc.data().created,
+            responseCount: doc.data().responseCount,
           }
 
           return answers.push(answer);
@@ -512,7 +515,7 @@ export const answerGoodCount = (postData) => async (dispatch) => {
 
 
 
-export const createResponse = (formValues, questionId, answerId, auth) => async (dispatch) => {
+export const createResponse = (formValues, questionId, answerId,answerUserId) => async (dispatch) => {
 
   await db.collection('questions').doc(questionId).collection('answers').doc(answerId).collection('responses').add({
       ...formValues,
@@ -523,6 +526,11 @@ export const createResponse = (formValues, questionId, answerId, auth) => async 
     })
     .catch(error => {
       console.log(error);
+    });
+
+    let userQuestionRef = db.collection('users').doc(answerUserId).collection('answers').doc(answerId);
+    userQuestionRef.update({
+      responseCount: firebase.firestore.FieldValue.increment(1)
     });
 }
 
@@ -586,9 +594,8 @@ user.delete().then(function() {
 });
 }
 export const passwordResettingAction = (email) => (dispatch) => {
-console.log(email)
   let auth = firebase.auth();
-let emailAddress = email;
+  let emailAddress = email;
 
 auth.sendPasswordResetEmail(emailAddress).then(function() {
   // Email sent.

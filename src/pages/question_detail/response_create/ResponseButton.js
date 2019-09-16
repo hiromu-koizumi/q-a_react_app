@@ -6,13 +6,14 @@ import {createResponse,fetchResponses} from '../../../actions'
 import Unusable from '../../../components/qa/unusable/Unusable'
 import './style.scss'
 
-const ResponseButton = ({questionId, answerId, createResponse,fetchResponses,auth}) => {
+const ResponseButton = ({questionId, answerId, createResponse,fetchResponses,auth,answerUserId}) => {
   const [showButton, setShowButton] = useState(true);
   const [showMessage, setShowMessage] = useState(false);
   const onClick = () => {setShowMessage(false)}
 
   const onSubmit = (formValues) => {
-    createResponse(formValues,questionId,answerId,auth);
+    console.log(answerUserId)
+    createResponse(formValues,questionId,answerId,answerUserId);
 　  }
 
   useEffect(() => {
