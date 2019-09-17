@@ -24,34 +24,14 @@
     padding-bottom: 6rem;
 }
 
-ul {
-    padding: 0;
-    margin: 0;
-}
-
-li {
-    list-style: none;
-    margin: 0 1px;
-}
-
-button {
-    appearance: none;
-
-    padding: 10px 20px;
-    margin: 0;
-    border: none;
-    background: lightgray;
-    cursor: pointer;
-}
-
-.tab {
+.mypage-tab {
     background: #FFF;
     height: 40px;
     border-bottom: 1px #dbdbdb solid;
     position: relative;
     display: flex;
 
-    .tab-container {
+    .mypage-tab-container {
         display: flex;
         flex: 1;
         width: 100%;
@@ -95,11 +75,11 @@ button {
     color:#e18992;
 }
 
-.tabpanel {
+.mypage-tabpanel {
     display: none;
 }
 
-.tabpanel-active {
+.mypage-tabpanel-active {
     display: block;
 }
 
@@ -117,8 +97,8 @@ button {
 
     .divider{
         border-top: 1px solid rgba(34,36,38,0.1);
-    height: 0em;
-    margin: 0.5em 0em;
+        height: 0em;
+        margin: 0.5em 0em;
     }
 
     span{
@@ -140,7 +120,7 @@ button {
     color:black;
 }
 
-.x-button-option{
+.option-x-button{
     text-align: right;
     position: relative;
     left: 5px;

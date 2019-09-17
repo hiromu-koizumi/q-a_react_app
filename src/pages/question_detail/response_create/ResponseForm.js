@@ -42,20 +42,20 @@ class ResponseForm extends React.Component {
             ) 
         }
 
-       return (
-           <div className="content">
-               <div className="x-button">
+        return (
+            <div className="content">
+                <div className="x-button">
                     <button className="" onClick={this.props.onClick}>
                         <i className='x icon'></i>
                     </button>
-               </div>
+                </div>
                 <form className="ui form error"　onSubmit={this.props.handleSubmit(this.onSubmit)}>
                     <Field name="response" component={this.renderInput}/>
                     <div className="response-inner-button">
                         <button className="" >返信</button>
                     </div>
                 </form>
-           </div>
+            </div>
         )
     }
 };

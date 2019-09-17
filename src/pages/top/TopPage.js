@@ -22,7 +22,7 @@ class TopPage extends Component{
     
     render() {
             return (
-                < div className = "top-wrap" >
+                <div className = "top-wrap">
                     <Header/>
                     <QuestionList/>
                     <Waypoint onEnter={this.scrollFetchQuestions}/>

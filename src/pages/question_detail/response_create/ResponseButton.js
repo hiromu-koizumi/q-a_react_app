@@ -12,9 +12,8 @@ const ResponseButton = ({questionId, answerId, createResponse,fetchResponses,aut
   const onClick = () => {setShowMessage(false)}
 
   const onSubmit = (formValues) => {
-    console.log(answerUserId)
     createResponse(formValues,questionId,answerId,answerUserId);
-　  }
+  }
 
   useEffect(() => {
     fetchResponses(questionId,answerId);

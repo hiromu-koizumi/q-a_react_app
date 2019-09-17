@@ -7,7 +7,7 @@ const ResponseList = ({questionId,answerId,response,answerUserId}) => {
       return <div>Loading</div>;
     }
     return (
-        < div className = "wrap" >
+        <div className = "wrap">
             {/* propsにするかstateにするかで表示変わる。propsにすると */}
             {response.map((item, i) => (
                 <div className="ui fluid card" key={i}>

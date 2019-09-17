@@ -20,28 +20,28 @@ import './style.scss'
 
     return (
         <div className="" >
-            <div className="tab">
-                <div className="tab-container">
-                    <a href="#!" className={'tab-button' + ' ' + (tab === 'panel1' ? 'tab-botton-active' : '')} id="panel1" onClick={handleClick}>質問</a>
-                    <a href="#!" className={'tab-button' + ' ' + (tab === 'panel2' ? 'tab-botton-active' : '')} id="panel2" onClick={handleClick}>回答</a>
+            <div className="mypage-tab">
+                <div className="mypage-tab-container">
+                    <a href="#!" className={'mypage-tab-button' + ' ' + (tab === 'question-tab' ? 'tab-botton-active' : '')} id="question-tab" onClick={handleClick}>質問</a>
+                    <a href="#!" className={'mypage-tab-button' + ' ' + (tab === 'answer-tab' ? 'tab-botton-active' : '')} id="answer-tab" onClick={handleClick}>回答</a>
                 </div>
             </div>
             <OptionPage/>
             <div
-            id="panel1"
+            id="question-tab"
             onClick={optionClose}
-            className={'tabpanel' + ' ' + (tab === 'panel1' ? 'tabpanel-active' : '')}
+            className={'mypage-tabpanel' + ' ' + (tab === 'question-tab' ? 'mypage-tabpanel-active' : '')}
             >
-            <MyQuestionList/>
+                <MyQuestionList/>
+            </div>
+            <div 
+            id="answer-tab"
+            onClick={optionClose}
+            className={'mypage-tabpanel' + ' ' + (tab === 'answer-tab' ? 'mypage-tabpanel-active' : '')}
+            >
+                <MyAnswerList/>
+            </div>
         </div>
-        <div 
-           id="panel2"
-           onClick={optionClose}
-           className={'tabpanel' + ' ' + (tab === 'panel2' ? 'tabpanel-active' : '')}
-           >
-            <MyAnswerList/>
-        </div>
-    </div>
         )
     
 }

@@ -24,7 +24,39 @@
     line-height: 45px;
     padding-top: 2px;
     }
+    &-link-center{
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    float: left;
+    width: 33%;
+    height: 50px;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    line-height: 34px;
+    padding-top: 2px;
+    position: relative;
+    }
+    &-icon-center{
+        position: relative;
+        z-index: 1;
+        &:after{
+        content: '';
+        height: 80px;
+        width: 80px;
+        display: block;
+        border-radius: 50%;
+        background: #e18992;
+        position: absolute;
+        top: -23px;
+        left: -22px;
+        z-index: -1;
+        }
+    }
     .big-icon{
         font-size: 29px;
+        // background: #e18992;
     }
 }

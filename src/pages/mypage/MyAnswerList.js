@@ -22,7 +22,7 @@ class MyAnswerList extends Component{
         if (this.props.userId && this.props.userId !== prevProps.userId ) {
             this.props.fetchMyAnswers(this.props.userId)
         }
-      }
+    }
     scrollFetchMyAnswers = () =>{
         let answersLastNum = this.props.answers.length - 1
         this.props.scrollFetchMyAnswers(this.props.answers[answersLastNum],this.props.userId)
@@ -71,7 +71,8 @@ class MyAnswerList extends Component{
                 loading:state.loading.loading
             }
         }
-            return {userId:state.auth.userId}      
+        return {userId:state.auth.userId}
+
     }
     
 

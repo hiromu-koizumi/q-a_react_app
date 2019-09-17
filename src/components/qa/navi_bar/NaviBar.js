@@ -19,11 +19,11 @@ const NaviBar = ({ isSignedIn,signInAction}) => {
                 </Link>
                 {/* <FirebaseAuth/> */}
                 {isSignedIn ?
-                <Link to="/qa/new" className="navi-bar-link big-icon">
-                    <i className="icon plus square outline navi-bar-icon"></i>
+                <Link to="/qa/new" className="navi-bar-link-center big-icon">
+                    <i className="icon plus navi-bar-icon-center"></i>
                 </Link> :
-                <Link to="/qa/unusable" className="navi-bar-link big-icon">
-                    <i className="icon plus square outline navi-bar-icon"></i>
+                <Link to="/qa/unusable" className="navi-bar-link-center big-icon">
+                    <i className="icon plus navi-bar-icon-center"></i>
                 </Link>}
 
                 {isSignedIn ?

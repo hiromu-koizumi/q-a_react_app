@@ -40,21 +40,21 @@ class AnswerForm extends React.Component {
                 </Link>
             ) 
         }
-       return (
-           <div className="content">
-               <div className="x-button">
+        return (
+            <div className="content">
+                <div className="x-button">
                     <button className="" onClick={this.props.onClick}>
                         <i className='x icon'></i>
                     </button>
-               </div>
+                </div>
                 <form className="ui form error"　onSubmit={this.props.handleSubmit(this.onSubmit)}>
-                   <Field name="answer" component={this.renderInput}/>
-                   <div className="answer-inner-button">
+                    <Field name="answer" component={this.renderInput}/>
+                    <div className="answer-inner-button">
                         <button className="">送信</button>
-                   </div>
+                    </div>
                 </form>
             </div>
-       )
+        )
     }
 };
 

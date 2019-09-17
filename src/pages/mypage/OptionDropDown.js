@@ -32,7 +32,7 @@ const OptionDropDown = ({signOutAction,userDeleteAction,myPageOptionChange}) => 
 
     return(
         <div className="option-drop-down">
-            <div className="x-button-option">
+            <div className="option-x-button">
                     <button className="" onClick={onClick}>
                         <i className='x icon'></i>
                     </button>
