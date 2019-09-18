@@ -41,9 +41,9 @@ const OptionDropDown = ({signOutAction,userDeleteAction,myPageOptionChange}) => 
             <div className="divider"></div>
             <a href="/qa/privacy">プライバシーポリシー</a>
             <div className="divider"></div>
-            <a onClick={onSignOutClick}><span>ログアウト</span></a>
+            <a href="#!" onClick={onSignOutClick}><span>ログアウト</span></a>
             <div className="divider"></div>
-            <a onClick={onUserDeleteClick}><span>退会する</span></a>
+            <a href="#!" onClick={onUserDeleteClick}><span>退会する</span></a>
         </div>
     )
 
