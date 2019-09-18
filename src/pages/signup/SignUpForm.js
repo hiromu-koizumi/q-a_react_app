@@ -26,12 +26,12 @@ class SignUpForm extends React.Component {
         )
     }
 
-    renderInput = ({input,label,meta}) => {
+    renderInput = ({input,label,meta,type}) => {
         const className = `field ${meta.error && meta.touched ? 'error' : ''}`
         return(
             <div className={className}>
                 <label>{label}</label>
-                <input {...input} autoComplete="off"/>
+                <input {...input} type={type} autoComplete="off"/>
                 {this.renderError(meta)}
             </div>
         )
@@ -46,7 +46,7 @@ class SignUpForm extends React.Component {
             <form className="signup-form-wrap ui form error container"　onSubmit={this.props.handleSubmit(this.onSubmit)}>
                 {/* <Field name="name" component={this.renderInput} label="名前"  validate={name} /> */}
                 <Field name="mail" component={this.renderInput} label="メールアドレス"  validate={mail} warn={aol}/>
-                <Field name="password" component={this.renderInput} label="パスワード" validate={minLength6} />
+                <Field name="password" type="password" component={this.renderInput} label="パスワード" validate={minLength6} />
                 <div className="signup-form-button">
                     <button className="">登録する</button>
                 </div>
