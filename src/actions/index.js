@@ -210,6 +210,7 @@ export const signUp = formValues => async (dispatch) => {
   //ユーザー登録
   await firebase.auth().createUserWithEmailAndPassword(formValues.mail, formValues.password).catch(function (error) {
     console.log('error')
+    window.confirm('すでに使用されているメールアドレスのため登録できませんでした。');
   });
 
   //ユーザーログイン
@@ -300,6 +301,7 @@ export const loginAction = (formValues) => async (dispatch) => {
       firebase.auth().signInWithEmailAndPassword(formValues.mail, formValues.password).catch(function (error) {})
     }).catch(function (error) {
       console.log(error)
+      window.confirm('パスワードかメールアドレスが間違っています');
     });
 
 };
