@@ -285,7 +285,7 @@ export const signInAction = () => (dispatch) => {
         // name:user.displayName
       });
     } else {
-      console.log("error")
+      console.log("ログインしていません")
     }
   });
 };
@@ -300,8 +300,8 @@ export const loginAction = (formValues) => async (dispatch) => {
     .then(function () {
       firebase.auth().signInWithEmailAndPassword(formValues.mail, formValues.password).catch(function (error) {})
     }).catch(function (error) {
-      console.log(error)
       window.confirm('パスワードかメールアドレスが間違っています');
+      console.log(error)
     });
 
 };
