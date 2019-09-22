@@ -4,6 +4,9 @@
 
 .answer-list-wrap{
     padding-bottom: 10rem;
+    .answer-list-pink-card{
+        -webkit-box-shadow: 0 1px 3px 0 #e18992, 0 0 0 1px #e18992;
+        box-shadow: 0 1px 3px 0 #e18992, 0 0 0 1px #e18992;
+    }
 }
-
 

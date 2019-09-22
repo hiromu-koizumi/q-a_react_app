@@ -6,10 +6,10 @@ const Unusable = ({questionId,answerId,response}) => {
     return (
         <div className = "unusable-wrap ui container">
             <div className="signup">
-                <p className="signup-please">
+                <div className="signup-please">
                     すいません。。投稿・マイページ機能を使うには登録が必要です。<br/>
                     登録はすぐに終わるので、ぜひ試しに使ってみて下さい！
-                </p>
+                </div>
                 <div className="unusable-signup-button-wrap">
                     <div　className="unusable-signup-button">
                         <Link to={"/qa/signup"} className="">

@@ -26,7 +26,7 @@ class AnswerList extends Component{
                     {/* propsにするかstateにするかで表示変わる。propsにすると */}
                     {this.props.data.map((item, i) => (
                         <div className = "answer-list-wrap" key={i}>
-                            <div className="ui fluid card">
+                            <div className="ui fluid card answer-list-pink-card">
                                 <div className="content">
                                     <div className="description">
                                         <p>{item.answer}</p>
