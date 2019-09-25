@@ -37,7 +37,7 @@ https://cos-qa.firebaseapp.com
 ## 技術的な工夫
 - 無限スクロールの実装
 - 詳細ページからタイムラインに戻った時に画面の位置が維持される
-- React Hooksの利用
+- React Hooksの使用
 
 ## サービスURL
 https://cos-qa.firebaseapp.com
