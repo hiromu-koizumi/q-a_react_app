@@ -30,6 +30,7 @@ https://cos-qa.firebaseapp.com
 - Firebase
   - Authentication
   - Cloud Firestore
+   - ルール設定済み
 - React
 - Redux
 - Semantic UI
